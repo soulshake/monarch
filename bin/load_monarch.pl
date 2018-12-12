@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 
 # load_monarch.pl
 
@@ -62,10 +62,9 @@ my $dbname;
 my $dbuser;
 my $dbpass;
 
-my $monarch_file    = '/usr/local/groundwork/nagios/etc/monarch.sql';
+my $monarch_file    = '/usr/local/groundwork/monarch/etc/monarch.sql';
 my $properties_file = '/usr/local/groundwork/config/db.properties';
-my $mysql           = '/usr/local/groundwork/mysql/bin/mysql';
-my $psql            = '/usr/local/groundwork/postgresql/bin/psql';
+my $psql            = '/usr/bin/psql';
 # my $env             = '/usr/bin/env';
 
 # This parameter might need local tuning under adverse circumstances.
@@ -256,7 +255,7 @@ sub load_monarch {
     close(FILE);
 
     # Historical default.  Will be 'postgresql' as of GWMEE 6.6.
-    $dbtype = 'mysql' if not defined $dbtype;
+    $dbtype = 'postgresql' if not defined $dbtype;
 
     if ( !defined($dbname) or !defined($dbhost) or !defined($dbuser) or !defined($dbpass) ) {
 	push @errors, "Error:  Cannot read the database configuration on $hostname.";
@@ -405,13 +404,6 @@ sub load_monarch {
 	# whether the database loading failed.  (Actually, without ON_ERROR_STOP, it's
 	# unlikely that $psql will report anything but a zero exit status, since script
 	# errors will be ignored.  Still, this will report certain kinds of fatal errors.)
-	return \@errors, \@results, ($? & 127 || $? >> 8);
-    }
-    elsif ($dbtype eq 'mysql') {
-	## FIX MINOR:  This should be modified to use a credentials file instead of
-	## passing the password on the command line, with a mechanism in place to
-	## guarantee removal of the credentials file no matter how the script exits.
-	push @results, qx($mysql -u$dbuser -p$dbpass $dbname < $monarch_file);
 	return \@errors, \@results, ($? & 127 || $? >> 8);
     }
     else {

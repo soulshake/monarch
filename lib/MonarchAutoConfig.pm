@@ -6125,12 +6125,12 @@ The Cacti host profiles sync can be fully ...);
 qq(<p class='append'>The Cacti host profile sync can be fully automated. The process is broken down into two steps: extract the data from Cacti and import the data into GroundWork Configuration.</p>
 <p class='append'>
 &bull;&nbsp;The script to extract data from Cacti is:
-<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/core/monarch/automation/scripts/extract_cacti.pl</b>
+<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/monarch/automation/scripts/extract_cacti.pl</b>
 <br>&nbsp;&nbsp;&nbsp;Please note that the database authentication information for Cacti resides in the script.
 </p>
 <p class='append'>
 &bull;&nbsp;The script to import data into GroundWork Configuration is:<b>
-<br>&nbsp;&nbsp;&nbsp;/usr/local/groundwork/core/monarch/automation/scripts/auto_import_cacti.pl Cacti</b>
+<br>&nbsp;&nbsp;&nbsp;/usr/local/groundwork/monarch/automation/scripts/auto_import_cacti.pl Cacti</b>
 <br>&nbsp;&nbsp;&nbsp;Please note the the schema name is set in the auto_import_cacti.pl script.
 </p>);
 
@@ -6164,12 +6164,12 @@ The NeDi parent-child sync can be fully ...);
 qq(<p class='append'>The NeDi parent-child sync can be fully automated. The process is broken down into two steps: extract the data from NeDi and import the data into GroundWork Configuration.</p>
 <p class='append'>
 &bull;&nbsp;The script to extract data from NeDi is:
-<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/core/monarch/automation/scripts/extract_nedi.pl</b>
+<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/monarch/automation/scripts/extract_nedi.pl</b>
 <br>&nbsp;&nbsp;&nbsp;Please note that the database authentication information for NeDi resides in the script.
 </p>
 <p class='append'>
 &bull;&nbsp;The script to import data into GroundWork Configuration is:
-<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/core/monarch/automation/scripts/auto_import_nedi_sync.pl NeDi-parent-child-sync</b>
+<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/monarch/automation/scripts/auto_import_nedi_sync.pl NeDi-parent-child-sync</b>
 <br>&nbsp;&nbsp;&nbsp;Please note the schema name is set in the auto_import_nedi_sync.pl script.
 </p>);
 	$options{'title'} = 'Automation';
@@ -6198,12 +6198,12 @@ The NeDi host import can be fully ...);
 qq(<p class='append'>The NeDi host import can be fully automated. The process is broken down into two steps: extract the data from NeDi and import the data into GroundWork Configuration.</p>
 <p class='append'>
 &bull;&nbsp;The script to extract data from NeDi is:
-<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/core/monarch/automation/scripts/extract_nedi.pl</b>
+<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/monarch/automation/scripts/extract_nedi.pl</b>
 <br>&nbsp;&nbsp;&nbsp;Please note that the database authentication information for NeDi resides in the script.
 </p>
 <p class='append'>
 &bull;&nbsp;The script to import data into GroundWork Configuration is:
-<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/core/monarch/automation/scripts/auto_import_nedi_host.pl NeDi-host-import</b>
+<br>&nbsp;&nbsp;&nbsp;<b>/usr/local/groundwork/monarch/automation/scripts/auto_import_nedi_host.pl NeDi-host-import</b>
 <br>&nbsp;&nbsp;&nbsp;Please note the schema name is set in the auto_import_nedi_host.pl script.
 </p>);
 	$options{'title'} = 'Automation';

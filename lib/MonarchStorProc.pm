@@ -217,7 +217,7 @@ sub dbconnect(;$) {
 	    $dsn = "DBI:Pg:dbname=$database;host=$dbhost";
 	}
 	else {
-	    $dsn = "DBI:mysql:database=$database;host=$dbhost";
+	    die "ERROR:  DB type not supported.\n";
 	}
 	$dbh = DBI->connect( $dsn, $user, $passwd, {
 	    'AutoCommit' => 1,
@@ -3702,7 +3702,7 @@ sub test_command(@) {
 sub monarch_as_nagios(@) {
     my $command      = $_[1];
     my $monarch_home = $_[2];
-    unless ($monarch_home) { $monarch_home = '/usr/local/groundwork/core/monarch' }
+    unless ($monarch_home) { $monarch_home = '/usr/local/groundwork/monarch' }
     my $error   = undef;
     my $results = undef;
     my $temp    = "$monarch_home/bin/temp" . rand();
@@ -6485,7 +6485,7 @@ sub nagios_defaults(@) {
 
     # get from db
     my $nagios_dir = '/usr/local/nagios';
-    if ($is_portal) { $nagios_dir = '/usr/local/groundwork/nagios' }
+    if ($is_portal) { $nagios_dir = '/usr/local/nagios' }
     my %nagios = ();
 
     # Notification Options
@@ -6534,15 +6534,7 @@ sub nagios_defaults(@) {
     $nagios{'status_file'}            = $nagios_dir . '/var/status.log';
     $nagios{'status_update_interval'} = '15';
     if ($is_portal) {
-	if ( $nagios_ver ne '1.x' ) {
-	    $nagios{'event_broker_options'} = '-1';
-	    if ( $nagios_ver eq '2.x' ) {
-		$nagios{'broker_module'} = '/usr/local/groundwork/nagios/modules/libbronx.so';
-	    }
-	    else {
-		$nagios{'broker_module'} = '/usr/local/groundwork/common/lib/libbronx.so';
-	    }
-	}
+	$nagios{'broker_module'} = $nagios_dir . '/lib/libbronx.so';
     }
 
     # Debug Options
@@ -6688,7 +6680,7 @@ sub nagios_defaults(@) {
     }
     $nagios{'temp_file'} = $nagios_dir . '/var/nagios.tmp';
     if ( $nagios_ver eq '3.x' ) {
-	$nagios{'temp_path'} = '/usr/local/groundwork/nagios/tmp';
+	$nagios{'temp_path'} = $nagios_dir . '/tmp';
     }
 
     # State Retention Options
@@ -6748,7 +6740,7 @@ sub nagios_defaults(@) {
 sub cgi_defaults(@) {
     my $nagios_ver = $_[1];
     my $nagios_dir = '/usr/local/nagios';
-    if ($is_portal) { $nagios_dir = '/usr/local/groundwork/nagios' }
+    if ($is_portal) { $nagios_dir = '/usr/local/nagios' }
     my %cgi = ();
     $cgi{'physical_html_path'}                = $nagios_dir . '/share';
     $cgi{'url_html_path'}                     = '/nagios';
@@ -7345,9 +7337,9 @@ sub execute_restore {
 	push @$results,
 	  'To restore the Monarch database from the selected backup,'
 	  . ' log into a terminal window on the GroundWork Monitor server <b>as the nagios user</b>, and run the following command:',
-	  '<br><tt>/usr/local/groundwork/core/monarch/bin/monarch_restore_from_backup -b ' . HTML::Entities::encode($backup_time) . '</tt><br>',
+	  '<br><tt>/usr/local/groundwork/monarch/bin/monarch_restore_from_backup -b ' . HTML::Entities::encode($backup_time) . '</tt><br>',
 	  "If that fails, use this command instead, to start from a fresh (empty) database:",
-	  '<br><tt>/usr/local/groundwork/core/monarch/bin/monarch_restore_from_backup -f -b ' . HTML::Entities::encode($backup_time) . '</tt><br>';
+	  '<br><tt>/usr/local/groundwork/monarch/bin/monarch_restore_from_backup -f -b ' . HTML::Entities::encode($backup_time) . '</tt><br>';
     }
 }
 
@@ -7546,7 +7538,7 @@ sub backup(@) {
 	}
 
 	if ( defined($dbtype) && $dbtype eq 'postgresql' ) {
-	    my $postgres_dump = ( -x '/usr/local/groundwork/postgresql/bin/pg_dump' ) ? '/usr/local/groundwork/postgresql/bin/pg_dump' : undef;
+	    my $postgres_dump = ( -x '/usr/bin/pg_dump' ) ? '/usr/local/groundwork/postgresql/bin/pg_dump' : undef;
 	    if (not $postgres_dump) {
 		push @errors, "Error:  Cannot find pg_dump!  Unable to back up the $database database.";
 	    }
@@ -7659,24 +7651,7 @@ sub backup(@) {
 	    }
 	}
 	else {
-	    my $mysqldump_cmd =
-		( -x '/usr/local/groundwork/mysql/bin/mysqldump'  ) ? '/usr/local/groundwork/mysql/bin/mysqldump'  :
-		( -x '/usr/local/groundwork/common/bin/mysqldump' ) ? '/usr/local/groundwork/common/bin/mysqldump' :
-		undef;
-	    if (not $mysqldump_cmd) {
-		push @errors, "Error:  Cannot find mysqldump!  Unable to back up the $database database.";
-	    }
-	    else {
-		my $sqlfile = "$full_backup_dir/monarch-$dt.sql";
-		my $wait_status = system(
-		    "$mysqldump_cmd",   "--host=$dbhost",         "--user=$user", "--password=$passwd", "--quick",
-		    "--add-drop-table", "--result-file=$sqlfile", "--databases",  "$database"
-		);
-		if ($wait_status) {
-		    push @errors, 'Error:  Got ' . wait_status_message($wait_status) . ' from command:';
-		    push @errors, "$mysqldump_cmd --host=$dbhost --user=$user --password=$passwd --quick --add-drop-table --result-file=$sqlfile --databases $database";
-		}
-	    }
+	    push @errors, "Error:  unsupported DB type!  Unable to back up the $database database.";
 	}
     }
 
@@ -7732,7 +7707,7 @@ sub restore(@) {
 	else {
 	    my $pgrestore = $sqlfile =~ /\.tar$/ ? 'pg_restore' : 'psql';
 	    my $postgres_restore =
-	      ( -x "/usr/local/groundwork/postgresql/bin/$pgrestore" ) ? "/usr/local/groundwork/postgresql/bin/$pgrestore" : undef;
+	      ( -x "/usr/bin/$pgrestore" ) ? "/usr/local/groundwork/postgresql/bin/$pgrestore" : undef;
 	    if ( not $postgres_restore ) {
 		push @errors, "Error:  Cannot find $pgrestore!  Unable to restore the $database database.";
 	    }

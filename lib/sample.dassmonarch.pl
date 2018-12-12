@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 ## @file
 ## A simple sample application for dassmonarch Perl-API to GroundWork's Monarch.
 ## This is not for the SOAP interface, it's only for the local class.
@@ -27,7 +27,7 @@
 #    Boston, MA 02111-1307 USA
 
 BEGIN {
-    unshift @INC, '/usr/local/groundwork/core/monarch/lib';
+    unshift @INC, '/usr/local/groundwork/monarch/lib';
 }
 
 use strict;
@@ -41,8 +41,8 @@ if ( $< == 0 ) {
 	"Run this script as user nagios instead.\n",
 	"\n";
     #	"You may want to run the following commands to clean this up:\n",
-    #	"    chown -R nagios.nagios /usr/local/groundwork/nagios/etc/\n",
-    #	"    chown -R nagios.nagios /usr/local/groundwork/core/monarch/workspace/\n",
+    #	"    chown -R nagios.nagios /usr/local/nagios/etc/\n",
+    #	"    chown -R nagios.nagios /usr/local/groundwork/monarch/workspace/\n",
     exit (1);
 }
 

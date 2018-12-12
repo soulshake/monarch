@@ -715,7 +715,8 @@ sub gethostgroupinfo {
 	$dsn = "DBI:Pg:dbname=$database;host=$dbhost";
     }
     else {
-	$dsn = "DBI:mysql:database=$database;host=$dbhost";
+	push @errors, "Error: unsupported db type";
+	return \%group_macros, \%host_ref, \%locations, \@errors;
     }
     my $dbh = undef;
     eval {

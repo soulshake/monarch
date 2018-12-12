@@ -76,8 +76,8 @@ sub deploy(@) {
 	push @results, "$!" if $!;
     }
     # nagios_reload has been deployed to the target machine with the setuid bit (chmod 4750 nagios_reload)
-    push @results, "ssh nagios\@$group /usr/local/groundwork/core/monarch/bin/nagios_reload" if $debug;
-    my $res = qx(ssh nagios\@$group /usr/local/groundwork/core/monarch/bin/nagios_reload 2>&1) || push @results, "$!";
+    push @results, "ssh nagios\@$group /usr/local/groundwork/monarch/bin/nagios_reload" if $debug;
+    my $res = qx(ssh nagios\@$group /usr/local/groundwork/monarch/bin/nagios_reload 2>&1) || push @results, "$!";
     $res =~ s/\n/<br>/;
     push @results, $res;
     return @results;

@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch_ez.cgi
 #
@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use strict;
 use CGI;
 use MonarchForms;

@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl
+#!/usr/bin/perl
 ## @file dassmonarch.pm
 # Implementation of class dassmonarch
 # @brief
@@ -30,7 +30,7 @@
 #
 
 BEGIN {
-    unshift @INC, '/usr/local/groundwork/core/monarch/lib';
+    unshift @INC, '/usr/local/groundwork/monarch/lib';
 }
 
 use strict;
@@ -122,10 +122,10 @@ sub new {
 	# user_acct Username used for comment in generated nagios config files.
 	user_acct        => 'script',
 	nagios_ver       => '3.x',
-	nagios_etc       => '/usr/local/groundwork/nagios/etc',
-	nagios_bin       => '/usr/local/groundwork/nagios/bin/',
-	monarch_home     => '/usr/local/groundwork/core/monarch',
-	backup_dir       => '/usr/local/groundwork/core/monarch/backup',
+	nagios_etc       => '/usr/local/nagios/etc',
+	nagios_bin       => '/usr/local/nagios/bin/',
+	monarch_home     => '/usr/local/groundwork/monarch',
+	backup_dir       => '/usr/local/groundwork/monarch/backup',
 	commit_ok_string => 'Synchronization with Foundation completed successfully.',
 
 	# limit_sql since GW 5.2 the monarch search function uses a result limit of 25 by default,

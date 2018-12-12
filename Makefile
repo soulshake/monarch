@@ -15,6 +15,13 @@
 MKDIR = mkdir
 CP = cp
 CC = gcc
+CHOWN = chown
+
+# Groundwork Monarch install
+MONARCH_BASE = /usr/local/groundwork/monarch
+
+# Groundwork config install
+CONFIG_BASE = /usr/local/groundwork/config
 
 # Target dir
 TARGETDIR = dist
@@ -53,9 +60,27 @@ ${TARGETDIR}/monarch_as_nagios :
 
 install : all
 	@if [ "`id -u`" -ne 0 -a "`id -un`" != nagios ]; then \
-	    echo "ERROR:  You must be either root or nagios to install the Monarch binaries."; \
+	    echo "ERROR:  You must be either root or nagios to install Monarch."; \
 	    exit 1; \
 	fi
+	${RM} -r ${MONARCH_BASE}
+	${MKDIR} ${MONARCH_BASE}
+	${MKDIR} ${MONARCH_BASE}/workspace
+	${MKDIR} ${MONARCH_BASE}/backup
+	${MKDIR} ${MONARCH_BASE}
+	${CP} -pr automation bin cgi-bin htdocs lib etc ${MONARCH_BASE}
+	${CP} -p ${TARGETDIR}/nagios_reload ${MONARCH_BASE}/bin
+	${CP} -p ${TARGETDIR}/nmap_scan_one ${MONARCH_BASE}/bin
+	${CP} -p ${TARGETDIR}/monarch_as_nagios ${MONARCH_BASE}/bin
+	${CHOWN} nagios:nagios -R ${MONARCH_BASE}
+	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nagios_reload
+	${CHMOD} 750 ${MONARCH_BASE}/bin/nagios_reload
+	${CHMOD} u+s ${MONARCH_BASE}/bin/nagios_reload
+	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nmap_scan_one
+	${CHOWN} 750 ${MONARCH_BASE}/bin/nmap_scan_one
+	${CHOWN} u+s ${MONARCH_BASE}/bin/nmap_scan_one
+	${MKDIR} -p ${CONFIG_BASE}
+	${CP} -pn config/*.properties ${CONFIG_BASE}
 
 clean :
-	${RM} ${TARGETDIR}
+	${RM} -r ${TARGETDIR}

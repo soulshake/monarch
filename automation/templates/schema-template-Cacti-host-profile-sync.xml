@@ -5,7 +5,7 @@
  <prop name="delimiter"><![CDATA[;;]]></prop>
  <prop name="sync_object"><![CDATA[]]></prop>
  <prop name="smart_name"><![CDATA[1]]></prop>
- <prop name="data_source"><![CDATA[/usr/local/groundwork/core/monarch/automation/data/cacti_data.txt]]></prop>
+ <prop name="data_source"><![CDATA[/usr/local/groundwork/monarch/automation/data/cacti_data.txt]]></prop>
  <prop name="default_profile"><![CDATA[host-profile-cacti-host]]></prop>
  <column>
   <column_prop name="name"><![CDATA[Address]]></column_prop>

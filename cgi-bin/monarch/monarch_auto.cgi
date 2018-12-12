@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch_auto.cgi
 #
@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use strict;
 
 use CGI;
@@ -184,7 +184,7 @@ sub nms_home() {
 	# check to see if NeDi schema is there and import if not
 	$automation_name = 'NeDi-parent-child-sync';
 	my %schema = StorProc->fetch_one( 'import_schema', 'name', $automation_name );
-	my $script_folder = '/usr/local/groundwork/core/monarch/automation/scripts';
+	my $script_folder = '/usr/local/groundwork/monarch/automation/scripts';
 	unless ( $schema{'name'} ) {
 	    my @values = ( \undef, $automation_name, '', '', 'other-sync', '', '', '', '' );
 	    my $id = StorProc->insert_obj_id( 'import_schema', \@values, 'schema_id' );
@@ -220,7 +220,7 @@ sub nms_home() {
 	# check to see if NeDi schema is there and import if not
 	$automation_name = 'NeDi-host-import';
 	my %schema = StorProc->fetch_one( 'import_schema', 'name', $automation_name );
-	my $script_folder = '/usr/local/groundwork/core/monarch/automation/scripts';
+	my $script_folder = '/usr/local/groundwork/monarch/automation/scripts';
 	unless ( $schema{'name'} ) {
 	    my @values = ( \undef, $automation_name, '', '', 'host-import', '', '', '', '' );
 	    my $id = StorProc->insert_obj_id( 'import_schema', \@values, 'schema_id' );

@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 
 ############################################################################
 # Release 4.6
@@ -23,7 +23,7 @@
 use strict;
 ## use warnings;
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use MonarchFoundationSync;
 
 # The numeric timestamp must represent a moment in time before Nagios was
@@ -37,7 +37,7 @@ my $pre_restart_time = shift;
 
 die $usage if $pre_restart_time !~ /^\d+$/;
 
-my $monarch_home = '/usr/local/groundwork/core/monarch';
+my $monarch_home = '/usr/local/groundwork/monarch';
 
 # Re-open the STDERR stream as a duplicate of the STDOUT stream, to properly
 # interleave any output written to STDERR (from, say, debug messages).

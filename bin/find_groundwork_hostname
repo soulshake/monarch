@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 
 # find_groundwork_hostname
 #

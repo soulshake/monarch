@@ -6,7 +6,7 @@
 
 static char *trusted_env[] =
     {
-    "PATH=/usr/local/groundwork/bin:/usr/bin:/usr/sbin:/sbin:/bin",
+    "PATH=/usr/bin:/usr/sbin:/sbin:/bin",
     0
     };
 

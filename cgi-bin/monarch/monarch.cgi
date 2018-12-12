@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch.cgi
 #
@@ -29,7 +29,7 @@ use strict;
 use CGI;
 $CGI::POST_MAX = 1024 * 1024;  # max 1M posts, for security
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use MonarchForms;
 use MonarchStorProc;
 use MonarchDoc;
@@ -12215,14 +12215,14 @@ sub tools() {
 		## FIX MINOR:  /usr/local/groundwork may be a symlink, and that case is not handled here
 		if ($precached_file) {
 		    my $abs_path = realpath($precached_file) || '';
-		    if (   $abs_path !~ m@^/usr/local/groundwork/nagios/var/[^/]+@
-			&& $abs_path !~ m@^/usr/local/groundwork/nagios/tmp/[^/]+@
+		    if (   $abs_path !~ m@^/usr/local/nagios/var/[^/]+@
+			&& $abs_path !~ m@^/usr/local/nagios/tmp/[^/]+@
 			&& $abs_path !~ m@^/tmp/[^/]+@ )
 		    {
 			push @errors,
 			    'Error:  The precached objects file must reside in one of these directories:<br>'
-			  . '<tt>&nbsp; &nbsp; /usr/local/groundwork/nagios/var</tt><br>'
-			  . '<tt>&nbsp; &nbsp; /usr/local/groundwork/nagios/tmp</tt><br>'
+			  . '<tt>&nbsp; &nbsp; /usr/local/nagios/var</tt><br>'
+			  . '<tt>&nbsp; &nbsp; /usr/local/nagios/tmp</tt><br>'
 			  . '<tt>&nbsp; &nbsp; /tmp</tt><br>';
 		    }
 		    elsif ( !-f $abs_path || !-r $abs_path ) {
@@ -16751,7 +16751,7 @@ $enable_groups    = $objects{'enable_groups'}[2];
 $enable_ez        = $objects{'enable_ez'}[2];
 $nagios_share     = $objects{'physical_html_path'}[2];
 if ($is_portal) {
-    $doc_root = '/usr/local/groundwork/core/monarch/htdocs';
+    $doc_root = '/usr/local/groundwork/monarch/htdocs';
 }
 
 #

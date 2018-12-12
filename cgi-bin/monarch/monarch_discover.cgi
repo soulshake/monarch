@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch_discover.cgi
 #
@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use strict;
 use CGI;
 use Nmap::Scanner;
@@ -327,7 +327,7 @@ sub get_snmp(@) {
     my $community            = shift;
     my $snmp_v3_command_opts = shift;
     my $parent               = shift;
-    my $command              = '/usr/local/groundwork/common/bin/snmpwalk';
+    my $command              = '/usr/bin/snmpwalk';
     my $errstr               = undef;
     my %ifDescr              = ();
     my %ifIndex              = ();
@@ -406,7 +406,7 @@ sub get_snmp(@) {
     }
     unless ($part_return_info) {
 	my $line;
-	my $getcommand = '/usr/local/groundwork/common/bin/snmpget';
+	my $getcommand = '/usr/bin/snmpget';
 
 	# If we have a config file of OID match strings, read it into a hash.
 	my %singleoid = ();

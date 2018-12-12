@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl
+#!/usr/bin/perl
 ## @file
 # Implements a xml helper class used for some properties settings by monarch
 # @brief
@@ -29,7 +29,7 @@
 #
 
 BEGIN {
-    unshift @INC, '/usr/local/groundwork/core/monarch/lib';
+    unshift @INC, '/usr/local/groundwork/monarch/lib';
 }
 
 use strict;

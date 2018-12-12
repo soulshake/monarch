@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 #
 #       gdma_auto v5.0    2012-06-24
 #
@@ -39,9 +39,9 @@ use Getopt::Std;
 
 my %opt       = ();
 my $debug     = 0;
-my $logfile   = "/usr/local/groundwork/nagios/var/nagios.log";
-my $output    = "/usr/local/groundwork/core/monarch/automation/data/gdma_auto.txt";
-my $seek_file = "/usr/local/groundwork/core/monarch/automation/data/nagios.log.seek";
+my $logfile   = "/usr/local/nagios/var/nagios.log";
+my $output    = "/usr/local/groundwork/monarch/automation/data/gdma_auto.txt";
+my $seek_file = "/usr/local/groundwork/monarch/automation/data/nagios.log.seek";
 
 # Entries in the following array are specified as:
 #     string;host_profile;monarch_group

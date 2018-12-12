@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 
 # monarch_restore_from_backup
 # Script to restore a backup of the monarch database.
@@ -74,9 +74,9 @@ if (!defined($user_name) || $user_name ne 'nagios') {
     exit 1;
 }
 
-my $backup_dir      = '/usr/local/groundwork/core/monarch/backup';
-my $pg_restore      = '/usr/local/groundwork/postgresql/bin/pg_restore';
-my $psql            = '/usr/local/groundwork/postgresql/bin/psql';
+my $backup_dir      = '/usr/local/groundwork/monarch/backup';
+my $pg_restore      = '/usr/bin/pg_restore';
+my $psql            = '/usr/bin/psql';
 my $create_fresh_db = '/usr/local/groundwork/core/databases/postgresql/create-fresh-monarch.sql';
 
 if ( not $opt_b ) {
@@ -226,7 +226,7 @@ monarch_restore_from_backup
     monarch_restore_from_backup [-f] -b backup_directory
 
 where backup_directory is of the form "YYYY-MM-DD_hh-mm-ss",
-as found under the /usr/local/groundwork/core/monarch/backup/ directory.
+as found under the /usr/local/groundwork/monarch/backup/ directory.
 
 =head1 DESCRIPTION
 

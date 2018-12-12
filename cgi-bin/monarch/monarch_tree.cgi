@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch_tree.cgi
 #
@@ -26,7 +26,7 @@
 
 # Note:  The CGI::Ajax doc is required reading.
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use strict;
 use CGI;
 use CGI::Ajax;

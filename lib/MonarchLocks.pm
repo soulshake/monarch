@@ -31,8 +31,8 @@ package Locks;
 use Fcntl qw(:DEFAULT :seek);
 require File::FcntlLock;
 
-our $in_progress_file = '/usr/local/groundwork/nagios/var/COMMIT_IN_PROGRESS';
-our $commit_lock_file = '/usr/local/groundwork/nagios/var/COMMIT_LOCKFILE';
+our $in_progress_file = '/usr/local/nagios/var/COMMIT_IN_PROGRESS';
+our $commit_lock_file = '/usr/local/nagios/var/COMMIT_LOCKFILE';
 our $EXCLUSIVE    = 'exclusive';
 our $SHARED       = 'shared';
 our $BLOCKING     = 0;

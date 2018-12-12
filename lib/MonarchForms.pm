@@ -6474,7 +6474,7 @@ sub import_options(@) {
 <td style="padding: 0 10px;">
 <p class=append>
 The import process will read a set of Nagios configuration files,
-starting with the nagios.cfg and cgi.cfg files in the /usr/local/groundwork/nagios/etc/ directory.
+starting with the nagios.cfg and cgi.cfg files in the /usr/local/nagios/etc/ directory.
 Before you proceed, you must copy your to-import versions of those two files into that location.
 Also, you must ensure that all the cfg_dir, cfg_file, and resource_file directives
 in those two files point to the places where your other files to import are located.
@@ -6514,7 +6514,7 @@ Then select one of the options below.
 <td class=wizard_body width="2%" valign=baseline align=center>
 <input class=radio type=radio name=import_option value=purge_all_and_import_3x $selected{'purge_all_and_import_3x'} $tabindex>
 </td>
-<td class=wizard_body colspan="2" valign=baseline><i>Nagios 3.x import</i>: Clears the database of all Nagios records, just as <i>Purge all</i> does, and replaces them with data from the Nagios 3.x configuration files. To use this option, you must have created a Nagios 3.x <i>precached objects file</i> by running <b>nagios -vp /usr/local/groundwork/nagios/etc/nagios.cfg</b> from the command line. The import process also reads the main nagios.cfg file and any files it includes by reference, in order to pull in any templates found in those files. Although the templates will be imported into Monarch, they will not be associated with any objects. You can do this later by adding templates to profiles, then applying the profiles to hosts or other objects. Finally, note that all custom object variables will be capitalized in the precached objects file, and so may not match what is in the Nagios configuration files (merging of names from the different sources may not produce the expected results).</td>
+<td class=wizard_body colspan="2" valign=baseline><i>Nagios 3.x import</i>: Clears the database of all Nagios records, just as <i>Purge all</i> does, and replaces them with data from the Nagios 3.x configuration files. To use this option, you must have created a Nagios 3.x <i>precached objects file</i> by running <b>nagios -vp /usr/local/nagios/etc/nagios.cfg</b> from the command line. The import process also reads the main nagios.cfg file and any files it includes by reference, in order to pull in any templates found in those files. Although the templates will be imported into Monarch, they will not be associated with any objects. You can do this later by adding templates to profiles, then applying the profiles to hosts or other objects. Finally, note that all custom object variables will be capitalized in the precached objects file, and so may not match what is in the Nagios configuration files (merging of names from the different sources may not produce the expected results).</td>
 </tr>
 <tr>
 <td class=wizard_body width="2%">&nbsp;</td>
@@ -6931,11 +6931,11 @@ sub filter_results(@) {
 	s{.*}{<font color=#CC0000>$&</font>} if /Error:|Warning:/i;
 	my $file = '';
 	my $line = 0;
-	if (m{(/usr/local/groundwork/core/monarch/workspace/[-a-z0-9._]+).* [lL]ine (\d+)}) {
+	if (m{(/usr/local/groundwork/monarch/workspace/[-a-z0-9._]+).* [lL]ine (\d+)}) {
 	    $file = $1;
 	    $line = $2;
 	}
-	elsif (m{(/usr/local/groundwork/core/monarch/workspace/[-a-z0-9._]+)}) {
+	elsif (m{(/usr/local/groundwork/monarch/workspace/[-a-z0-9._]+)}) {
 	    $file = $1;
 	}
 	if ($file) {

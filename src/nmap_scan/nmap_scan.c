@@ -8,10 +8,10 @@
 // Maybe someday we'll provide a -V option to spill it out.
 static char *VERSION = "2.0.0";
 
-static char *nmap_pl = "/usr/local/groundwork/core/monarch/bin/nmap_scan_one.pl";
+static char *nmap_pl = "/usr/local/groundwork/monarch/bin/nmap_scan_one.pl";
 static char *trusted_env[] =
     {
-    "PATH=/usr/local/groundwork/common/bin:/usr/local/groundwork/perl/bin:/usr/bin:/usr/sbin:/sbin:/bin",
+    "PATH=/usr/bin:/usr/sbin:/sbin:/bin",
     0
     };
 

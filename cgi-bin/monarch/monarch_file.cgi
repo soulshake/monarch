@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch_file.cgi
 #
@@ -80,7 +80,7 @@ sub show_file {
     }
 
     $absolute_path =
-	 abs_filepath( $relative_path, '/monarch/download/',  '/usr/local/groundwork/core/monarch/htdocs' )
+	 abs_filepath( $relative_path, '/monarch/download/',  '/usr/local/groundwork/monarch/htdocs' )
       || abs_filepath( $relative_path, '/monarch/workspace/', '/usr/local/groundwork/core' )
       || abs_filepath( $relative_path, '/profiles/',          '/usr/local/groundwork/core' );
 

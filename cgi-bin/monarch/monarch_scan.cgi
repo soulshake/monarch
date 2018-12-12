@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl --
+#!/usr/bin/perl --
 # MonArch - Groundwork Monitor Architect
 # monarch_scan.cgi
 #
@@ -24,7 +24,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 
-use lib qq(/usr/local/groundwork/core/monarch/lib);
+use lib qq(/usr/local/groundwork/monarch/lib);
 use strict;
 use CGI;
 use Nmap::Scanner;
@@ -40,7 +40,7 @@ sub get_hosts {
     unless ( $input[0] ) {
 	$input[0] = '/tmp/monarch_discover_test.tmp';
 	$input[1] = '172.28.113.209';
-	$input[2] = '/usr/local/groundwork/core/monarch';
+	$input[2] = '/usr/local/groundwork/monarch';
     }
     my $ret_info = '';
     my $data = undef;

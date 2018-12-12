@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 
 # Copyright 2015 GroundWork, Inc. ("GroundWork")
 # All rights reserved.

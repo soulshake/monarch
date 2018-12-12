@@ -3819,7 +3819,7 @@ sub process_service_escalations() {
 if ($debug) {
     my $connect = StorProc->dbconnect();
     StorProc->purge();
-    stage_load( '', '/usr/local/groundwork/nagios/etc', '1' );
+    stage_load( '', '/usr/local/nagios/etc', '1' );
     process_commands();
     process_timeperiods();
     process_contacts();

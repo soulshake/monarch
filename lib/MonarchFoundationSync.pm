@@ -347,7 +347,7 @@ sub collage_connect {
 	$dsn = "DBI:Pg:dbname=$dbname;host=$dbhost";
     }
     else {
-	$dsn = "DBI:mysql:database=$dbname;host=$dbhost";
+	return "Can't connect to db type. Error: unsupported";
     }
     $collage_dbh = DBI->connect( $dsn, $dbuser, $dbpass, { 'AutoCommit' => 1, 'RaiseError' => 1 } )
       or return "Can't connect to database $dbname. Error:" . $DBI::errstr;

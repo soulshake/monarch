@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl
+#!/usr/bin/perl
 ## @file
 # A wrapper to monarch lib functions
 # @brief
@@ -30,7 +30,7 @@
 #
 
 BEGIN {
-    unshift @INC, '/usr/local/groundwork/core/monarch/lib';
+    unshift @INC, '/usr/local/groundwork/monarch/lib';
 }
 
 use strict;

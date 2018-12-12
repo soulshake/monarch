@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 # MonArch - Groundwork Monitor Architect
 # monarch_as_nagios.pl
 #
@@ -26,7 +26,7 @@
 
 use strict;
 
-$ENV{'PATH'} = '/bin:/usr/bin:/usr/local/groundwork/common/bin';
+$ENV{'PATH'} = '/bin:/usr/bin';
 
 my $cmdfile = $ARGV[0];
 my $whoami  = qx(whoami);

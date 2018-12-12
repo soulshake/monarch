@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl -w --
+#!/usr/bin/perl -w --
 
 ############################################################################
 # Release 4.5
@@ -44,7 +44,6 @@ sub show_context {
     ## Start with the caller's caller.
     my $i = 0;
     while ( my ( $package, $file, $line, $subroutine ) = caller( $i++ ) ) {
-	$file =~ s{^/usr/local/groundwork/perl/lib/}{};
 	print STDERR "    [in file $file line $line, sub $subroutine]\n";
 	last if $file !~ /\(eval/;
     }
@@ -70,8 +69,6 @@ $SIG{TERM}     = \&terminate;
 ## package, the extra output may be only generally indicative, not definitive,
 ## because of the way that module uses indirect evaluation of as_xml() calls.
 # $SIG{__WARN__} = \&show_context;
-
-$ENV{'PATH'} = $ENV{'PATH'}.':/usr/local/groundwork/common/bin';
 
 sub print_usage {
     print "usage:  $0 {IPv4 address, hostname, or scan specification}\n";

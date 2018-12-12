@@ -5,7 +5,7 @@
  <prop name="delimiter"><![CDATA[;;]]></prop>
  <prop name="sync_object"><![CDATA[]]></prop>
  <prop name="smart_name"><![CDATA[1]]></prop>
- <prop name="data_source"><![CDATA[/usr/local/groundwork/core/monarch/automation/data/auto-discovery-GroundWork-Discovery-Pro.txt]]></prop>
+ <prop name="data_source"><![CDATA[/usr/local/groundwork/monarch/automation/data/auto-discovery-GroundWork-Discovery-Pro.txt]]></prop>
  <prop name="default_profile"><![CDATA[host-profile-service-ping]]></prop>
  <column>
   <column_prop name="name"><![CDATA[Profile]]></column_prop>

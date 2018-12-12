@@ -1,4 +1,4 @@
-#!/usr/local/groundwork/perl/bin/perl
+#!/usr/bin/perl
 #
 # Copyright 2009-2012 GroundWork Open Source, Inc. (GroundWork)
 # All rights reserved. This program is free software; you can redistribute
@@ -35,7 +35,7 @@
 #			such a short linear script, as long as it's written cleanly).
 
 BEGIN {
-    unshift @INC, "/usr/local/groundwork/core/monarch/lib";
+    unshift @INC, "/usr/local/groundwork/monarch/lib";
 }
 use strict;
 use dassmonarch;
