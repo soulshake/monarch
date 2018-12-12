@@ -1,0 +1,98 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use dassmonarch;
+
+my $VERSION = "1.0.0";
+( my $program = $0 ) =~ s{.*/}{};
+
+use vars qw($opt_d $opt_V $opt_h $opt_s $opt_t $opt_man);
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"                 => \$opt_V,
+    "version"           => \$opt_V,
+    "h"                 => \$opt_h,
+    "help"              => \$opt_h,
+    "m"                 => \$opt_man,
+    "man"               => \$opt_man,
+    "d=s"               => \$opt_d,
+    "debuglevel=s"      => \$opt_d,
+    "t=s"               => \$opt_t,
+    "servicetemplate=s" => \$opt_t,
+    "s=s"               => \$opt_s,
+    "servicename=s"     => \$opt_s,
+);
+
+# GetOptions('-h' => \$opt_h, --man => \$opt_man) or pod2usage(2);
+pod2usage( -verbose => 1 ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+if ( not $opt_s ) {
+    print "$program:  service name is not set; use -s to specify a servicename to assign the template to\n";
+    exit 1;
+}
+
+if ( not $opt_t ) {
+    print "$program:  servicetemplate name is not set; use -t to specify a servicetemplate to assign to the service\n";
+    exit 1;
+}
+
+my $dm = dassmonarch->new();
+
+$dm->set_debuglevel( $opt_d || 'warning' );
+
+if ( not $dm->service_exists($opt_s) ) {
+    $dm->debug( 'error', "$program:  service $opt_s was not found in the monarch database" );
+    exit 1;
+}
+
+if ( not $dm->get_service_template_id($opt_t) ) {
+    $dm->debug( 'error', "$program:  servicetemplate $opt_t was not found in the monarch database" );
+    exit 1;
+}
+
+if ( $dm->apply_service_template( $opt_s, $opt_t ) ) {
+    $dm->debug( 'info', "$program:  Applied servicetemplate $opt_t to Service $opt_s" );
+}
+else {
+    $dm->debug( 'error', "$program:  could not assign servicetemplate $opt_t to service $opt_s" );
+    exit 1;
+}
+
+__END__
+
+=head1 NAME
+
+monarch_assign_servicetemplate_to_service
+
+=head1 SYNOPSIS
+
+monarch_assign_servicetemplate_to_service -t servicetemplate -s servicename
+
+=head1 DESCRIPTION
+
+Assign a servicetemplate to a service.  This will affect all host-services which use this servicename and have
+not overridden the inheritance of of the service template.
+
+=head1 OPTIONS
+
+-d [error,warning,info,verbose]
+
+=head1 ORIGINAL AUTHOR
+
+dass IT GmbH maik.aussendorf@dass-it.de
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

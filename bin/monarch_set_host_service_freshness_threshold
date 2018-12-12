@@ -1,0 +1,104 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use dassmonarch;
+
+my $VERSION = "1.0.0";
+( my $program = $0 ) =~ s{.*/}{};
+
+use vars qw($opt_d $opt_V $opt_h $opt_s $opt_H $opt_t $opt_man);
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"             => \$opt_V,
+    "version"       => \$opt_V,
+    "h"             => \$opt_h,
+    "help"          => \$opt_h,
+    "m"             => \$opt_man,
+    "man"           => \$opt_man,
+    "d=s"           => \$opt_d,
+    "debuglevel=s"  => \$opt_d,
+    "H=s"           => \$opt_H,
+    "hostname=s"    => \$opt_H,
+    "s=s"           => \$opt_s,
+    "servicename=s" => \$opt_s,
+    "t=s"           => \$opt_t,
+    "threshold=s"   => \$opt_t,
+);
+
+# GetOptions('help|?' => \$help, man => \$man) or pod2usage(2);
+pod2usage( -verbose => 1 ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+if ( not $opt_s ) {
+    print "$program:  servicename is not set; use -s to specify a servicename for which to set the freshness threshold\n";
+    exit 1;
+}
+
+if ( not $opt_H ) {
+    print "$program:  hostname is not set; use -H to specify a hostname\n";
+    exit 1;
+}
+
+if ( not $opt_t and $opt_t != "0" ) {
+    print "$program:  threshold is not set; use -t to specify a freshness threshold (in seconds)\n";
+    exit 1;
+}
+
+my $dm = dassmonarch->new();
+
+$dm->set_debuglevel( $opt_d || 'warning' );
+
+if ( not $dm->service_exists($opt_s) ) {
+    $dm->debug( 'error', "$program:  service $opt_s was not found in the monarch database" );
+    exit 1;
+}
+
+if ( not $dm->host_exists($opt_H) ) {
+    $dm->debug( 'error', "$program:  host $opt_H was not found in the monarch database" );
+    exit 1;
+}
+
+if ( $dm->set_host_service_freshness_threshold( $opt_H, $opt_s, $opt_t ) ) {
+    $dm->debug( 'info', "$program:  freshness threshold on host $opt_H service $opt_s set to $opt_t seconds" );
+}
+else {
+    $dm->debug( 'error', "$program:  could not set freshness threshold for host $opt_H service $opt_s" );
+    exit 1;
+}
+
+__END__
+
+=head1 NAME
+
+monarch_set_host_service_freshness_threshold
+
+=head1 SYNOPSIS
+
+monarch_set_host_service_freshness_threshold -H hostname -s servicename -t threshold
+
+=head1 DESCRIPTION
+
+Sets the threshold (specified in seconds) for the freshness checks for a host-service.
+
+=head1 OPTIONS
+
+-d [error,warning,info,verbose]
+
+=head1 ORIGINAL AUTHOR
+
+dass IT GmbH maik.aussendorf@dass-it.de
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

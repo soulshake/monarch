@@ -1,0 +1,255 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+# monarch_restore_from_backup
+# Script to restore a backup of the monarch database.
+
+############################################################################
+# Release 4.5
+# September 2016
+############################################################################
+
+# Copyright 2014-2016 GroundWork, Inc. ("GroundWork")
+# All rights reserved.
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+
+use CollageQuery;
+use MonarchStorProc;
+
+my $VERSION = "1.0.1";
+( my $program = $0 ) =~ s{.*/}{};
+
+use vars qw($opt_V $opt_b $opt_d $opt_f $opt_h $opt_man);
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"            => \$opt_V,
+    "version"      => \$opt_V,
+    "h"            => \$opt_h,
+    "help"         => \$opt_h,
+    "m"            => \$opt_man,
+    "man"          => \$opt_man,
+    "d=s"          => \$opt_d,
+    "debuglevel=s" => \$opt_d,
+    "f"            => \$opt_f,
+    "fresh"        => \$opt_f,
+    "b=s"          => \$opt_b,
+    "backup=s"     => \$opt_b,
+);
+
+# GetOptions('-h' => \$opt_h, --man => \$opt_man) or pod2usage(2);
+pod2usage( -verbose => 99, -sections => '.*' ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+my $user_name = getpwuid $<;
+my $user_acct = $user_name ? "Linux user $user_name" : undef;
+
+# We need to prohibit executing as root (say, for a manual debugging run), so we
+# don't create files and directories that won't be modifiable later on when this
+# script is run in its usual mode as an ordinary user ("nagios").  We purposely
+# delay this test until after simple actions of the script, so we can at least
+# show the version and command-usage messages without difficulty.
+if ($> == 0) { 
+    print STDERR "ERROR:  You cannot run $program as root.\n";
+    exit 1;
+}
+
+# Way down deep inside the StorProc->synchronized_restore() routine which we call,
+# an auditlog entry is made for this action.  And that causes creation of a log
+# file if it did not already exist, which can interfere with later operation of the
+# system if it does not have appropriate ownership.  So we restrict this program to
+# running as a user where that won't be a problem.
+if (!defined($user_name) || $user_name ne 'nagios') {
+    print STDERR "ERROR:  You must run $program as the nagios user.\n";
+    exit 1;
+}
+
+my $backup_dir      = '/usr/local/groundwork/core/monarch/backup';
+my $pg_restore      = '/usr/local/groundwork/postgresql/bin/pg_restore';
+my $psql            = '/usr/local/groundwork/postgresql/bin/psql';
+my $create_fresh_db = '/usr/local/groundwork/core/databases/postgresql/create-fresh-monarch.sql';
+
+if ( not $opt_b ) {
+    print STDERR "$program:  backup directory is not set.\n";
+    print STDERR "Use \"-b YYYY-MM-DD_mm-dd-ss\" to specify a backup to restore.\n";
+    print STDERR "The available backups can be found under:\n";
+    print STDERR "$backup_dir\n";
+    exit 1;
+}
+$opt_b =~ s{/+$}{};
+
+my $backup_time = $opt_b;
+if ( !-d "$backup_dir/$backup_time" ) {
+    if ( $opt_b =~ m{^$backup_dir/.+} ) {
+	( $backup_time = $opt_b ) =~ s{\Q$backup_dir/\E}{};
+    }
+    if ( $backup_time =~ m{/} ) {
+	$backup_time =~ s{/.*}{};
+    }
+}
+
+if ( not $backup_time =~ /^\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}$/ ) {
+    print STDERR "Error:  Invalid backup time \"$backup_time\".\n";
+    print STDERR "Use \"-b YYYY-MM-DD_mm-dd-ss\" to specify a backup to restore.\n";
+    exit 1;
+}
+
+print "\n";
+print "Backup time = $backup_time\n";
+print "\n";
+
+my ( $dbname, $dbhost, $dbuser, $dbpass, $dbtype ) = CollageQuery::readGroundworkDBConfig('monarch');
+
+if ( !defined($dbname) or !defined($dbhost) or !defined($dbuser) or !defined($dbpass) ) {
+    my $database_name = defined($dbname) ? $dbname : 'monarch';
+    die "ERROR:  Cannot read the \"$database_name\" database configuration.\n";
+}
+
+if ( !defined($dbtype) || $dbtype ne 'postgresql' ) {
+    die "ERROR:  This script only works to restore PostgreSQL backups.\n";
+}
+
+my $full_backup_dir  = "$backup_dir/$backup_time";
+my $base_backup_file = "$full_backup_dir/monarch-$backup_time.sql";
+my $full_backup_file = $base_backup_file;
+my $use_psql         = 0;
+my $use_pg_restore   = 0;
+if ( !-l $full_backup_file && -f $full_backup_file ) {
+    $use_psql = 1;
+}
+else {
+    $full_backup_file = "$base_backup_file.tar";
+    if ( !-l $full_backup_file && -f $full_backup_file ) {
+	$use_pg_restore = 1;
+    }
+    else {
+	die "ERROR:  Cannot find the $backup_time backup.\n";
+    }
+}
+
+# db connection
+eval {
+    ## Suppress duplicate connect-error printed output, as we'll handle it instead via the exception.
+    local *STDERR;
+    if ( open( NULL, '>', '/dev/null' ) && !open( STDERR, '>>&NULL' ) ) {
+	die "ERROR:  Can't redirect STDERR to /dev/null: $!\n";
+    }
+
+    # We connect to the database not because we need that handle open for the restore, but so
+    # StorProc is properly initialized to point to the proper host to restore to.  If we hang
+    # on to the connection while we attempt to drop the database while making a fresh copy,
+    # the restore will fail.  So we will disconnect right after making the connection.
+    my $auth = StorProc->dbconnect();
+    close NULL;
+};
+if ($@) {
+    ## In this case, dbconnect() will have already printed an error,
+    ## or we didn't want the details printed, so we don't repeat that here.
+    ## print "$@\n";
+    print "ERROR:  Cannot connect to the monarch database.\n";
+    print "\n";
+}
+
+# Ensure that we don't have any connection from this very process that would interfere with the restore action.
+eval {
+    StorProc->dbdisconnect();
+};
+
+print "If you run this command to completion, your existing monarch database\n";
+print "will be wiped out and replaced with the backup copy.\n";
+print "\n";
+print "You will be prompted for the PostgreSQL-database administrator's password.\n";
+
+if ($opt_f) {
+    print "\n";
+    print "Creating a fresh monarch database ...\n";
+    print "Enter the database password for user postgres when prompted.\n";
+    my @errors = qx($psql --host=$dbhost --dbname=postgres --username=postgres --quiet --file=$create_fresh_db 2>&1);
+    if (@errors) {
+	## 'DROP DATABASE IF EXISTS monarch;' is pointlessly noisy if the database doesn't exist, so we have to ignore
+	## that condition.  Otherwise, we would have run the creation with the --variable=ON_ERROR_STOP= option.
+	## (The fault is partly that not having the database already existing is treated as an error (at best it should
+	## be a notice, and not trigger ON_ERROR_STOP in this case) even though the IF EXISTS clause is included in the
+	## statement.  That fault needs to be reported upstream so it can be fixed in the standard PostgreSQL release.)
+	my $got_bad_error = 0;
+	foreach (@errors) {
+	    print $_;
+	    $got_bad_error ||= ($_ !~ /database "monarch" does not exist, skipping/);
+	}
+	if ($got_bad_error) {
+	    print "Exiting ...\n";
+	    exit 1;
+	}
+    }
+}
+
+print "\n";
+print "Restoring the monarch database from backup ...\n";
+print "Enter the database password for user postgres when prompted.\n";
+
+# We create our dump tarballs with the --clean option to ensure that they can be correctly applied to
+# an existing populated database.  But PostgreSQL 9.1.X doesn't have the pg_dump --if-exists option,
+# which inserts IF EXISTS clauses into the various cleanup statements to allow the dump to be restored
+# to a partially-complete existing database; the --if-exists option only appears starting with
+# PostgreSQL 9.4.  So when we use a tarball, we must disable the --clean option during the restore.
+#
+# This correction is not required for our plain-format backup, which we automatically edit immediately
+# after the dump to effectively incorporate the equivalent of the missing IF EXISTS clauses.
+
+my ( $errors, $results, $timings ) = StorProc->synchronized_restore( $backup_dir, $backup_time, $user_acct, 1, $opt_f && $use_pg_restore );
+print "$_\n" for @$errors;
+print "$_\n" for @$results;
+
+exit( @$errors ? 1 : 0 );
+
+__END__
+
+=head1 NAME
+
+monarch_restore_from_backup
+
+=head1 SYNOPSIS
+
+    monarch_restore_from_backup -h
+    monarch_restore_from_backup -m
+    monarch_restore_from_backup -V
+    monarch_restore_from_backup [-f] -b backup_directory
+
+where backup_directory is of the form "YYYY-MM-DD_hh-mm-ss",
+as found under the /usr/local/groundwork/core/monarch/backup/ directory.
+
+=head1 DESCRIPTION
+
+This command restores the entire monarch database from a backup stored in the specified backup directory.
+The backup file itself must be either tar-format (with the filename ending in ".tar"),
+or a specially-modified plain-format backup as produced under alternate control of the Monarch backup mechanism.
+
+=head1 OPTIONS
+
+-h prints a help message.
+
+-m prints the help message in man page format.
+
+-V prints the script version.
+
+-b backup_directory specifies which backup to restore.
+
+-f forces a fresh database to be created before the restore.
+
+=head1 AUTHOR
+
+GroundWork Open Source, Inc.
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

@@ -1,0 +1,84 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use dassmonarch;
+
+my $VERSION = "1.0.0";
+( my $program = $0 ) =~ s{.*/}{};
+
+use vars qw($opt_d $opt_V $opt_h $opt_c $opt_man);
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"                  => \$opt_V,
+    "version"            => \$opt_V,
+    "h"                  => \$opt_h,
+    "help"               => \$opt_h,
+    "m"                  => \$opt_man,
+    "man"                => \$opt_man,
+    "d=s"                => \$opt_d,
+    "debuglevel=s"       => \$opt_d,
+    "c=s"                => \$opt_c,
+    "contactgroupname=s" => \$opt_c,
+);
+
+# GetOptions('help|?' => \$help, man => \$man) or pod2usage(2);
+pod2usage( -verbose => 1 ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+if ( not $opt_c ) {
+    print "$program:  contactgroup name is not set; use -c to specify a contactgroup name to delete\n";
+    exit 1;
+}
+
+my $dm = dassmonarch->new();
+
+$dm->set_debuglevel($opt_d) if $opt_d;
+
+if ( not $dm->get_contactgroup_id($opt_c) ) {
+    $dm->debug( 'error', "$program:  contactgroup $opt_c was not found in the monarch database" );
+    exit 1;
+}
+
+if ( $dm->delete_contactgroup($opt_c) ) {
+    $dm->debug( 'info', "$program:  contact $opt_c deleted" );
+}
+else {
+    $dm->debug( 'error', "$program:  could not delete contactgroup $opt_c" );
+}
+
+__END__
+
+=head1 NAME
+
+monarch_delete_contactgroup
+
+=head1 SYNOPSIS
+
+monarch_delete_contactgroup -c contactgroupname
+
+=head1 DESCRIPTION
+
+Deletes a given contactgroup by name.
+
+=head1 OPTIONS
+
+-d [error,warning,info,verbose]
+
+=head1 AUTHOR
+
+dass IT GmbH maik.aussendorf@dass-it.de
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

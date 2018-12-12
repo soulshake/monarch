@@ -1,0 +1,101 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use dassmonarch;
+
+my $VERSION = "1.0.0";
+( my $program = $0 ) =~ s{.*/}{};
+
+use vars qw($opt_d $opt_V $opt_s $opt_f $opt_man $opt_h);
+
+# defautl empty, services will be merged, not replaced
+my $replacestring = '';
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"            => \$opt_V,
+    "version"      => \$opt_V,
+    "m"            => \$opt_man,
+    "man"          => \$opt_man,
+    "d=s"          => \$opt_d,
+    "debuglevel=s" => \$opt_d,
+    "s=s"          => \$opt_s,
+    "service=s"    => \$opt_s,
+    "h"            => \$opt_h,
+    "help"         => \$opt_h,
+    "f"            => \$opt_f,
+    "force"        => \$opt_f,
+);
+
+# GetOptions('-h' => \$opt_h, --man => \$opt_man) or pod2usage(2);
+pod2usage( -verbose => 1 ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+if ( not $opt_s ) {
+    print "$program:  service name is not set; use -s to specify a service to be deleted\n";
+    exit 1;
+}
+
+my $dm = dassmonarch->new();
+
+$dm->set_debuglevel($opt_d) if $opt_d;
+
+if ( not $dm->get_serviceid($opt_s) ) {
+    $dm->debug( 'error', "$program:  service $opt_s was not found in the monarch database" );
+    exit 1;
+}
+
+my @hosts = $dm->get_service_hostlist($opt_s);
+if (@hosts) {
+    $dm->debug( 'verbose', "$program:  service $opt_s is presently assigned to " . scalar(@hosts) . " hosts" );
+    if ( !$opt_f ) {
+	$dm->debug( 'verbose', "$program:  the force option (-f) is not set.  Exiting." );
+	exit 1;
+    }
+}
+
+if ( $dm->delete_service($opt_s) ) {
+    $dm->debug( 'info', "$program:  deleted service $opt_s" );
+}
+else {
+    $dm->debug( 'error', "$program:  could not delete service $opt_s" );
+    exit 1;
+}
+
+__END__
+
+=head1 NAME
+
+monarch_delete_service
+
+=head1 SYNOPSIS
+
+monarch_delete_service [-f] -s servicename
+
+=head1 DESCRIPTION
+
+Delete a service, if not assigned to a host.
+
+=head1 OPTIONS
+
+-f force : if set, the service will be deleted, even if it is in use (assigned to some host)
+
+-d [error,warning,info,verbose]
+
+=head1 ORIGINAL AUTHOR
+
+dass IT GmbH maik.aussendorf@dass-it.de
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

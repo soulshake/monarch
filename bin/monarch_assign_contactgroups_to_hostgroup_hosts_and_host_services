@@ -1,0 +1,404 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+# Copyright 2015 GroundWork, Inc. ("GroundWork")
+# All rights reserved.
+
+use strict;
+use warnings;
+
+use IO::Handle;
+use DBI;
+
+sub print_usage {
+    print <<EOF;
+
+This tool is used to apply a set of contactgroups to all hosts associated
+with a specified hostgroup.  All the services on those hosts will have
+the exact same contactgroups also applied.  Existing contact groups on
+the hosts and host services will be left intact unless an option is
+specified to request that specified or all existing contactgroups on
+those hosts and host services be cleared.
+
+usage:  monarch_assign_contactgroups_to_hostgroup_hosts_and_host_services -l hostgroup
+or:     monarch_assign_contactgroups_to_hostgroup_hosts_and_host_services {-a|-r} hostgroup contactgroup ...
+or:     monarch_assign_contactgroups_to_hostgroup_hosts_and_host_services -c hostgroup
+where:  -l means list out all the hosts and host services associated with the hostgroup
+	-a means add the named contactgroups to all the hosts associated
+	   with the hostgroup and the host services attached to those hosts
+	-r means remove the named contactgroups from those hosts and host services
+	-c means clear all contactgroups from those hosts and host services
+EOF
+}
+
+my $option;
+my $action;
+my $hostgroup;
+my @contactgroups = ();
+my $hosts         = undef;
+my $host_services = undef;
+my $contactgroups = undef;
+
+my ( $dbhost, $dbname, $dbuser, $dbpass );
+my $dbh = undef;
+my $sth = undef;
+my $sqlstmt;
+my $all_is_done = 0;
+my $verbose = 0;
+
+# For reasons we don't understand, this script segfaults at the very end if LC_ALL
+# is not a part of the environment, or if it is set to something like 'en_US',
+# before this script even starts to run.  So in that case, let's set it here to
+# something we know works, and run the script ourselves.
+if ( not $ENV{LC_ALL} or $ENV{LC_ALL} ne 'C' ) {
+    $ENV{LC_ALL} = 'C';
+    my @lines = `$0 @ARGV 2>&1`;
+    my $status = $? >> 8;
+    print @lines;
+    $all_is_done = 1;
+    exit $status ? 1 : 0;
+}
+
+sub open_database {
+    ##############################################################################
+    # Pick up database-access location and credentials
+    ##############################################################################
+
+    if ( -e "/usr/local/groundwork/config/db.properties" ) {
+	open( FILE, '<', '/usr/local/groundwork/config/db.properties' )
+	  or die "\nCannot open the db.properties file ($!); aborting!\n";
+	while ( my $line = <FILE> ) {
+	    if ( $line =~ /^\s*monarch\.dbhost\s*=\s*(\S+)/ )   { $dbhost = $1 }
+	    if ( $line =~ /^\s*monarch\.database\s*=\s*(\S+)/ ) { $dbname = $1 }
+	    if ( $line =~ /^\s*monarch\.username\s*=\s*(\S+)/ ) { $dbuser = $1 }
+	    if ( $line =~ /^\s*monarch\.password\s*=\s*(\S+)/ ) { $dbpass = $1 }
+	}
+	close(FILE);
+    }
+
+    if ( !defined($dbhost) or !defined($dbname) or !defined($dbuser) or !defined($dbpass) ) {
+	my $database_name = defined($dbname) ? $dbname : 'monarch';
+	print "ERROR:  Cannot read the \"$database_name\" database configuration.\n";
+	exit (1); 
+    }   
+
+    ##############################################################################
+    # Connect to the database
+    ##############################################################################
+
+    # We deliberately only allow connection to a PostgreSQL database, no longer supporting
+    # MySQL as an alternative, because we are now free to use (and in some cases require
+    # the use of) various PostgreSQL capabilities such as savepoints, in our scripting.
+    my $dsn = "DBI:Pg:dbname=$dbname;host=$dbhost";
+
+    # We turn AutoCommit off because we want to make changes roll back automatically as much as
+    # possible if we don't get successfully through the entire script.  This is not perfect (i.e.,
+    # we don't necessarily have all the changes made in a single huge transaction) because some of
+    # the transformations may implicitly commit previous changes, and there is nothing we can do
+    # about that.  Still, we do the best we can.
+    #
+    # We turn PrintError off because RaiseError is on and we don't want duplicate messages printed.
+
+    print "\nConnecting to the $dbname database with user $dbuser ...\n";
+    eval { $dbh = DBI->connect_cached( $dsn, $dbuser, $dbpass, { 'AutoCommit' => 0, 'RaiseError' => 1, 'PrintError' => 0 } ) };
+    if ($@) {
+	chomp $@;
+	print "ERROR:  database connect failed ($@)\n";
+	exit (1);
+    }
+
+    print "\nEncapsulating the changes in a transaction ...\n";
+    $dbh->do("set session transaction isolation level serializable");
+}
+
+sub close_database {
+    $dbh->commit();
+
+    # Disconnect from the database, and undefine our database handle, so we don't get
+    # our "Rolling back ..." message from the trailing END block if we really did just
+    # successfully run the commit.
+    do {
+	## Localize and turn off RaiseError for this block, because once we have
+	## successfully committed all changes just above, we really don't care if
+	## we somehow get an error during the disconnect operation.
+	local $dbh->{RaiseError};
+
+	$dbh->disconnect();
+	$dbh = undef;
+    };
+}
+
+sub get_hosts_in_hostgroup {
+    my $exists = $dbh->selectrow_array("select count(*) from hostgroups where name='$hostgroup'" );
+    if (not $exists) {
+	print "\n";
+	die "ERROR:  hostgroup \"$hostgroup\" does not exist.\n";
+    }
+    my %hosts = ();
+    $sqlstmt = "
+	select h.host_id, h.name
+	from hosts h, hostgroups hg, hostgroup_host hgh
+	where hg.name='$hostgroup' and hgh.hostgroup_id=hg.hostgroup_id and h.host_id = hgh.host_id
+    ";
+    $sth = $dbh->prepare($sqlstmt);
+    $sth->execute();
+    while ( my @values = $sth->fetchrow_array() ) {
+	$hosts{ $values[0] } = $values[1];
+    }
+    $sth->finish;
+    return \%hosts;
+}
+
+sub get_host_services_in_hostgroup {
+    my $exists = $dbh->selectrow_array("select count(*) from hostgroups where name='$hostgroup'" );
+    if (not $exists) {
+	print "\n";
+	die "ERROR:  hostgroup \"$hostgroup\" does not exist.\n";
+    }
+    my %host_services = ();
+    $sqlstmt = "
+	select s.host_id, s.service_id, sn.name
+	from hosts h, hostgroups hg, hostgroup_host hgh, services s, service_names sn
+	where
+	    hg.name='$hostgroup'
+	and hgh.hostgroup_id=hg.hostgroup_id
+	and h.host_id = hgh.host_id
+	and s.host_id = h.host_id
+	and sn.servicename_id = s.servicename_id
+    ";
+    $sth = $dbh->prepare($sqlstmt);
+    $sth->execute();
+    while ( my @values = $sth->fetchrow_array() ) {
+	$host_services{ $values[0] }{ $values[1] } = $values[2];
+    }
+    $sth->finish;
+    return \%host_services;
+}
+
+sub get_contactgroups {
+    my %contactgroups = ();
+    foreach my $contactgroup (@contactgroups) {
+	$sqlstmt = "
+	    select cg.contactgroup_id, cg.name
+	    from contactgroups cg
+	    where cg.name='$contactgroup'
+	";
+	$sth = $dbh->prepare($sqlstmt);
+	$sth->execute();
+	if ( my @values = $sth->fetchrow_array() ) {
+	    $contactgroups{ $values[0] } = $values[1];
+	}
+	else {
+	    print "\n";
+	    die "ERROR:  contactgroup \"$contactgroup\" does not exist.\n";
+	}
+	$sth->finish;
+    }
+    return \%contactgroups;
+}
+
+sub add_contactgroups_to_hosts {
+    foreach my $host_id (keys %$hosts) {
+	print "host $hosts->{$host_id}\n" if $verbose;
+	foreach my $contactgroup_id ( keys %$contactgroups ) {
+	    my $exists = $dbh->selectrow_array("select count(*) from contactgroup_host where contactgroup_id=$contactgroup_id and host_id=$host_id" );
+	    $dbh->do("insert into contactgroup_host (contactgroup_id, host_id) values ($contactgroup_id, $host_id)") if not $exists;
+	}
+    }
+}
+
+sub add_contactgroups_to_host_services {
+    foreach my $host_id (keys %$host_services) {
+	print "services for host $hosts->{$host_id}\n" if $verbose;
+	if ( %{ $host_services->{$host_id} } ) {
+	    foreach my $service_id (keys %{ $host_services->{$host_id} }) {
+		print "\tservice $host_services->{$host_id}{$service_id}\n" if $verbose;
+		foreach my $contactgroup_id ( keys %$contactgroups ) {
+		    my $exists = $dbh->selectrow_array("select count(*) from contactgroup_service where contactgroup_id=$contactgroup_id and service_id=$service_id" );
+		    $dbh->do("insert into contactgroup_service (contactgroup_id, service_id) values ($contactgroup_id, $service_id)") if not $exists;
+		}
+	    }
+	}
+    }
+}
+
+sub remove_contactgroups_from_hosts {
+    foreach my $host_id (keys %$hosts) {
+	print "host $hosts->{$host_id}\n" if $verbose;
+	if ( %{ $host_services->{$host_id} } ) {
+	    foreach my $service_id (keys %{ $host_services->{$host_id} }) {
+		print "\tservice $host_services->{$host_id}{$service_id}\n" if $verbose;
+		foreach my $contactgroup_id ( keys %$contactgroups ) {
+		    $dbh->do("delete from contactgroup_host where contactgroup_id=$contactgroup_id and host_id=$host_id");
+		}
+	    }
+	}
+    }
+}
+
+sub remove_contactgroups_from_host_services {
+    foreach my $host_id (keys %$host_services) {
+	print "services for host $hosts->{$host_id}\n" if $verbose;
+	if ( %{ $host_services->{$host_id} } ) {
+	    foreach my $service_id (keys %{ $host_services->{$host_id} }) {
+		print "\tservice $host_services->{$host_id}{$service_id}\n" if $verbose;
+		foreach my $contactgroup_id ( keys %$contactgroups ) {
+		    $dbh->do("delete from contactgroup_service where contactgroup_id=$contactgroup_id and service_id=$service_id");
+		}
+	    }
+	}
+    }
+}
+
+sub clear_contactgroups_from_hosts {
+    foreach my $host_id (keys %$hosts) {
+	print "host $hosts->{$host_id}\n" if $verbose;
+	if ( %{ $host_services->{$host_id} } ) {
+	    foreach my $service_id (keys %{ $host_services->{$host_id} }) {
+		print "\tservice $host_services->{$host_id}{$service_id}\n" if $verbose;
+		$dbh->do("delete from contactgroup_host where host_id=$host_id");
+	    }
+	}
+    }
+}
+
+sub clear_contactgroups_from_host_services {
+    foreach my $host_id (keys %$host_services) {
+	print "services for host $hosts->{$host_id}\n" if $verbose;
+	if ( %{ $host_services->{$host_id} } ) {
+	    foreach my $service_id (keys %{ $host_services->{$host_id} }) {
+		print "\tservice $host_services->{$host_id}{$service_id}\n" if $verbose;
+		$dbh->do("delete from contactgroup_service where service_id=$service_id");
+	    }
+	}
+    }
+}
+
+# Autoflush the standard output on every single write, to avoid problems
+# with block i/o and badly interleaved output lines on STDOUT and STDERR.
+# This we do by having STDOUT use the same buffering discipline as STDERR,
+# namely to flush every line as soon as it is produced.  This is certainly
+# a less-efficient use of system resources, but we don't expect this program
+# to write much to the STDOUT stream anyway, and this program will not be
+# run very often.
+STDOUT->autoflush(1);
+
+if (scalar @ARGV < 2) {
+    print_usage();
+    exit 1;
+}
+
+$option = shift;
+if ($option eq '-l') {
+    $action = 'list';
+    $hostgroup = shift;
+    if (scalar @ARGV) {
+	print_usage();
+	exit 1;
+    }
+}
+elsif ($option eq '-a') {
+    $action = 'add';
+    $hostgroup = shift;
+    if (not scalar @ARGV) {
+	print_usage();
+	exit 1;
+    }
+    @contactgroups = @ARGV;
+}
+elsif ($option eq '-r') {
+    $action = 'remove';
+    $hostgroup = shift;
+    if (not scalar @ARGV) {
+	print_usage();
+	exit 1;
+    }
+    @contactgroups = @ARGV;
+}
+elsif ($option eq '-c') {
+    $action = 'clear';
+    $hostgroup = shift;
+    if (scalar @ARGV) {
+	print_usage();
+	exit 1;
+    }
+}
+else {
+    print_usage();
+    exit 1;
+}
+
+if (not open_database()) {
+    exit 1;
+}
+
+$hosts         = get_hosts_in_hostgroup();
+$host_services = get_host_services_in_hostgroup();
+$contactgroups = get_contactgroups();
+
+if ($action eq 'list') {
+    foreach my $host_id (keys %$hosts) {
+	print "host $hosts->{$host_id}\n";
+	if ( %{ $host_services->{$host_id} } ) {
+	    foreach my $service_id (keys %{ $host_services->{$host_id} }) {
+		print "\tservice $host_services->{$host_id}{$service_id}\n";
+	    }
+	}
+    }
+}
+elsif ($action eq 'add') {
+    add_contactgroups_to_hosts();
+    add_contactgroups_to_host_services();
+}
+elsif ($action eq 'remove') {
+    remove_contactgroups_from_hosts();
+    remove_contactgroups_from_host_services();
+}
+elsif ($action eq 'clear') {
+    clear_contactgroups_from_hosts();
+    clear_contactgroups_from_host_services();
+}
+
+close_database();
+
+##############################################################################
+# Done.
+##############################################################################
+
+$all_is_done = 1;
+
+END {
+    if ($dbh) {
+	## Roll back any uncommitted transaction.  If the $dbh->commit() above did
+	## not execute (which should generally be the only way we get here), this
+	## will either roll back to the state of the database before this script was
+	## run, or (if our enclosing transaction was broken by some earlier implicit
+	## commit) it should leave the Monarch version in a state (that is, having
+	## a negative value) where we can later see that the full migration did not
+	## complete, so there is no confusion as to whether the database is in a
+	## usable state.
+	print "\nRolling back changes ...\n";
+	eval {
+	    $dbh->rollback();
+	};
+	if ($@) {
+	    ## For some reason, $dbh->errstr here returns a value from far earlier in the script,
+	    ## not reflecting what just failed within this eval{};.  So we need to look instead
+	    # at $@ instead for clues as to what just happened.
+	    my $errstr = $@;
+	    print "\nERROR:  rollback failed", (defined($errstr) ? (":\n" . $errstr) : '; no error detail is available.'), "\n";
+	    print "WARNING:  The Monarch database has probably been left in an inconsistent, unusable state.\n";
+	}
+	$dbh->disconnect();
+    }
+    if (!$all_is_done) {
+	print "\n";
+	print "====================================================================\n";
+	print "    WARNING:  monarch database updates did not fully complete!\n";
+	print "====================================================================\n";
+	print "\n";
+	exit (1);
+    }
+}
+
+print "\nUpdate of the monarch database is complete.\n\n";
+

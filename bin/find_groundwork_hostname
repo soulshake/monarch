@@ -1,0 +1,103 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+# find_groundwork_hostname
+#
+# Finds the hostname in Monarch that corresponds to the GroundWork server itself.
+# A fresh install starts out calling this "localhost", but in the context of a
+# datacenter that is effectively an ambiguous name, so it is often renamed to be
+# the actual name of the GroundWork server.
+#
+# Copyright 2014 GroundWork Open Source, Inc.  All rights reserved.
+
+use strict;
+
+use dassmonarch;
+
+my $debug = 0;
+
+sub print_usage {
+    print "usage:  find_groundwork_hostname [-d]\n";
+    print "where:  -d emits debug info\n";
+}
+
+sub groundwork_host {
+    my $hostname       = `/bin/hostname`;
+    my $long_hostname  = `/bin/hostname -f`;
+    my $short_hostname = `/bin/hostname -s`;
+    my @hostnames      = ();
+    chomp $hostname       if $hostname;
+    chomp $long_hostname  if $long_hostname;
+    chomp $short_hostname if $short_hostname;
+    push @hostnames, $hostname       if $hostname;
+    push @hostnames, $long_hostname  if $long_hostname;
+    push @hostnames, $short_hostname if $short_hostname;
+    my %outcome;
+    my %results;
+
+    # Construct an instance of class dassmonarch.
+    my $monarch_api = dassmonarch->new();
+
+    # Set this to error, in order to get minimal debug messages.
+    $monarch_api->set_debuglevel('error');
+
+    my %monarch_hosts = map { $_ => 1 } $monarch_api->get_hostlist();
+
+    if ($debug) {
+	foreach my $hostname ( sort keys %monarch_hosts ) {
+	    print "Found Monarch hostname:  $hostname\n";
+	}
+    }
+
+    if (@hostnames) {
+	my %unique = ();
+	@unique{@hostnames} = (undef) x @hostnames;
+	if ($debug) {
+	    foreach my $external_hostname ( sort keys %unique ) {
+		print "Found external hostname:  $external_hostname\n";
+	    }
+	}
+	foreach my $external_hostname ( sort keys %unique ) {
+	    return $external_hostname if $monarch_hosts{$external_hostname};
+	}
+    }
+    return $monarch_hosts{'localhost'} ? 'localhost' : undef;
+}
+
+# Save the STDOUT stream so we can use it for the final script output.
+if ( !open( ALTOUT, '>>&STDOUT' ) ) {
+    print STDERR "ERROR:  Can't duplicate STDOUT as ALTOUT: $!\n";
+    exit(1);
+}
+
+# All other output that might possibly appear on STDOUT should be redirected
+# away from that data stream, so there is no possibility for confusion about
+# what does actually finally appear on STDOUT.
+if ( !open( STDOUT, '>>&STDERR' ) ) {
+    print STDERR "ERROR:  Can't redirect STDOUT to STDERR: $!\n";
+    exit(1);
+}
+else {
+    ## Autoflush the output on every single write, to avoid problems with
+    ## block i/o and badly interleaved output lines on STDOUT and STDERR.
+    STDOUT->autoflush(1);
+    STDERR->autoflush(1);
+}
+
+if ( @ARGV && $ARGV[0] eq '-d' ) {
+    $debug = 1;
+    shift @ARGV;
+}
+
+if (@ARGV) {
+    print_usage();
+    exit(1);
+}
+
+my $monarch_host = groundwork_host();
+if ( defined $monarch_host ) {
+    print ALTOUT "$monarch_host\n";
+    exit(0);
+}
+
+exit(1);
+

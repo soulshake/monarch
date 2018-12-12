@@ -1,0 +1,103 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use dassmonarch;
+
+my $VERSION = "1.0.0";
+( my $program = $0 ) =~ s{.*/}{};
+
+use vars qw($opt_d $opt_V $opt_h $opt_H $opt_s $opt_man);
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"            => \$opt_V,
+    "version"      => \$opt_V,
+    "h"            => \$opt_h,
+    "help"         => \$opt_h,
+    "m"            => \$opt_man,
+    "man"          => \$opt_man,
+    "d=s"          => \$opt_d,
+    "debuglevel=s" => \$opt_d,
+    "H=s"          => \$opt_H,
+    "hostname=s"   => \$opt_H,
+    "s=s"          => \$opt_s,
+    "service=s"    => \$opt_s,
+);
+
+# GetOptions('-h' => \$opt_h, --man => \$opt_man) or pod2usage(2);
+pod2usage( -verbose => 1 ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+if ( not $opt_H ) {
+    print "$program:  host name is not set; use -H to specify a hostname\n";
+    exit 1;
+}
+
+if ( not $opt_s ) {
+    print "$program:  service name is not set; use -s to specify a service to be removed from the host\n";
+    exit 1;
+}
+
+my $dm = dassmonarch->new();
+
+$dm->set_debuglevel($opt_d) if $opt_d;
+
+if ( not $dm->host_exists($opt_H) ) {
+    $dm->debug( 'error', "$program:  host $opt_H was not found in the monarch database" );
+    exit 1;
+}
+
+if ( not $dm->get_serviceid($opt_s) ) {
+    $dm->debug( 'error', "$program:  service $opt_s was not found in the monarch database" );
+    exit 1;
+}
+
+my @services = $dm->get_hostservice_list($opt_H);
+if ( not grep ( /^\Q$opt_s\E$/, @services ) ) {
+    $dm->debug( 'info', "$program:  host $opt_H does not have service $opt_s assigned" );
+    exit 0;
+}
+
+if ( $dm->remove_service( $opt_H, $opt_s ) ) {
+    $dm->debug( 'info', "$program:  removed service $opt_s from host $opt_H" );
+}
+else {
+    $dm->debug( 'error', "$program:  could not remove service $opt_s from host $opt_H" );
+    exit 1;
+}
+
+__END__
+
+=head1 NAME
+
+monarch_remove_service_from_host
+
+=head1 SYNOPSIS
+
+monarch_remove_service_from_host -s service -H hostname
+
+=head1 DESCRIPTION
+
+Removes a host-service from a host.
+
+=head1 OPTIONS
+
+-d [error,warning,info,verbose]
+
+=head1 ORIGINAL AUTHOR
+
+dass IT GmbH maik.aussendorf@dass-it.de
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

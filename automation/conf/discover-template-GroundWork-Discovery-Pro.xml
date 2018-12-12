@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<discovery>
+ <prop name="name"><![CDATA[GroundWork-Discovery-Pro]]></prop>
+ <prop name="description"><![CDATA[Basic discovery for GroundWork Monitor Professional, using Nmap TCP and SNMP]]></prop>
+ <prop name="schema"><![CDATA[GroundWork-Discovery-Pro]]></prop>
+ <prop name="auto"><![CDATA[Interactive]]></prop>
+ <method>
+  <method_prop name="name"><![CDATA[Nmap TCP]]></method_prop>
+  <method_prop name="port_23"><![CDATA[service-telnet_alive]]></method_prop>
+  <method_prop name="port_5666"><![CDATA[service-nrpe_alive]]></method_prop>
+  <method_prop name="timeout"><![CDATA[Insane]]></method_prop>
+  <method_prop name="port_443"><![CDATA[service-https_alive]]></method_prop>
+  <method_prop name="port_80"><![CDATA[service-http_alive]]></method_prop>
+  <method_prop name="port_113"><![CDATA[service-ntp_alive]]></method_prop>
+  <method_prop name="scan_type"><![CDATA[tcp_syn_scan]]></method_prop>
+  <method_prop name="port_3306"><![CDATA[service-mysql_alive]]></method_prop>
+  <method_prop name="port_110"><![CDATA[service-pop3_alive]]></method_prop>
+  <method_prop name="snmp_strings"><![CDATA[cisco]]></method_prop>
+  <method_prop name="description"><![CDATA[This is the primary scan method. It is recommended to run this method first. ]]></method_prop>
+  <method_prop name="port_119"><![CDATA[service-nntp_alive]]></method_prop>
+  <method_prop name="tcp_snmp_check"><![CDATA[1]]></method_prop>
+  <method_prop name="port_25"><![CDATA[service-smtp_alive]]></method_prop>
+  <method_prop name="port_20"><![CDATA[service-ftp_alive]]></method_prop>
+  <method_prop name="port_67"><![CDATA[service-dhcp_alive]]></method_prop>
+  <method_prop name="port_8080"><![CDATA[service-tomcat_alive]]></method_prop>
+  <method_prop name="port_194"><![CDATA[service-irc_alive]]></method_prop>
+  <method_prop name="type"><![CDATA[Nmap]]></method_prop>
+  <method_prop name="port_22"><![CDATA[service-ssh_alive]]></method_prop>
+ </method>
+ <method>
+  <method_prop name="name"><![CDATA[SNMP]]></method_prop>
+  <method_prop name="snmp_v3_authProtocol"><![CDATA[none]]></method_prop>
+  <method_prop name="snmp_v3_misc"><![CDATA[]]></method_prop>
+  <method_prop name="snmp_v3_authKey"><![CDATA[]]></method_prop>
+  <method_prop name="snmp_v3_securityLevel"><![CDATA[noAuthNoPriv]]></method_prop>
+  <method_prop name="snmp_v3_user"><![CDATA[]]></method_prop>
+  <method_prop name="snmp_v3_privKey"><![CDATA[]]></method_prop>
+  <method_prop name="description"><![CDATA[SNMP Scan on hosts with UDP 161 open, as detected by Nmap TCP using the UDP port check option, or as detected by the UDP scan alone. Edit this method to input your SNMP community string. Make sure to add this same string the Nagios resource macro $USER7$, so that the discovered services will work. It is not recommended to run the SNMP scan independent of the Nmap TCP or Nmap UDP scans, as long discovery times may result.]]></method_prop>
+  <method_prop name="snmp_v3_privProtocol"><![CDATA[none]]></method_prop>
+  <method_prop name="community_strings"><![CDATA[public]]></method_prop>
+  <method_prop name="snmp_ver"><![CDATA[2c]]></method_prop>
+  <method_prop name="type"><![CDATA[SNMP]]></method_prop>
+ </method>
+</discovery>

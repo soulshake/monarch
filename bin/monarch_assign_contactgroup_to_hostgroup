@@ -1,0 +1,81 @@
+#!/usr/local/groundwork/perl/bin/perl -w --
+
+use strict;
+use warnings;
+
+use Getopt::Long;
+use Pod::Usage;
+use dassmonarch;
+
+my $VERSION = "1.0.0";
+(my $program = $0) =~ s{.*/}{};
+
+use vars qw($opt_d $opt_V $opt_h $opt_c $opt_g $opt_man);
+
+# Parse Command Line Opts
+Getopt::Long::Configure('bundling');
+GetOptions(
+    "V"              => \$opt_V,
+    "version"        => \$opt_V,
+    "h"              => \$opt_h,
+    "help"           => \$opt_h,
+    "m"              => \$opt_man,
+    "man"            => \$opt_man,
+    "d=s"            => \$opt_d,
+    "debuglevel=s"   => \$opt_d,
+    "c=s"            => \$opt_c,
+    "contactgroup=s" => \$opt_c,
+    "g=s"            => \$opt_g,
+    "hostgroup=s"    => \$opt_g,
+);
+
+# GetOptions('-h' => \$opt_h, --man => \$opt_man) or pod2usage(2);
+pod2usage( -verbose => 1 ) if $opt_h;
+pod2usage( -exitval => 0, -verbose => 2 ) if $opt_man;
+
+if ($opt_V) {
+    print "$program version $VERSION.\n";
+    exit 0;
+}
+
+if ( not $opt_c ) {
+    print "$program:  contactgroup name is not set; use -c to specify a contactgroupname\n";
+    exit 1;
+}
+
+if ( not $opt_g ) {
+    print "$program:  hostgroup name is not set; use -g to specify a hostgroupname\n";
+    exit 1;
+}
+
+my $dm = dassmonarch->new();
+
+$dm->set_debuglevel($opt_d) if $opt_d;
+
+$dm->assign_contactgroup_to_hostgroup( $opt_c, $opt_g );
+
+__END__
+
+=head1 NAME
+
+monarch_assign_contactgroup_to_hostgroup
+
+=head1 SYNOPSIS
+
+monarch_assign_contactgroup_to_hostgroup -c contactgroup -g hostgroup
+
+=head1 DESCRIPTION
+
+Assign a contactgroup to a hostgroup.
+
+=head1 OPTIONS
+
+-d [error,warning,info,verbose]
+
+=head1 ORIGINAL AUTHOR
+
+dass IT GmbH maik.aussendorf@dass-it.de
+
+=cut
+
+# vim: tabstop=8 shiftwidth=4 softtabstop=4 smarttab noexpandtab

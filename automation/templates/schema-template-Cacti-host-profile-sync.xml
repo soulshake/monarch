@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<import_schema>
+ <prop name="description"><![CDATA[This automation schema is designed to import Cacti data.  It applies a host profile named host-profile-cacti-host, which is part of the GroundWork Monitor release. Data to be synchronized is stored in cacti_data.txt. You can extract this data from Cacti using extract_cacti.pl. Note: this schema deletes hosts with the selected host profile that are not in the input data, to keep this portion of the Monarch configuration synchronized with the Cacti configuration.]]></prop>
+ <prop name="type"><![CDATA[host-profile-sync]]></prop>
+ <prop name="delimiter"><![CDATA[;;]]></prop>
+ <prop name="sync_object"><![CDATA[]]></prop>
+ <prop name="smart_name"><![CDATA[1]]></prop>
+ <prop name="data_source"><![CDATA[/usr/local/groundwork/core/monarch/automation/data/cacti_data.txt]]></prop>
+ <prop name="default_profile"><![CDATA[host-profile-cacti-host]]></prop>
+ <column>
+  <column_prop name="name"><![CDATA[Address]]></column_prop>
+  <column_prop name="position"><![CDATA[1]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[]]></match_prop>
+   <match_prop name="name"><![CDATA[]]></match_prop>
+   <match_prop name="match_type"><![CDATA[]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Set address]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Address]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[2]]></match_prop>
+   <match_prop name="name"><![CDATA[Discard comments]]></match_prop>
+   <match_prop name="match_type"><![CDATA[begins-with]]></match_prop>
+   <match_prop name="match_string"><![CDATA[#]]></match_prop>
+   <match_prop name="rule"><![CDATA[Discard record]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Name]]></column_prop>
+  <column_prop name="position"><![CDATA[2]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Discard comments]]></match_prop>
+   <match_prop name="match_type"><![CDATA[begins-with]]></match_prop>
+   <match_prop name="match_string"><![CDATA[#]]></match_prop>
+   <match_prop name="rule"><![CDATA[Discard record]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[2]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign name]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Name]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Description]]></column_prop>
+  <column_prop name="position"><![CDATA[4]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign to description]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Description]]></object_prop>
+   </object>
+  </match>
+ </column>
+</import_schema>

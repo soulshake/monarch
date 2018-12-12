@@ -1,0 +1,243 @@
+<?xml version="1.0" ?>
+<import_schema>
+ <prop name="description"><![CDATA[Default schema for GroundWork Monitor Professional]]></prop>
+ <prop name="type"><![CDATA[host-import]]></prop>
+ <prop name="delimiter"><![CDATA[;;]]></prop>
+ <prop name="sync_object"><![CDATA[]]></prop>
+ <prop name="smart_name"><![CDATA[1]]></prop>
+ <prop name="data_source"><![CDATA[/usr/local/groundwork/core/monarch/automation/data/auto-discovery-GroundWork-Discovery-Pro.txt]]></prop>
+ <prop name="default_profile"><![CDATA[host-profile-service-ping]]></prop>
+ <column>
+  <column_prop name="name"><![CDATA[Profile]]></column_prop>
+  <column_prop name="position"><![CDATA[6]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign profile]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object if exists]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Host profile]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Service]]></column_prop>
+  <column_prop name="position"><![CDATA[8]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[4]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign services]]></match_prop>
+   <match_prop name="match_type"><![CDATA[service-definition]]></match_prop>
+   <match_prop name="match_string"><![CDATA[::]]></match_prop>
+   <match_prop name="rule"><![CDATA[]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[skip Null interfaces]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[Null]]></match_prop>
+   <match_prop name="rule"><![CDATA[Skip column record]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[3]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign ESX Profile]]></match_prop>
+   <match_prop name="match_type"><![CDATA[exact]]></match_prop>
+   <match_prop name="match_string"><![CDATA[vmware_esx3]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Service profile]]></object_prop>
+    <object_prop name="serviceprofile"><![CDATA[vmware_esx3]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[2]]></match_prop>
+   <match_prop name="name"><![CDATA[skip loopback interfaces]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[loopback]]></match_prop>
+   <match_prop name="rule"><![CDATA[Skip column record]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Service profile]]></column_prop>
+  <column_prop name="position"><![CDATA[7]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[2]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign SNMP Service Profile]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[snmp]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Service profile]]></object_prop>
+    <object_prop name="serviceprofile"><![CDATA[snmp-network]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign service profile]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object if exists]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Service profile]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Parent]]></column_prop>
+  <column_prop name="position"><![CDATA[5]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign parent]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Resolve to parent]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Description]]></column_prop>
+  <column_prop name="position"><![CDATA[4]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[2]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign Linux Hostgroup]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[linux]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Host group]]></object_prop>
+    <object_prop name="hostgroup"><![CDATA[Linux Servers]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[4]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign Network Contactgroup]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[cisco]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Contact group]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[5]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign Configuration Group]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[linux]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Group]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[6]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign Linux Contactgroup]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[linux]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Contact group]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[3]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign Network Hostgroup]]></match_prop>
+   <match_prop name="match_type"><![CDATA[contains]]></match_prop>
+   <match_prop name="match_string"><![CDATA[cisco]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign object(s)]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Host group]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign description]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Description]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Address]]></column_prop>
+  <column_prop name="position"><![CDATA[3]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign address]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Address]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Alias]]></column_prop>
+  <column_prop name="position"><![CDATA[2]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign alias]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Alias]]></object_prop>
+   </object>
+  </match>
+ </column>
+ <column>
+  <column_prop name="name"><![CDATA[Name]]></column_prop>
+  <column_prop name="position"><![CDATA[1]]></column_prop>
+  <column_prop name="delimiter"><![CDATA[]]></column_prop>
+  <match>
+   <match_prop name="order"><![CDATA[2]]></match_prop>
+   <match_prop name="name"><![CDATA[Assign name]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Assign value to]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[Name]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[3]]></match_prop>
+   <match_prop name="name"><![CDATA[Discard record if host exists]]></match_prop>
+   <match_prop name="match_type"><![CDATA[use-value-as-is]]></match_prop>
+   <match_prop name="match_string"><![CDATA[]]></match_prop>
+   <match_prop name="rule"><![CDATA[Discard if match existing host]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+  <match>
+   <match_prop name="order"><![CDATA[1]]></match_prop>
+   <match_prop name="name"><![CDATA[Discard comments]]></match_prop>
+   <match_prop name="match_type"><![CDATA[begins-with]]></match_prop>
+   <match_prop name="match_string"><![CDATA[#]]></match_prop>
+   <match_prop name="rule"><![CDATA[Discard record]]></match_prop>
+   <object>
+    <object_prop name="object_type"><![CDATA[]]></object_prop>
+   </object>
+  </match>
+ </column>
+</import_schema>
