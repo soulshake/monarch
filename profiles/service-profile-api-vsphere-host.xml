@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[api-vsphere-host]]></prop>
+  <prop name="description"><![CDATA[VMware service profile for monitoring via vSphere API]]></prop>
+  <prop name="service"><![CDATA[api_vsphere_cpu]]></prop>
+  <prop name="service"><![CDATA[api_vsphere_datastore]]></prop>
+  <prop name="service"><![CDATA[api_vsphere_memory]]></prop>
+  <prop name="service"><![CDATA[api_vsphere_net]]></prop>
+  <prop name="service"><![CDATA[api_vsphere_vms]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_vsphere_cpu]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[/usr/local/groundwork/users/nagios/vmware-vsphere-cli-distrib/apps/groundwork/check_vsphere_cpu.pl --credstore ~nagios/.vmware/credstore/vicredentials.xml --server $HOSTNAME$ --warning $ARG1$ --critical $ARG2$]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_vsphere_cpu!50!80]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[api_vsphere_cpu]]></prop>
+  <prop name="check_command"><![CDATA[check_vsphere_cpu]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_vsphere_datastore]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[/usr/local/groundwork/users/nagios/vmware-vsphere-cli-distrib/apps/groundwork/check_vsphere_datastore.pl --credstore ~nagios/.vmware/credstore/vicredentials.xml --server $HOSTNAME$ --warning $ARG1$ --critical $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_vsphere_datastore!10:99!5:100]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[api_vsphere_datastore]]></prop>
+  <prop name="check_command"><![CDATA[check_vsphere_datastore]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_vsphere_memory]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[/usr/local/groundwork/users/nagios/vmware-vsphere-cli-distrib/apps/groundwork/check_vsphere_memory.pl --server $HOSTNAME$ --credstore ~nagios/.vmware/credstore/vicredentials.xml --warning $ARG1$ --critical $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_vsphere_memory!75!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[api_vsphere_memory]]></prop>
+  <prop name="check_command"><![CDATA[check_vsphere_memory]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_vsphere_net]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[/usr/local/groundwork/users/nagios/vmware-vsphere-cli-distrib/apps/groundwork/check_vsphere_net.pl --server $HOSTNAME$ --credstore ~nagios/.vmware/credstore/vicredentials.xml --warning $ARG1$ --critical $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_vsphere_net!400000!600000]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[api_vsphere_net]]></prop>
+  <prop name="check_command"><![CDATA[check_vsphere_net]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_vsphere_vms]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[/usr/local/groundwork/users/nagios/vmware-vsphere-cli-distrib/apps/groundwork/check_vsphere_vms.pl --server $HOSTNAME$ --credstore ~nagios/.vmware/credstore/vicredentials.xml --warning $ARG1$ --critical $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_vsphere_vms!50!80]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[api_vsphere_vms]]></prop>
+  <prop name="check_command"><![CDATA[check_vsphere_vms]]></prop>
+ </service_name>
+</profile>

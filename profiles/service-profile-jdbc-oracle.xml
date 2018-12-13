@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2008 DSP Global Ltd (for GroundWork Open Source, Inc.)
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[jdbc-oracle]]></prop>
+  <prop name="description"><![CDATA[Check Oracle DB (via JDBC)]]></prop>
+  <prop name="service"><![CDATA[check_oracle_available]]></prop>
+  <prop name="service"><![CDATA[check_oracle_tablespace]]></prop>
+  <prop name="service"><![CDATA[check_oracle_locks]]></prop>
+  <prop name="service"><![CDATA[check_oracle_max_processes]]></prop>
+ </service_profile>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[]]></prop> 
+  <prop name="template"><![CDATA[]]></prop>   
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[]]></prop>   
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[###############################################################################
+]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <command>
+  <prop name="name"><![CDATA[check_oracle_script]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_oracle_db -H $HOSTADDRESS$ -p $ARG1$ -s $ARG2$ -l $ARG3$ -x $ARG4$ -f '$ARG5$' -w $ARG6$ -c $ARG7$ -n $ARG8$ -o $ARG9$ -g $ARG10$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_oracle_script!PORT!SID!UNAME!PWD!tablespace!80!90!1!N!N]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[check_oracle_tablespace]]></prop>
+  <prop name="description"><![CDATA[Check Oracle Tablespace Usage]]></prop>
+  <prop name="check_command"><![CDATA[check_oracle_script]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_oracle_script!PORT!SID!UNAME!PWD!up_down!2!2!0!Y!N]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[check_oracle_available]]></prop>
+  <prop name="description"><![CDATA[Check Oracle Availability]]></prop>
+  <prop name="check_command"><![CDATA[check_oracle_script]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_oracle_script!PORT!SID!UNAME!PWD!max_processes!80!90!3!N!Y]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[check_oracle_max_processes]]></prop>
+  <prop name="description"><![CDATA[Check Oracle Process Count]]></prop>
+  <prop name="check_command"><![CDATA[check_oracle_script]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_oracle_script!PORT!SID!UNAME!PWD!locks!2!5!3!N!Y]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[check_oracle_locks]]></prop>
+  <prop name="description"><![CDATA[Check Oracle Locks]]></prop>
+  <prop name="check_command"><![CDATA[check_oracle_script]]></prop>
+ </service_name>
+</profile>

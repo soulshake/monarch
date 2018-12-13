@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[ICMP_Only_Checks]]></prop>
+  <prop name="description"><![CDATA[ICMP-only checks]]></prop>
+  <prop name="service"><![CDATA[check_icmp_latency]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_icmp_latency]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 600.0,33% -c 1000.0,66% -n 6 -t 5]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[2.5]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="high_flap_threshold"><![CDATA[20]]></prop>
+  <prop name="notification_options"><![CDATA[n]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[service-active-notify-off]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[0]]></prop>
+  <prop name="low_flap_threshold"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_icmp_latency!AGENTIP]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-off]]></prop>
+  <prop name="name"><![CDATA[check_icmp_latency]]></prop>
+  <prop name="check_command"><![CDATA[check_icmp_latency]]></prop>
+ </service_name>
+</profile>

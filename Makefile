@@ -17,6 +17,9 @@ CP = cp
 CC = gcc
 CHOWN = chown
 
+# Nagois install
+NAGIOS_BASE = /usr/local/nagios
+
 # Groundwork Monarch install
 MONARCH_BASE = /usr/local/groundwork/monarch
 
@@ -68,19 +71,22 @@ install : all
 	${MKDIR} ${MONARCH_BASE}/workspace
 	${MKDIR} ${MONARCH_BASE}/backup
 	${MKDIR} ${MONARCH_BASE}
-	${CP} -pr automation bin cgi-bin htdocs lib etc ${MONARCH_BASE}
+	${CP} -pr automation bin cgi-bin htdocs lib etc profiles ${MONARCH_BASE}
 	${CP} -p ${TARGETDIR}/nagios_reload ${MONARCH_BASE}/bin
 	${CP} -p ${TARGETDIR}/nmap_scan_one ${MONARCH_BASE}/bin
 	${CP} -p ${TARGETDIR}/monarch_as_nagios ${MONARCH_BASE}/bin
-	${CHOWN} nagios:nagios -R ${MONARCH_BASE}
 	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nagios_reload
 	${CHMOD} 750 ${MONARCH_BASE}/bin/nagios_reload
 	${CHMOD} u+s ${MONARCH_BASE}/bin/nagios_reload
 	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nmap_scan_one
 	${CHOWN} 750 ${MONARCH_BASE}/bin/nmap_scan_one
 	${CHOWN} u+s ${MONARCH_BASE}/bin/nmap_scan_one
+	${CHOWN} nagios:nagios -R ${MONARCH_BASE}
 	${MKDIR} -p ${CONFIG_BASE}
 	${CP} -pn config/*.properties ${CONFIG_BASE}
+	${CHOWN} nagios:nagios -R ${CONFIG_BASE}
+	${CP} -pn etc/send_nsca.cfg ${NAGIOS_BASE}/etc
+	${CHOWN} nagios:nagios ${NAGIOS_BASE}/etc/send_nsca.cfg
 
 clean :
 	${RM} -r ${TARGETDIR}

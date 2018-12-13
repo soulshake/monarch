@@ -1,0 +1,94 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <command>
+  <prop name="name"><![CDATA[check-host-alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <host_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[-zero-]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[d,u,r]]></prop>
+  <prop name="name"><![CDATA[generic-host]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check-host-alive]]></prop>
+  <prop name="comment"><![CDATA[# Generic host definition template]]></prop>
+  <prop name="obsess_over_host"><![CDATA[-zero-]]></prop>
+  <prop name="check_interval"><![CDATA[-zero-]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+ </host_template>
+ <service_profile>
+  <prop name="name"><![CDATA[gdma_auto]]></prop>
+  <prop name="description"><![CDATA[Service Definition for the collection of GDMA autoconfiguration data]]></prop>
+  <prop name="service"><![CDATA[gdma_auto]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[900]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[0]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="is_volatile"><![CDATA[1]]></prop>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="name"><![CDATA[gdma_auto]]></prop>
+  <prop name="check_command"><![CDATA[check-host-alive]]></prop>
+ </service_name>
+ <host_profile>
+  <prop name="host_template"><![CDATA[generic-host]]></prop>
+  <prop name="name"><![CDATA[gdma-autohost]]></prop>
+  <prop name="description"><![CDATA[Virtual host for collection and processing of GDMA Autoconfiguration Messages]]></prop>
+  <prop name="service_profile"><![CDATA[gdma_auto]]></prop>
+ </host_profile>
+</profile>

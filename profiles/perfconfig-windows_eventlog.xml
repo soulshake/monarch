@@ -1,0 +1,35 @@
+<groundwork_performance_configuration>
+<service_profile name="windows_eventlog profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_eventlog]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Windows events</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+ DEF:a="rrd_source":ds_source_0:AVERAGE 
+ DEF:aw="rrd_source":ds_source_1:AVERAGE 
+ DEF:ac="rrd_source":ds_source_2:AVERAGE 
+ CDEF:cdefa=a 
+ AREA:cdefa#FF335B:"Number of Events" 
+ GPRINT:cdefa:MIN:min=%.2lf 
+ GPRINT:cdefa:AVERAGE:avg=%.2lf 
+ GPRINT:cdefa:MAX:max=%.2lf 
+ LINE:aw#FFCC33:"Warning Threshold" 
+ GPRINT:aw:LAST:"%.1lf"
+ LINE:ac#FF0000:"Critical Threshold"
+ GPRINT:ac:LAST:"%.1lf\l"
+ -c BACK#FFFFFF 
+ -c CANVAS#FFFFFF 
+ -c GRID#C0C0C0 
+ -c MGRID#404040 
+ -c ARROW#FFFFFF 
+ -Y --height 120 -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

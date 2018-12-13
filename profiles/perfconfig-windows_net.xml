@@ -1,0 +1,31 @@
+<groundwork_performance_configuration>
+<service_profile name="windows_net profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[windows_net]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Windows Network Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr 
+ DS:S_Utilisation:GAUGE:1800:U:U 
+ DS:S_Utilisation_wn:GAUGE:1800:U:U 
+ DS:S_Utilisation_cr:GAUGE:1800:U:U 
+ DS:R_Utilization:GAUGE:1800:U:U  
+ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE2$:$WARN2$:$CRIT2$:$VALUE4$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode 
+ DEF:a=rrd_source:ds_source_0:AVERAGE 
+ DEF:b=rrd_source:ds_source_3:AVERAGE
+ CDEF:cdefa=a 
+ CDEF:cdefb=b
+ AREA:a#AAFF44:"Send Bandwidth Percent" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf  
+ GPRINT:cdefa:MAX:"max=%.2lf\l"
+ STACK:b#BB33FF:"Receive Bandwidth Percent" GPRINT:cdefb:MIN:min=%.2lf  GPRINT:cdefb:AVERAGE:avg=%.2lf  
+ GPRINT:cdefb:MAX:"max=%.2lf\l"
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y  --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

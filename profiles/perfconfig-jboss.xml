@@ -1,0 +1,546 @@
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="jboss.jca.ManagedConnectionPool.DefaultDS.AvailableConnectionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.jca.ManagedConnectionPool.DefaultDS.AvailableConnectionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AvailableConnecti</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AvailableConnectionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.jca.ManagedConnectionPool.DefaultDS.InUseConnectionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.jca.ManagedConnectionPool.DefaultDS.InUseConnectionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>InUseConnectionCo</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:InUseConnectionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.jca.ManagedConnectionPool.JmsXA.AvailableConnectionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.jca.ManagedConnectionPool.JmsXA.AvailableConnectionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AvailableConnecti</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AvailableConnectionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.jca.ManagedConnectionPool.JmsXA.InUseConnectionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.jca.ManagedConnectionPool.JmsXA.InUseConnectionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>InUseConnectionCo</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:InUseConnectionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.A.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.A.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.A.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.A.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.B.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.B.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.B.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.B.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.C.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.C.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.C.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.C.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.D.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.D.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.D.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.D.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.DLQ.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.DLQ.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.DLQ.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.DLQ.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.ex.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.ex.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.ex.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.ex.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.testQueue.ReceiversCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.testQueue.ReceiversCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReceiversCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReceiversCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Queue.testQueue.ScheduledMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Queue.testQueue.ScheduledMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ScheduledMessageC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ScheduledMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.securedTopic.AllMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.securedTopic.AllMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllMessageCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.securedTopic.AllSubscriptionsCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.securedTopic.AllSubscriptionsCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllSubscriptionsC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllSubscriptionsCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.securedTopic.DurableMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.securedTopic.DurableMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>DurableMessageCou</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DurableMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.securedTopic.DurableSubscriptionsCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.securedTopic.DurableSubscriptionsCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>DurableSubscripti</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DurableSubscriptionsCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testDurableTopic.AllMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.AllMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllMessageCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testDurableTopic.AllSubscriptionsCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.AllSubscriptionsCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllSubscriptionsC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllSubscriptionsCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testDurableTopic.DurableMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.DurableMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>DurableMessageCou</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DurableMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testDurableTopic.DurableSubscriptionsCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.DurableSubscriptionsCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>DurableSubscripti</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DurableSubscriptionsCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testTopic.AllMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testTopic.AllMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllMessageCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testTopic.AllSubscriptionsCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testTopic.AllSubscriptionsCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllSubscriptionsC</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllSubscriptionsCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testTopic.DurableMessageCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testTopic.DurableMessageCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>DurableMessageCou</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DurableMessageCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.mq.destination.Topic.testTopic.DurableSubscriptionsCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.mq.destination.Topic.testTopic.DurableSubscriptionsCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>DurableSubscripti</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DurableSubscriptionsCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.web.Connector.maxThreads">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.web.Connector.maxThreads]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>maxThreads</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:maxThreads:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.web.ProtocolHandler.maxThreads">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.web.ProtocolHandler.maxThreads]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>maxThreads</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:maxThreads:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.web.ThreadPool.ajp127.0.0.18009.currentThreadCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.web.ThreadPool.ajp127.0.0.18009.currentThreadCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>currentThreadCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:currentThreadCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.web.ThreadPool.ajp127.0.0.18009.maxThreads">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.web.ThreadPool.ajp127.0.0.18009.maxThreads]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>maxThreads</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:maxThreads:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.web.ThreadPool.http127.0.0.18080.currentThreadCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.web.ThreadPool.http127.0.0.18080.currentThreadCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>currentThreadCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:currentThreadCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="jboss.web.ThreadPool.http127.0.0.18080.maxThreads">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[jboss.web.ThreadPool.http127.0.0.18080.maxThreads]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>maxThreads</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:maxThreads:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!--
+Copyright 2012 GroundWork, Inc.  All rights reserved.
+Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[gdma-23-exch-cas]]></prop>
+  <prop name="description"><![CDATA[Exchange Client Access Server Role Services]]></prop>
+  <prop name="service"><![CDATA[win_ps_act_sync]]></prop>
+  <prop name="service"><![CDATA[win_ps_ad_topo]]></prop>
+  <prop name="service"><![CDATA[win_ps_cas_users]]></prop>
+  <prop name="service"><![CDATA[win_ps_cntrl_pan]]></prop>
+  <prop name="service"><![CDATA[win_ps_exch_avail]]></prop>
+  <prop name="service"><![CDATA[win_ps_imap4svc]]></prop>
+  <prop name="service"><![CDATA[win_ps_off_add_bk]]></prop>
+  <prop name="service"><![CDATA[win_ps_pop3svc]]></prop>
+  <prop name="service"><![CDATA[win_ps_rpc_add_bk]]></prop>
+  <prop name="service"><![CDATA[win_ps_rpc_client]]></prop>
+  <prop name="service"><![CDATA[win_ps_w3svc]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[900]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_act_sync]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_act_sync[1]_Enable="ON"
+Check_gdma_win_ps_act_sync[1]_Service="win_ps_act_sync"
+Check_gdma_win_ps_act_sync[1]_Command="powershell.exe -noprofile -file  '$Plugin_Directory$\v3\activesync.ps1' -warning 110 -critical 150 -waittime 2 "
+Check_gdma_win_ps_act_sync[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_act_sync]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_active_dir_sync]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_act_sync]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_ad_topo]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_ad_topo[1]_Enable="ON"
+Check_gdma_win_ps_ad_topo[1]_Service="win_ps_ad_topo"
+Check_gdma_win_ps_ad_topo[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\exch_ad_topology_services.ps1' "
+Check_gdma_win_ps_ad_topo[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_ad_topo]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_ad_topological]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_ad_topo]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_cas_users]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_cas_users[1]_Enable="ON"
+Check_gdma_win_ps_cas_users[1]_Service="win_ps_cas_users"
+Check_gdma_win_ps_cas_users[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\cas_users.ps1' -warning 500 -critical 750 -waittime 2 "
+Check_gdma_win_ps_cas_users[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_cas_users]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_cas_users]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_cas_users]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_cntrl_pan]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_cntrl_pan[1]_Enable="ON"
+Check_gdma_win_ps_cntrl_pan[1]_Service="win_ps_cntrl_pan"
+Check_gdma_win_ps_cntrl_pan[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\controlpanel.ps1' -warning 6000 -critical 9000 -waittime 2 "
+Check_gdma_win_ps_cntrl_pan[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_cntrl_pan]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_control_panel]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_cntrl_pan]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_exch_avail]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_exch_avail[1]_Enable="ON"
+Check_gdma_win_ps_exch_avail[1]_Service="win_ps_exch_avail"
+Check_gdma_win_ps_exch_avail[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\exchange_avail.ps1' -warning 2 -critical 1  -waittime 2 "
+Check_gdma_win_ps_exch_avail[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_exch_avail]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_exchange_availability]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_exch_avail]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_imap4svc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_imap4svc[1]_Enable="ON"
+Check_gdma_win_ps_imap4svc[1]_Service="win_ps_imap4svc"
+Check_gdma_win_ps_imap4svc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service MSExchangeIMAP4 "
+Check_gdma_win_ps_imap4svc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_imap4svc]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_imap4svc]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_imap4svc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_off_add_bk]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_off_add_bk[1]_Enable="ON"
+Check_gdma_win_ps_off_add_bk[1]_Service="win_ps_off_add_bk"
+Check_gdma_win_ps_off_add_bk[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\oab_queue.ps1' "
+Check_gdma_win_ps_off_add_bk[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_off_add_bk]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_offlin_address_book]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_off_add_bk]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_pop3svc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_pop3svc[1]_Enable="ON"
+Check_gdma_win_ps_pop3svc[1]_Service="win_ps_pop3svc"
+Check_gdma_win_ps_pop3svc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service MSExchangePOP3 "
+Check_gdma_win_ps_pop3svc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_pop3svc]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_pop3svc]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_pop3svc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_rpc_add_bk]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_rpc_add_bk[1]_Enable="ON"
+Check_gdma_win_ps_rpc_add_bk[1]_Service="win_ps_rpc_add_bk"
+Check_gdma_win_ps_rpc_add_bk[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\rpc_abook.ps1' -warning 900 -critical 1000 -waittime 2 "
+Check_gdma_win_ps_rpc_add_bk[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_rpc_add_bk]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_rpc_address_book]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_rpc_add_bk]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_rpc_client]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_rpc_client]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_w3svc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_w3svc[1]_Enable="ON"
+Check_gdma_win_ps_w3svc[1]_Service="win_ps_w3svc"
+Check_gdma_win_ps_w3svc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service w3svc "
+Check_gdma_win_ps_w3svc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_w3svc]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_w3svc]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_w3svc]]></prop>
+ </service_name>
+</profile>

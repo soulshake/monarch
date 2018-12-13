@@ -1,0 +1,152 @@
+<groundwork_performance_configuration>
+<service_profile name="gdma_poller profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[gdma_poller]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>GDMA Poller Performance</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U  $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$:$VALUE3$:$VALUE4$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['rrdtool graph - DEF:a="rrd_source":NumChecks:AVERAGE CDEF:cdefa=a LINE2:a#FF0033:NumChecks DEF:b="rrd_source":TimeSecs:AVERAGE CDEF:cdefb=b LINE2:b#33CC00:TimeSecs DEF:c="rrd_source":PctTime:AVERAGE CDEF:cdefc=c LINE2:c#3366FF:PctTime -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120']]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_spooler profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[gdma_spooler]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>GDMA Spooler Performance</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U  $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_proc_que profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_proc_que]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Processor Queue Size</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_proc_time profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_proc_time]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Processor Time Percent</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_diskfree profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[win_ps_diskfree]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Mount Point Disk Free Percent</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_mem_avail profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_mem_avail]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Windows Free Memory Megabytes</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_mem_leak profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_mem_leak]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Windows Memory Paging Leak</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_mem_rate profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_mem_rate]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Memory Page per Second</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_mem_used profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_mem_used]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Memory Page File Used</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+<service_profile name="win_ps_net_bw profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[win_ps_net_bw]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Network Bandwidth Percent</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - $LISTSTART$ DEF:$DEFLABEL#$:AVERAGE CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ GPRINT:$CDEFLABEL#$:AVERAGE:avg=%.2lf  $LISTEND$  -c BACK#FFFFFF  -c CANVAS#FFFFFF  -c GRID#C0C0C0  -c MGRID#404040  -c ARROW#FFFFFF  -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring> </perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

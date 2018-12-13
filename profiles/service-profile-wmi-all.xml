@@ -1,0 +1,1012 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2009 GroundWork Open Source, Inc.  
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[wmi-all]]></prop>
+  <prop name="description"><![CDATA[All Windows Servers (via WMI) 6.1-1]]></prop>
+  <prop name="service"><![CDATA[tcp_ftp]]></prop>
+  <prop name="service"><![CDATA[tcp_http_port]]></prop>
+  <prop name="service"><![CDATA[tcp_https]]></prop>
+  <prop name="service"><![CDATA[tcp_imap]]></prop>
+  <prop name="service"><![CDATA[tcp_imaps]]></prop>
+  <prop name="service"><![CDATA[tcp_nntp]]></prop>
+  <prop name="service"><![CDATA[tcp_nntps]]></prop>
+  <prop name="service"><![CDATA[tcp_pop3]]></prop>
+  <prop name="service"><![CDATA[tcp_pop3s]]></prop>
+  <prop name="service"><![CDATA[tcp_smtp]]></prop>
+  <prop name="service"><![CDATA[udp_dns]]></prop>
+  <prop name="service"><![CDATA[udp_dns_expect]]></prop>
+  <prop name="service"><![CDATA[wmi_cpu]]></prop>
+  <prop name="service"><![CDATA[wmi_disk_C]]></prop>
+  <prop name="service"><![CDATA[wmi_disk_D]]></prop>
+  <prop name="service"><![CDATA[wmi_disktransfers]]></prop>
+  <prop name="service"><![CDATA[wmi_exchange_mail_recvq]]></prop>
+  <prop name="service"><![CDATA[wmi_exchange_mail_sendq]]></prop>
+  <prop name="service"><![CDATA[wmi_exchange_mta_service]]></prop>
+  <prop name="service"><![CDATA[wmi_exchange_mta_workq]]></prop>
+  <prop name="service"><![CDATA[wmi_exchange_public_recvq]]></prop>
+  <prop name="service"><![CDATA[wmi_exchange_public_sendq]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_bytes_received]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_bytes_sent]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_bytes_total]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_current_connections]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_current_nonanonymous_users]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_get_requests]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_maximum_connections]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_post_requests]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_private_bytes]]></prop>
+  <prop name="service"><![CDATA[wmi_iis_total_not_found_errors]]></prop>
+  <prop name="service"><![CDATA[wmi_mem]]></prop>
+  <prop name="service"><![CDATA[wmi_memory_pages]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_deadlocks]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_full_scans]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_lock_wait_time]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_lock_waits]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_log_growths]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_log_used]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_transactions]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_users]]></prop>
+  <prop name="service"><![CDATA[wmi_service_AeLookupSvc]]></prop>
+  <prop name="service"><![CDATA[wmi_service_Alerter]]></prop>
+  <prop name="service"><![CDATA[wmi_service_DNS]]></prop>
+  <prop name="service"><![CDATA[wmi_service_DcomLaunch]]></prop>
+  <prop name="service"><![CDATA[wmi_service_Dfs]]></prop>
+  <prop name="service"><![CDATA[wmi_service_Eventlog]]></prop>
+  <prop name="service"><![CDATA[wmi_service_HTTPFilter]]></prop>
+  <prop name="service"><![CDATA[wmi_service_IISADMIN]]></prop>
+  <prop name="service"><![CDATA[wmi_service_IMAP4Svc]]></prop>
+  <prop name="service"><![CDATA[wmi_service_IsmServ]]></prop>
+  <prop name="service"><![CDATA[wmi_service_LicenseService]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSDTC]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSExchangeES]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSExchangeIS]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSExchangeMGMT]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSExchangeMTA]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSExchangeSA]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSExchangeSRS]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSFtpsvc]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSSEARCH]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSSQLSERVER]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSSQLServerADHelper]]></prop>
+  <prop name="service"><![CDATA[wmi_service_NntpSvc]]></prop>
+  <prop name="service"><![CDATA[wmi_service_POP3Svc]]></prop>
+  <prop name="service"><![CDATA[wmi_service_RemoteRegistry]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SMTPSVC]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SQLBrowser]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SQLSERVERAGENT]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SQLWriter]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SamSs]]></prop>
+  <prop name="service"><![CDATA[wmi_service_TermService]]></prop>
+  <prop name="service"><![CDATA[wmi_service_W32Time]]></prop>
+  <prop name="service"><![CDATA[wmi_service_W3SVC]]></prop>
+  <prop name="service"><![CDATA[wmi_service_WmiApSrv]]></prop>
+  <prop name="service"><![CDATA[wmi_service_msftesql]]></prop>
+  <prop name="service"><![CDATA[wmi_service_winmgmt]]></prop>
+  <prop name="service"><![CDATA[wmi_uptime]]></prop>
+ </service_profile>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[]]></prop> 
+  <prop name="template"><![CDATA[]]></prop>   
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[]]></prop>   
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <command>
+  <prop name="name"><![CDATA[check_ftp]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_ftp -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$"]]></prop>
+ </command>
+ <command>
+  <prop name="name"><![CDATA[check_alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[number_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_ftp!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_ftp]]></prop>
+  <prop name="description"><![CDATA[gwsn-ftp]]></prop>
+  <prop name="check_command"><![CDATA[check_ftp]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_http_port]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_http -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -p "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_http_port!3!5!80]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_http_port]]></prop>
+  <prop name="description"><![CDATA[Check HTTP server on Port at host]]></prop>
+  <prop name="check_command"><![CDATA[check_http_port]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_https]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_http -t 60 -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -S]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_https!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_https]]></prop>
+  <prop name="description"><![CDATA[Check HTTPS service at host]]></prop>
+  <prop name="check_command"><![CDATA[check_https]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_imap]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_imap -t 60 -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -p 143]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_imap!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_imap]]></prop>
+  <prop name="description"><![CDATA[check imap server at host]]></prop>
+  <prop name="check_command"><![CDATA[check_imap]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_imaps]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_imap -t 60 -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -p 993 -S]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_imaps!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_imaps]]></prop>
+  <prop name="description"><![CDATA[Check IMAPS server at host]]></prop>
+  <prop name="check_command"><![CDATA[check_imaps]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nntp]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nntp -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nntp!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_nntp]]></prop>
+  <prop name="description"><![CDATA[Check NNTP service at host]]></prop>
+  <prop name="check_command"><![CDATA[check_nntp]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nntps]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nntp -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -p 563 -S]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nntps!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_nntps]]></prop>
+  <prop name="description"><![CDATA[Check NNTPS service at host]]></prop>
+  <prop name="check_command"><![CDATA[check_nntps]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_pop3]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_pop -H $HOSTADDRESS$]]></prop>
+ </command>
+ <service_name>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_pop3]]></prop>
+  <prop name="description"><![CDATA[check pop server at host]]></prop>
+  <prop name="check_command"><![CDATA[check_pop3]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_pop3s]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_pop -t 60 -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -S]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_pop3s!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_pop3s]]></prop>
+  <prop name="description"><![CDATA[Check POP3S server at host]]></prop>
+  <prop name="check_command"><![CDATA[check_pop3s]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_smtp]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_smtp -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_smtp!3!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_smtp]]></prop>
+  <prop name="description"><![CDATA[Check SMTP service at host]]></prop>
+  <prop name="check_command"><![CDATA[check_smtp]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_dns]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dns -t 30 -s $HOSTADDRESS$ -H "$ARG1$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_dns!www.groundworkopensource.com]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[udp_dns]]></prop>
+  <prop name="description"><![CDATA[Check DNS server by querying www.google.com]]></prop>
+  <prop name="check_command"><![CDATA[check_dns]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_dns_expect]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dns -t 30 -s $HOSTADDRESS$ -H "$ARG1$" -a "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_dns_expect!www.groundworkopensource.com!64.147.164.229]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[udp_dns_expect]]></prop>
+  <prop name="description"><![CDATA[Check DNS server for host with an expected address]]></prop>
+  <prop name="check_command"><![CDATA[check_dns_expect]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_cpu]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H "$USER21$" -c get_cpu -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_cpu!_Total!80,90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_cpu]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_cpu]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_cpu]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_disk]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_disk -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_disk!C:!80,90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_disk_C]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_disk]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_disk]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_disk!D:!80,90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_disk_D]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_disk]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_disk_transfers]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_disktransfers -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_disk_transfers!Name=_Total!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_disktransfers]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_disk_transfers]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_disk_transfers]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_exchange_mailbox_receiveq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_exchange_mbox_recvq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_exchange_mailbox_receiveq!5!10]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_exchange_mail_recvq]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_exchange_mailbox_receiveq]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_exchange_mailbox_receiveq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_exchange_mailbox_sendq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_exchange_mbox_sendq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_exchange_mailbox_sendq!5!10]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_exchange_mail_sendq]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_exchange_mailbox_sendq]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_exchange_mailbox_sendq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_service]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -H $USER21$ -t 60 -c get_service -a "$HOSTADDRESS$" "$ARG1$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeMTA]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_exchange_mta_service]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_exchange_mta_service]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_exchange_mta_workq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_exchange_mta_workq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_exchange_mta_workq!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_exchange_mta_workq]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_exchange_mta_workq]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_exchange_mta_workq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_exchange_public_receiveq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_exchange_pub_recvq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_exchange_public_receiveq!20!30]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_exchange_public_recvq]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_exchange_public_receiveq]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_exchange_public_receiveq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_exchange_public_sendq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_exchange_pub_sendq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_exchange_public_sendq!30!50]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_exchange_public_sendq]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_exchange_public_sendq]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_exchange_public_sendq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_bytes_received]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_bytes_received -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_bytes_received!Name=_Total!6000!12000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_bytes_received]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_bytes_received]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_bytes_received]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_bytes_sent]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_bytes_sent -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_bytes_sent!Name=_Total!6000000!10000000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_bytes_sent]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_bytes_sent]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_bytes_sent]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_bytes_total]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_bytes_total -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_bytes_total!Name=_Total!500000!600000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_bytes_total]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_bytes_total]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_bytes_total]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_current_connections]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_currentconnections -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_current_connections!Name=_Total!200!400]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_current_connections]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_current_connections]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_current_connections]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_current_nonanonymous_users]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_curnonanonusers -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_current_nonanonymous_users!Name=_Total!50!80]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_current_nonanonymous_users]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_current_nonanonymous_users]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_current_nonanonymous_users]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_get_requests]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_get_requests -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_get_requests!Name=_Total!200!400]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_get_requests]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_get_requests]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_get_requests]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_maximum_connections]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_maximumconnections -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_maximum_connections!Name=_Total!50!60]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_maximum_connections]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_maximum_connections]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_maximum_connections]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_post_requests]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_post_requests -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_post_requests!Name=_Total!200!400]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_post_requests]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_post_requests]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_post_requests]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_private_bytes]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_privatebytes -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_private_bytes!4000000!5000000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_private_bytes]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_private_bytes]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_private_bytes]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_iis_total_not_found_errors]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_iis_totalnotfounderrors -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_iis_total_not_found_errors!Name=_Total!500!600]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_iis_total_not_found_errors]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_iis_total_not_found_errors]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_iis_total_not_found_errors]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mem -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mem!_Total!80,90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mem]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mem]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mem]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_memory_pages]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_swapping -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_memory_pages!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_memory_pages]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_memory_pages]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_memory_pages]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_buf_cache_hit -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_buffer_cache_hits!80!50]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_buffer_cache_hits]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_deadlocks]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_deadlocks -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_deadlocks!Name=_Total!50!100]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_deadlocks]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_deadlocks]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_deadlocks]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_full_scans]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_fullscans -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_full_scans!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_full_scans]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_full_scans]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_full_scans]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_lock_wait_time]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_lock_wait_time -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_lock_wait_time!Name=_Total!1000!1500]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_lock_wait_time]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_lock_wait_time]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_lock_wait_time]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_lock_waits]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_lock_waits -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_lock_waits!Name=_Total!4!6]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_lock_waits]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_lock_waits]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_lock_waits]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_log_growths]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_log_growth -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_log_growths!Name=_Total!5!8]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_log_growths]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_log_growths]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_log_growths]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_log_used]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_log_used -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_log_used!Name=_Total!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_log_used]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_log_used]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_log_used]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_memgrantspending -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_memory_grants_pending!1!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_memory_grants_pending]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_transactions]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_transactions -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_transactions!Name=_Total!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_transactions]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_transactions]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_transactions]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_users]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_users -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_users!1!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_users]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_users]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_users]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!AeLookupSvc]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_AeLookupSvc]]></prop>
+  <prop name="description"><![CDATA[Check Application Experience Lookup Service process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!Alerter]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_Alerter]]></prop>
+  <prop name="description"><![CDATA[Check Alerter process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!DNS]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_DNS]]></prop>
+  <prop name="description"><![CDATA[Check DNS Server process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!DcomLaunch]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_DcomLaunch]]></prop>
+  <prop name="description"><![CDATA[Check DCOM Server Process Launcher process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!Dfs]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_Dfs]]></prop>
+  <prop name="description"><![CDATA[Check Distributed File System process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!Eventlog]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_Eventlog]]></prop>
+  <prop name="description"><![CDATA[Check Event Log process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!HTTPFilter]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_HTTPFilter]]></prop>
+  <prop name="description"><![CDATA[Check HTTP SSL process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!IISADMIN]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_IISADMIN]]></prop>
+  <prop name="description"><![CDATA[Check IIS Admin Service process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!IMAP4Svc]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_IMAP4Svc]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange IMAP4 process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!IsmServ]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_IsmServ]]></prop>
+  <prop name="description"><![CDATA[Check Intersite Messaging process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!LicenseService]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_LicenseService]]></prop>
+  <prop name="description"><![CDATA[Check License Logging process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSDTC]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSDTC]]></prop>
+  <prop name="description"><![CDATA[Check Distributed Transaction Coordinator process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeES]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSExchangeES]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Event process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeIS]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSExchangeIS]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Information Store process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeMGMT]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSExchangeMGMT]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Management process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeMTA]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSExchangeMTA]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange MTA Stacks process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeSA]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSExchangeSA]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange System Attendant process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSExchangeSRS]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSExchangeSRS]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Site Replication Service process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSFtpsvc]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSFtpsvc]]></prop>
+  <prop name="description"><![CDATA[Check FTP Publishing Service process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSSEARCH]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSSEARCH]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Search process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSSQLSERVER]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSSQLSERVER]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server (MSSQLSERVER) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSSQLServerADHelper]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSSQLServerADHelper]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server Active Directory Helper process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!NntpSvc]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_NntpSvc]]></prop>
+  <prop name="description"><![CDATA[Check Network News Transfer Protocol (NNTP) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!POP3Svc]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_POP3Svc]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange POP3 process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!RemoteRegistry]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_RemoteRegistry]]></prop>
+  <prop name="description"><![CDATA[Check Remote Registry process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SMTPSVC]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SMTPSVC]]></prop>
+  <prop name="description"><![CDATA[Check Simple Mail Transfer Protocol (SMTP) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SQLBrowser]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SQLBrowser]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server Browser process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SQLSERVERAGENT]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SQLSERVERAGENT]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server Agent (MSSQLSERVER) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SQLWriter]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SQLWriter]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server VSS Writer process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SamSs]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SamSs]]></prop>
+  <prop name="description"><![CDATA[Check Security Accounts Manager process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!TermService]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_TermService]]></prop>
+  <prop name="description"><![CDATA[Check Terminal Services process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!W32Time]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_W32Time]]></prop>
+  <prop name="description"><![CDATA[Check Windows Time process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!W3SVC]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_W3SVC]]></prop>
+  <prop name="description"><![CDATA[Check World Wide Web Publishing Service process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!WmiApSrv]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_WmiApSrv]]></prop>
+  <prop name="description"><![CDATA[Check WMI Performance Adapter process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!msftesql]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_msftesql]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server FullText Search (MSSQLSERVER) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!winmgmt]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_winmgmt]]></prop>
+  <prop name="description"><![CDATA[Check Windows Management Instrumentation Driver Extensions process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_uptime]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H "$USER21$" -c get_system_uptime -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_uptime!1800!900]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_uptime]]></prop>
+  <prop name="description"><![CDATA[wmi_uptime]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_uptime]]></prop>
+ </service_name>
+</profile>

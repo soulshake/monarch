@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!--
+Copyright 2012 GroundWork, Inc.  All rights reserved.
+Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="gdma_poller profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[gdma_poller]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>GDMA Poller Performance</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U  $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$:$VALUE3$:$VALUE4$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['rrdtool graph - DEF:a="rrd_source":NumChecks:AVERAGE CDEF:cdefa=a LINE2:a#FF0033:NumChecks DEF:b="rrd_source":TimeSecs:AVERAGE CDEF:cdefb=b LINE2:b#33CC00:TimeSecs DEF:c="rrd_source":PctTime:AVERAGE CDEF:cdefc=c LINE2:c#3366FF:PctTime -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120']]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_spooler profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[gdma_spooler]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>GDMA Spooler Performance</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U  $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_21_wmi_cpu profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[gdma_21_wmi_cpu]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CPU Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:percent:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first=""><![CDATA[CPU Utilization ([\d\.]+)%]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_21_wmi_disktransfers profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[gdma_21_wmi_disktransfers]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Transfers Per Second</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:transferspersec:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_21_wmi_mem profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[gdma_21_wmi_mem]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Memory Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:percent:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first=""><![CDATA[Memory Utilization ([\d\.]+)%]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_21_wmi_disk_ profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[gdma_21_wmi_disk_]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:percent:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first=""><![CDATA[Disk Utilization ([\d\.]+)%]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_21_wmi_memory_pages profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[gdma_21_wmi_memory_pages]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Memory Pages Per Second</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:pagespersec:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

@@ -1,0 +1,96 @@
+<!--
+Copyright 2007 GroundWork Open Source, Inc.  
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="ssh_memory profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[ssh_memory]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Memory Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:percent:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/percent_graph.cgi]]></graphcgi>
+<parseregx first="0"><![CDATA[pct:\s+([\d\.]+)]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="ssh_swap profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[ssh_swap]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Swap Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:percent:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/percent_graph.cgi]]></graphcgi>
+<parseregx first="1"><![CDATA[([\d\.]+)% free]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="ssh_disk profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[ssh_disk]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:disk:GAUGE:1800:U:U DS:warning:GAUGE:1800:U:U DS:critical:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/number_graph.cgi]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="ssh_load profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[ssh_load]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Load Averages</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:load1:GAUGE:1800:U:U DS:load5:GAUGE:1800:U:U DS:load15:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t load1:load5:load15 $LASTCHECK$:$VALUE1$:$VALUE2$:$VALUE3$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/load_graph.cgi]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="tcp_ssh profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[tcp_ssh]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SSH Response Time</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/number_graph.cgi]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="ssh_process profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[ssh_process]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Process Count</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/number_graph.cgi]]></graphcgi>
+<parseregx first="1"><![CDATA[(\d+) process]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

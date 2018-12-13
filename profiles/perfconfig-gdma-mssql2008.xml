@@ -1,0 +1,212 @@
+<groundwork_performance_configuration>
+<service_profile name="mssql_buffer_cache_hits profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_buffer_cache_hits]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Buffer Cache Hit Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_lock_timeout profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_lock_timeout]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Lock Timeout Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_lock_waits profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_lock_waits]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Lock Waits Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_lock_wait_time profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_lock_wait_time]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Lock Wait Time Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_number_of_deadlocks profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_number_of_deadlocks]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Deadlock Count Stat Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_page_life_expectancy profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_page_life_expectancy]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Page Life Expectancy Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_page_reads profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_page_reads]]></service>
+<type>nagios</type>
+<enable>0</enable>
+<label>SQL Server Page Read Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_page_writes profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_page_writes]]></service>
+<type>nagios</type>
+<enable>0</enable>
+<label>SQL Server Page Write Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_processes_blocked profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_processes_blocked]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Blocked Processes Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_targetservermemory profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_targetservermemory]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server TargetServerMemory Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_totalservermemory profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_totalservermemory]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server TotalServerMemory Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="mssql_userconnections profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[mssql_userconnections]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>SQL Server Connection Stat Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="ping_alive profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[ping_alive]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Service Ping Alive Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:900:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="service_status_sql_server_2008_defaultinstance profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[service_status_sql_server_2008_defaultinstance]]></service>
+<type>nagios</type>
+<enable>0</enable>
+<label>SQL Service [2008] Performance Report.</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:2700:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="1"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

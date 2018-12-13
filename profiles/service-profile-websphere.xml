@@ -1,0 +1,1709 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+<service_profile>
+<prop name="name"><![CDATA[websphere]]></prop>
+<prop name="description"><![CDATA[service-profile-websphere]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.AllocateCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.CloseCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.CreateCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.FaultCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.FreePoolSize]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.JDBCTime]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PercentUsed]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PrepStmtCacheDiscardCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.ReturnCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.UseTime]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.WaitTime]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.WaitingThreadCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.AllocateCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CloseCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CreateCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FaultCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FreePoolSize]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.JDBCTime]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PercentUsed]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PrepStmtCacheDiscardCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.ReturnCount]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.UseTime]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitTime]]></prop>
+<prop name="service"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitingThreadCount]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.AllocateCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CloseCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CreateCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FaultCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FreePoolSize]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.JDBCTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PercentUsed]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PrepStmtCacheDiscardCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.ReturnCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.UseTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitingThreadCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.AllocateCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CloseCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CreateCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FaultCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FreePoolSize]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.JDBCTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PercentUsed]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PrepStmtCacheDiscardCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.ReturnCount]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.UseTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitTime]]></prop>
+<prop name="service"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitingThreadCount]]></prop>
+<prop name="service"><![CDATA[was.cacheModule.objectCache.cacheModule.counters.HitsInMemoryCount]]></prop>
+<prop name="service"><![CDATA[was.cacheModule.objectCache.cacheModule.counters.MissCount]]></prop>
+<prop name="service"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="service"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="service"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="service"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGallery.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteWIMPortlet.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteadminredirector.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteiehs.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.iscliteisclite.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.isclitewasportlet.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalReadSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalReadTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalWriteSize]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalWriteTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.LifeTime]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.LiveCount]]></prop>
+<prop name="service"><![CDATA[was.servletSess.ivtAppivt_app.war.NoRoomForNewSessionCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.Default.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.Default.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.HAManager.thread.pool.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.HAManager.thread.pool.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.MessageListenerThreadPool.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.MessageListenerThreadPool.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.ORB.thread.pool.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.ORB.thread.pool.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.SIBFAPInboundThreadPool.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.SIBFAPInboundThreadPool.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.SIBFAPThreadPool.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.SIBFAPThreadPool.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.SoapConnectorThreadPool.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.SoapConnectorThreadPool.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.TCPChannel.DCS.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.TCPChannel.DCS.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.WMQJCAResourceAdapter.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.WMQJCAResourceAdapter.PoolSize]]></prop>
+<prop name="service"><![CDATA[was.threadPool.WebContainer.ActiveCount]]></prop>
+<prop name="service"><![CDATA[was.threadPool.WebContainer.PoolSize]]></prop>
+<command>
+<prop name="name"><![CDATA[check_alive]]></prop>
+<prop name="type"><![CDATA[check]]></prop>
+<prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+</command>
+<service_template>
+<prop name="name"><![CDATA[generic-service-volatile]]></prop>
+<prop name="template"><![CDATA[generic-service]]></prop>
+<prop name="is_volatile"><![CDATA[1]]></prop>
+</service_template>
+<time_period>
+<prop name="comment"><![CDATA[All day, every day.]]></prop>
+<prop name="name"><![CDATA[24x7]]></prop>
+<prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+<prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+<prop name="friday"><![CDATA[00:00-24:00]]></prop>
+<prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+<prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+<prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+<prop name="monday"><![CDATA[00:00-24:00]]></prop>
+<prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+</time_period>
+<service_template>
+<prop name="retry_check_interval"><![CDATA[1]]></prop>
+<prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+<prop name="event_handler_enabled"><![CDATA[1]]></prop>
+<prop name="notifications_enabled"><![CDATA[1]]></prop>
+<prop name="active_checks_enabled"><![CDATA[1]]></prop>
+<prop name="process_perf_data"><![CDATA[1]]></prop>
+<prop name="check_period"><![CDATA[24x7]]></prop>
+<prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+<prop name="notification_period"><![CDATA[24x7]]></prop>
+<prop name="max_check_attempts"><![CDATA[3]]></prop>
+<prop name="retain_status_information"><![CDATA[1]]></prop>
+<prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+<prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+<prop name="name"><![CDATA[generic-service]]></prop>
+<prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+<prop name="normal_check_interval"><![CDATA[10]]></prop>
+<prop name="obsess_over_service"><![CDATA[1]]></prop>
+<prop name="notification_interval"><![CDATA[60]]></prop>
+</service_template>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.AllocateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.CloseCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.CreateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.FaultCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.FreePoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.JDBCTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PercentUsed]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PrepStmtCacheDiscardCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.ReturnCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.UseTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.WaitTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.WaitingThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.AllocateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CloseCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CreateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FaultCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FreePoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.JDBCTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PercentUsed]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PrepStmtCacheDiscardCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.ReturnCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.UseTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitingThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.AllocateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CloseCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CreateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FaultCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FreePoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.JDBCTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PercentUsed]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PrepStmtCacheDiscardCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.ReturnCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.UseTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitingThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.AllocateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CloseCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CreateCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FaultCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FreePoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.JDBCTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PercentUsed]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PrepStmtCacheDiscardCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.ReturnCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.UseTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitingThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.cacheModule.objectCache.cacheModule.counters.HitsInMemoryCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.cacheModule.objectCache.cacheModule.counters.MissCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ConcurrentRequests]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ErrorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.RequestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ServiceTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGallery.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteWIMPortlet.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteadminredirector.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteiehs.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.iscliteisclite.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.isclitewasportlet.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalReadSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalReadTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalWriteSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalWriteTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.LifeTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.LiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.servletSess.ivtAppivt_app.war.NoRoomForNewSessionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.Default.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.Default.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.HAManager.thread.pool.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.HAManager.thread.pool.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.MessageListenerThreadPool.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.MessageListenerThreadPool.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.ORB.thread.pool.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.ORB.thread.pool.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.SIBFAPInboundThreadPool.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.SIBFAPInboundThreadPool.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.SIBFAPThreadPool.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.SIBFAPThreadPool.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.SoapConnectorThreadPool.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.SoapConnectorThreadPool.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.TCPChannel.DCS.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.TCPChannel.DCS.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.WMQJCAResourceAdapter.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.WMQJCAResourceAdapter.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.WebContainer.ActiveCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[was.threadPool.WebContainer.PoolSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+</service_profile>
+</profile>

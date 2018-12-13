@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!--
+Copyright 2012-2013 GroundWork, Inc.  All rights reserved.
+Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="gdma_poller profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[gdma_poller]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>GDMA Poller Performance</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U  $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$:$VALUE3$:$VALUE4$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['rrdtool graph - DEF:a="rrd_source":NumChecks:AVERAGE CDEF:cdefa=a LINE2:a#FF0033:NumChecks DEF:b="rrd_source":TimeSecs:AVERAGE CDEF:cdefb=b LINE2:b#33CC00:TimeSecs DEF:c="rrd_source":PctTime:AVERAGE CDEF:cdefc=c LINE2:c#3366FF:PctTime -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120']]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="gdma_spooler profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[gdma_spooler]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>GDMA Spooler Performance</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U  $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="linux_mem profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[linux_mem]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Memory Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - DEF:a="rrd_source":ds_source_0:AVERAGE DEF:w="rrd_source":ds_source_1:AVERAGE DEF:c="rrd_source":ds_source_2:AVERAGE CDEF:cdefa=a CDEF:cdefb=a,0.99,* CDEF:cdefw=w CDEF:cdefc=c CDEF:cdefm=c,1.05,* AREA:a#33FFFF AREA:cdefb#3399FF:"Memory Free\:" GPRINT:a:LAST:"%.2lf Percent" GPRINT:cdefa:MIN:min=%.2lf GPRINT:cdefa:AVERAGE:avg=%.2lf GPRINT:cdefa:MAX:max="%.2lf\l" LINE2:cdefw#FFFF00:"Warning Threshold\:" GPRINT:cdefw:LAST:"%.2lf" LINE2:cdefc#FF0033:"Critical Threshold\:" GPRINT:cdefc:LAST:"%.2lf\l" COMMENT:"Service\: SERVICE" CDEF:cdefws=a,cdefw,LT,a,0,IF AREA:cdefws#FFFF00 CDEF:cdefcs=a,cdefc,LT,a,0,IF AREA:cdefcs#FF0033 CDEF:cdefwt=a,cdefw,GT,cdefw,0,IF LINE:cdefwt#000000 CDEF:cdefct=a,cdefc,GT,cdefc,0,IF LINE:cdefct#000000 -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y -u 100 -l 0 --rigid]]></graphcgi>
+<parseregx first=""><![CDATA[([\d\.]+)%]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="linux_process_count profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[linux_process_count]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Process Count</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - DEF:a="rrd_source":ds_source_0:AVERAGE CDEF:cdefa=a AREA:cdefa#0000FF:"Number of Processes" GPRINT:cdefa:MIN:min=%.2lf GPRINT:cdefa:AVERAGE:avg=%.2lf GPRINT:cdefa:MAX:max=%.2lf  -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120 -l 0]]></graphcgi>
+<parseregx first="1"><![CDATA[(\d+) process]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="linux_swap profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[linux_swap]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Swap Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U DS:$LABEL#$_mx:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$:$MAX1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - DEF:a="rrd_source":ds_source_0:AVERAGE DEF:w="rrd_source":ds_source_1:AVERAGE DEF:c="rrd_source":ds_source_2:AVERAGE DEF:m="rrd_source":ds_source_3:AVERAGE CDEF:cdefa=a,m,/,100,* CDEF:cdefw=w CDEF:cdefc=c CDEF:cdefm=m AREA:a#9900FF:"Swap Free\: " LINE2:a#6600FF: GPRINT:a:LAST:"%.2lf MB\l" CDEF:cdefws=a,cdefw,LT,a,0,IF AREA:cdefws#FFFF00 CDEF:cdefcs=a,cdefc,LT,a,0,IF AREA:cdefcs#FF0033 LINE2:cdefw#FFFF00:"Warning Threshold\:" GPRINT:cdefw:AVERAGE:"%.2lf" LINE2:cdefc#FF0033:"Critical Threshold\:" GPRINT:cdefc:AVERAGE:"%.2lf\l" GPRINT:cdefa:AVERAGE:"Percentage Swap Free"=%.2lf GPRINT:cdefm:AVERAGE:"Total Swap Space=%.2lf" -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="linux_disk profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[linux_disk]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U DS:$LABEL#$_mx:GAUGE:1800:U:U $LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$:$MAX1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - DEF:a="rrd_source":ds_source_0:AVERAGE DEF:w="rrd_source":ds_source_1:AVERAGE DEF:c="rrd_source":ds_source_2:AVERAGE DEF:m="rrd_source":ds_source_3:AVERAGE CDEF:cdefa=a,m,/,100,* CDEF:cdefb=a,0.99,* CDEF:cdefw=w CDEF:cdefc=c CDEF:cdefm=m AREA:a#C35617:"Space Used\: " LINE:cdefa#FFCC00: GPRINT:a:LAST:"%.2lf MB\l" LINE2:cdefw#FFFF00:"Warning Threshold\:" GPRINT:cdefw:AVERAGE:"%.2lf" LINE2:cdefc#FF0033:"Critical Threshold\:" GPRINT:cdefc:AVERAGE:"%.2lf\l" GPRINT:cdefa:AVERAGE:"Percentage Space Used"=%.2lf GPRINT:cdefm:AVERAGE:"Maximum Capacity"=%.2lf CDEF:cdefws=a,cdefw,GT,a,0,IF AREA:cdefws#FFFF00 CDEF:cdefcs=a,cdefc,GT,a,0,IF AREA:cdefcs#FF0033 -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y  -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="linux_load profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[linux_load]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Load Averages</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$:$VALUE2$:$WARN2$:$CRIT2$:$VALUE3$:$WARN3$:$CRIT3$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode DEF:a=rrd_source:ds_source_0:AVERAGE DEF:aw="rrd_source":ds_source_1:AVERAGE DEF:ac="rrd_source":ds_source_2:AVERAGE DEF:b=rrd_source:ds_source_3:AVERAGE DEF:bw="rrd_source":ds_source_4:AVERAGE DEF:bc="rrd_source":ds_source_5:AVERAGE DEF:c=rrd_source:ds_source_6:AVERAGE DEF:cw="rrd_source":ds_source_7:AVERAGE DEF:cc="rrd_source":ds_source_8:AVERAGE CDEF:cdefa=a CDEF:cdefb=b CDEF:cdefc=c AREA:cdefa#FF6600:"One Minute Load Average" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf GPRINT:cdefa:MAX:"max=%.2lf\l" LINE:aw#FFCC33:"1 min avg Warning Threshold" GPRINT:aw:LAST:"%.1lf" LINE:ac#FF0000:"1 min avg Critical Threshold" GPRINT:ac:LAST:"%.1lf\l" LINE2:cdefb#3300FF:"Five Minute Load Average" GPRINT:cdefb:MIN:min=%.2lf GPRINT:cdefb:AVERAGE:avg=%.2lf GPRINT:cdefb:MAX:"max=%.2lf\l" LINE:bw#6666CC:"5 min avg Warning Threshold" GPRINT:bw:LAST:"%.1lf" LINE:bc#CC0000:"5 min avg Critical Threshold" GPRINT:bc:LAST:"%.1lf\l" LINE3:cdefc#999999:"Fifteen Minute Load Average" GPRINT:cdefc:MIN:min=%.2lf GPRINT:cdefc:AVERAGE:avg=%.2lf GPRINT:cdefc:MAX:"max=%.2lf\l" LINE:cw#CCCC99:"15 min avg Warning Threshold" GPRINT:cw:LAST:"%.1lf" LINE:cc#990000:"15 min avg Critical Threshold" GPRINT:cc:LAST:"%.1lf\l" -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="linux_uptime profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[linux_uptime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Linux Uptime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - DEF:a="rrd_source":ds_source_0:AVERAGE CDEF:cdefa=a AREA:cdefa#0000FF:"Uptime in seconds" GPRINT:cdefa:MIN:min=%.2lf GPRINT:cdefa:AVERAGE:avg=%.2lf GPRINT:cdefa:MAX:max=%.2lf  -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120 -l 0]]></graphcgi>
+<parseregx first="1"><![CDATA[(\d+)]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

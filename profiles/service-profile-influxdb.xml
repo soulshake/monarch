@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[influxdb]]></prop>
+  <prop name="description"><![CDATA[Linux InfluxDB checks]]></prop>
+  <prop name="service"><![CDATA[local_influxdb]]></prop>
+  <prop name="service"><![CDATA[local_process_influxd]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_influxdb]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_influxdb.pl]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="description"><![CDATA[Check the local load on this unix server]]></prop>
+  <prop name="command_line"><![CDATA[check_influxdb]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="check_command"><![CDATA[check_influxdb]]></prop>
+  <prop name="name"><![CDATA[local_influxdb]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_local_procs_string]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_procs -w "$ARG1$" -c "$ARG2$" -a "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="name"><![CDATA[local_process_influxd]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="description"><![CDATA[gwsn-local_mysqld_safe]]></prop>
+  <prop name="command_line"><![CDATA[check_local_procs_string!1:1!1:1!influxdb/bin/influxd]]></prop>
+  <prop name="check_command"><![CDATA[check_local_procs_string]]></prop>
+ </service_name>
+</profile>

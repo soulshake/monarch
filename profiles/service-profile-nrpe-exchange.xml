@@ -1,0 +1,233 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2007 GroundWork Open Source, Inc.  
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[nrpe-exchange]]></prop>
+  <prop name="description"><![CDATA[Windows Exchange Mail Server (via NRPE)]]></prop>
+  <prop name="service"><![CDATA[nrpe_exchange_mail_recvq]]></prop>
+  <prop name="service"><![CDATA[nrpe_exchange_mail_sendq]]></prop>
+  <prop name="service"><![CDATA[nrpe_exchange_mta_workq]]></prop>
+  <prop name="service"><![CDATA[nrpe_exchange_public_recvq]]></prop>
+  <prop name="service"><![CDATA[nrpe_exchange_public_sendq]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_AeLookupSvc]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_IsmServ]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSExchangeES]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSExchangeIS]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSExchangeMGMT]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSExchangeMTA]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSExchangeSA]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSExchangeSRS]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_MSSEARCH]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_RemoteRegistry]]></prop>
+  <prop name="service"><![CDATA[nrpe_service_SamSs]]></prop>
+ </service_profile>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[]]></prop> 
+  <prop name="template"><![CDATA[]]></prop>   
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[]]></prop>   
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <command>
+  <prop name="name"><![CDATA[check_nrpe_exchange_mailbox_receiveq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $HOSTADDRESS$ -c get_exchange_mbox_recvq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <command>
+  <prop name="name"><![CDATA[check_alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_exchange_mailbox_receiveq!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_exchange_mail_recvq]]></prop>
+  <prop name="description"><![CDATA[gwsn-nrpe_exchange_mailbox_receiveq]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_exchange_mailbox_receiveq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nrpe_exchange_mailbox_sendq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $HOSTADDRESS$ -c get_exchange_mbox_sendq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_exchange_mailbox_sendq!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_exchange_mail_sendq]]></prop>
+  <prop name="description"><![CDATA[gwsn-nrpe_exchange_mailbox_sendq]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_exchange_mailbox_sendq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nrpe_exchange_mta_workq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $HOSTADDRESS$ -c get_exchange_mta_workq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_exchange_mta_workq!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_exchange_mta_workq]]></prop>
+  <prop name="description"><![CDATA[gwsn-nrpe_exchange_mta_workq]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_exchange_mta_workq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nrpe_exchange_public_receiveq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $HOSTADDRESS$ -c get_exchange_pub_recvq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_exchange_public_receiveq!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_exchange_public_recvq]]></prop>
+  <prop name="description"><![CDATA[gwsn-nrpe_exchange_public_receiveq]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_exchange_public_receiveq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nrpe_exchange_public_sendq]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $HOSTADDRESS$ -c get_exchange_pub_sendq -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_exchange_public_sendq!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_exchange_public_sendq]]></prop>
+  <prop name="description"><![CDATA[gwsn-nrpe_exchange_public_sendq]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_exchange_public_sendq]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_nrpe_service]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -H $HOSTADDRESS$ -t 60 -c get_service -a "$HOSTADDRESS$" "$ARG1$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!AeLookupSvc]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_AeLookupSvc]]></prop>
+  <prop name="description"><![CDATA[Check Application Experience Lookup Service process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!IsmServ]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_IsmServ]]></prop>
+  <prop name="description"><![CDATA[Check Intersite Messaging process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSExchangeES]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSExchangeES]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Event process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSExchangeIS]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSExchangeIS]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Information Store process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSExchangeMGMT]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSExchangeMGMT]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Management process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSExchangeMTA]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSExchangeMTA]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange MTA Stacks process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSExchangeSA]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSExchangeSA]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange System Attendant process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSExchangeSRS]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSExchangeSRS]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Exchange Site Replication Service process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!MSSEARCH]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_MSSEARCH]]></prop>
+  <prop name="description"><![CDATA[Check Microsoft Search process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!RemoteRegistry]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_RemoteRegistry]]></prop>
+  <prop name="description"><![CDATA[Check Remote Registry process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_nrpe_service!SamSs]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[nrpe_service_SamSs]]></prop>
+  <prop name="description"><![CDATA[Check Security Accounts Manager process via NRPE]]></prop>
+  <prop name="check_command"><![CDATA[check_nrpe_service]]></prop>
+ </service_name>
+</profile>

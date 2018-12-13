@@ -1,0 +1,39 @@
+<groundwork_performance_configuration>
+<service_profile name="https_alive profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[https_alive]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Response Time</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$  2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['rrdtool graph -
+ --imgformat=PNG
+ --title="HTTPS Performance"
+ --rigid
+ --base=1000
+ --height=120
+ --width=700
+ --alt-autoscale-max
+ --lower-limit=0
+ --vertical-label="Seconds and KB"
+ --slope-mode
+ DEF:a="rrd_source":ds_source_1:AVERAGE
+ DEF:b="rrd_source":ds_source_0:AVERAGE
+ CDEF:cdefa=b
+ CDEF:cdefe=a,1024,/
+ AREA:cdefa#00CF00:"Response Time (sec) "
+ GPRINT:cdefa:LAST:"Current\:%8.2lf %s"
+ GPRINT:cdefa:AVERAGE:"Average\:%8.2lf %s"
+ GPRINT:cdefa:MAX:"Maximum\:%8.2lf %s\n"
+ LINE1:cdefe#002A97:"Page Size (KB)      "
+ GPRINT:cdefe:LAST:"Current\:%8.2lf %s"
+ GPRINT:cdefe:AVERAGE:"Average\:%8.2lf %s"
+ GPRINT:cdefe:MAX:"Maximum\:%8.2lf %s" ']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

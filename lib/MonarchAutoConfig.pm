@@ -249,9 +249,9 @@ sub advanced_import(@) {
 				my $service = $vals[0];
 				$service =~ s/^service-//;
 				unless ( $service_name{$service}{'id'} ) {
-				    if ( -e "/usr/local/groundwork/core/profiles/service-$service.xml" ) {
+				    if ( -e "/usr/local/groundwork/monarch/profiles/service-$service.xml" ) {
 					my @import_results =
-					  import_profile( '', '/usr/local/groundwork/core/profiles', "service-$service.xml", '1' );
+					  import_profile( '', '/usr/local/groundwork/monarch/profiles', "service-$service.xml", '1' );
 					my %sn = StorProc->fetch_one( 'service_names', 'name', $service );
 					$service_name{$service}{'id'}           = $sn{'servicename_id'};
 					$service_name{$service}{'command_line'} = $sn{'command_line'};
@@ -281,9 +281,9 @@ sub advanced_import(@) {
 				if (defined $service) {
 				    $service =~ s/^service-//;
 				    unless ( $service_name{$service}{'id'} ) {
-					if ( -e "/usr/local/groundwork/core/profiles/service-$service.xml" ) {
+					if ( -e "/usr/local/groundwork/monarch/profiles/service-$service.xml" ) {
 					    my @import_results =
-					      import_profile( '', '/usr/local/groundwork/core/profiles', "service-$service.xml", '1' );
+					      import_profile( '', '/usr/local/groundwork/monarch/profiles', "service-$service.xml", '1' );
 					    my %sn = StorProc->fetch_one( 'service_names', 'name', $service );
 					    $service_name{$service}{'id'}           = $sn{'servicename_id'};
 					    $service_name{$service}{'command_line'} = $sn{'command_line'};
@@ -404,9 +404,9 @@ sub advanced_import(@) {
 				    unless ( $hostprofile_name{$value} ) {
 					$value =~ s/host-profile-//;
 					unless ( $hostprofile_name{$value} ) {
-					    if ( -e "/usr/local/groundwork/core/profiles/host-profile-$value.xml" ) {
+					    if ( -e "/usr/local/groundwork/monarch/profiles/host-profile-$value.xml" ) {
 						my @import_results =
-						  import_profile( '', '/usr/local/groundwork/core/profiles', "host-profile-$value.xml", '' );
+						  import_profile( '', '/usr/local/groundwork/monarch/profiles', "host-profile-$value.xml", '' );
 						my %hp = StorProc->fetch_one( 'profiles_host', 'name', $value );
 						$import_data{$primary_rec}{'Host profile'}{$value} = $hp{'hostprofile_id'};
 						$serviceprofile_name{$value} = $hp{'hostprofile_id'};
@@ -421,9 +421,9 @@ sub advanced_import(@) {
 				    unless ( $serviceprofile_name{$value} ) {
 					$value =~ s/service-profile-//;
 					unless ( $serviceprofile_name{$value} ) {
-					    if ( -e "/usr/local/groundwork/core/profiles/service-profile-$value.xml" ) {
+					    if ( -e "/usr/local/groundwork/monarch/profiles/service-profile-$value.xml" ) {
 						my @import_results =
-						  import_profile( '', '/usr/local/groundwork/core/profiles', "service-profile-$value.xml", '' );
+						  import_profile( '', '/usr/local/groundwork/monarch/profiles', "service-profile-$value.xml", '' );
 						my %sp = StorProc->fetch_one( 'profiles_service', 'name', $value );
 						$import_data{$primary_rec}{'Service profile'}{$value} = $sp{'serviceprofile_id'};
 						$serviceprofile_name{$value} = $sp{'serviceprofile_id'};
@@ -438,9 +438,9 @@ sub advanced_import(@) {
 				    unless ( $service_name{$value} ) {
 					$value =~ s/service-//;
 					unless ( $service_name{$value}{'id'} ) {
-					    if ( -e "/usr/local/groundwork/core/profiles/service-$value.xml" ) {
+					    if ( -e "/usr/local/groundwork/monarch/profiles/service-$value.xml" ) {
 						my @import_results =
-						  import_profile( '', '/usr/local/groundwork/core/profiles', "service-$value.xml", '1' );
+						  import_profile( '', '/usr/local/groundwork/monarch/profiles', "service-$value.xml", '1' );
 						my %sn = StorProc->fetch_one( 'service_names', 'name', $value );
 						$service_name{$value}{'id'} = $sn{'servicename_id'};
 					    }
@@ -864,7 +864,7 @@ sub process_import_data(@) {
 		    $import_data{$rec}{'Host profile'} =~ s/host-profile-//;
 		    unless ( $hostprofile_name{ $import_data{$rec}{'Host profile'} } ) {
 			my @import_results =
-			  import_profile( '', '/usr/local/groundwork/core/profiles', "host-profile-$import_data{$rec}{'Host profile'}.xml",
+			  import_profile( '', '/usr/local/groundwork/monarch/profiles', "host-profile-$import_data{$rec}{'Host profile'}.xml",
 			    '' );
 			## FIX THIS:  do something with those results?
 		    }

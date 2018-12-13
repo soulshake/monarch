@@ -1,0 +1,30 @@
+<groundwork_performance_configuration>
+<service_profile name="windows_disk_. profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_disk_.]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Space on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:C_Utilisation:GAUGE:1800:U:U DS:C_Utilisation_wn:GAUGE:1800:U:U DS:C_Utilisation_cr:GAUGE:1800:U:U DS:C_Space:GAUGE:1800:U:U DS:C_Space_wn:GAUGE:1800:U:U DS:C_Space_cr:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE2$:$WARN2$:$CRIT2$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode 
+ DEF:a=rrd_source:ds_source_0:AVERAGE 
+ DEF:aw="rrd_source":ds_source_1:AVERAGE
+ DEF:ac="rrd_source":ds_source_2:AVERAGE
+ DEF:z=rrd_source:ds_source_3:AVERAGE
+ CDEF:cdefa=a 
+ CDEF:cdefz=z
+ AREA:a#C956AA:"Disk Utilization Percent" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf  
+ GPRINT:cdefa:MAX:"max=%.2lf\l"
+ LINE:aw#FFCC33:"Warning Threshold" 
+ GPRINT:aw:LAST:"%.1lf"
+ LINE:ac#FF0000:"Critical Threshold"
+ GPRINT:ac:LAST:"%.1lf\l"
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

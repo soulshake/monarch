@@ -1,0 +1,1333 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2014 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+<service_profile>
+<prop name="name"><![CDATA[tomcat]]></prop>
+<prop name="description"><![CDATA[Collection of common Tomcat services]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache..accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache..cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache..cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache..hitsCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache..maxAllocateIterations]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.docs.accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.docs.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.docs.cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.docs.hitsCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.docs.maxAllocateIterations]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.examples.accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.examples.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.examples.cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.examples.hitsCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.examples.maxAllocateIterations]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.hitsCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.maxAllocateIterations]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.hostmanager.accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.hostmanager.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.hostmanager.cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.hostmanager.hitsCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.hostmanager.maxAllocateIterations]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.manager.accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.manager.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.manager.cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.manager.hitsCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Cache.manager.maxAllocateIterations]]></prop>
+<prop name="service"><![CDATA[Catalina.Connector.maxThreads]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.http8080.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.http8080.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.http8080.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.http8080.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.JkHandler.channelSocket.maxThreads]]></prop>
+<prop name="service"><![CDATA[Catalina.JkHandler.channelSocket.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Manager..processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Manager.docs.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Manager.examples.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Manager.gwostomcatmonitoringAgent.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Manager.hostmanager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Manager.manager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.ProtocolHandler.maxThreads]]></prop>
+<prop name="service"><![CDATA[Catalina.RequestProcessor.HttpRequest1.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.RequestProcessor.HttpRequest1.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.RequestProcessor.HttpRequest1.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.RequestProcessor.HttpRequest1.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.ChatServlet.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.ChatServlet.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.ChatServlet.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.ChatServlet.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.ChatServlet.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CookieExample.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CookieExample.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CookieExample.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CookieExample.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.CookieExample.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLHostManager.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLHostManager.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLHostManager.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLHostManager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLHostManager.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLManager.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLManager.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLManager.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLManager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HTMLManager.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HelloWorldExample.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HelloWorldExample.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HelloWorldExample.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HelloWorldExample.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HelloWorldExample.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HostManager.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HostManager.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HostManager.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HostManager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.HostManager.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.JMXProxy.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.JMXProxy.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.JMXProxy.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.JMXProxy.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.JMXProxy.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Manager.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Manager.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Manager.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Manager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Manager.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestHeaderExample.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestHeaderExample.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestHeaderExample.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestHeaderExample.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestHeaderExample.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestInfoExample.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestInfoExample.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestInfoExample.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestInfoExample.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestInfoExample.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestParamExample.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestParamExample.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestParamExample.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestParamExample.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.RequestParamExample.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.SessionExample.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.SessionExample.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.SessionExample.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.SessionExample.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.SessionExample.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Status.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Status.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Status.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Status.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.Status.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.default.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.default.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.default.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.default.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.default.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.jsp.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.jsp.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.jsp.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.jsp.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.jsp.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.servletToJsp.errorCount]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.servletToJsp.maxTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.servletToJsp.minTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.servletToJsp.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.Servlet.servletToJsp.requestCount]]></prop>
+<prop name="service"><![CDATA[Catalina.StringCache.accessCount]]></prop>
+<prop name="service"><![CDATA[Catalina.StringCache.cacheSize]]></prop>
+<prop name="service"><![CDATA[Catalina.ThreadPool.http8080.currentThreadCount]]></prop>
+<prop name="service"><![CDATA[Catalina.ThreadPool.http8080.maxThreads]]></prop>
+<prop name="service"><![CDATA[Catalina.ThreadPool.jk8009.currentThreadCount]]></prop>
+<prop name="service"><![CDATA[Catalina.ThreadPool.jk8009.maxThreads]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhost.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhost.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostdocs.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostdocs.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostexamples.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostexamples.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostgwostomcatmonitoringAgent.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostgwostomcatmonitoringAgent.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhosthostmanager.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhosthostmanager.processingTime]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostmanager.cacheMaxSize]]></prop>
+<prop name="service"><![CDATA[Catalina.WebModule.localhostmanager.processingTime]]></prop>
+<command>
+<prop name="name"><![CDATA[check_alive]]></prop>
+<prop name="type"><![CDATA[check]]></prop>
+<prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+</command>
+<service_template>
+<prop name="name"><![CDATA[generic-service-volatile]]></prop>
+<prop name="template"><![CDATA[generic-service]]></prop>
+<prop name="is_volatile"><![CDATA[1]]></prop>
+</service_template>
+<time_period>
+<prop name="comment"><![CDATA[All day, every day.]]></prop>
+<prop name="name"><![CDATA[24x7]]></prop>
+<prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+<prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+<prop name="friday"><![CDATA[00:00-24:00]]></prop>
+<prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+<prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+<prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+<prop name="monday"><![CDATA[00:00-24:00]]></prop>
+<prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+</time_period>
+<service_template>
+<prop name="retry_check_interval"><![CDATA[1]]></prop>
+<prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+<prop name="event_handler_enabled"><![CDATA[1]]></prop>
+<prop name="notifications_enabled"><![CDATA[1]]></prop>
+<prop name="active_checks_enabled"><![CDATA[1]]></prop>
+<prop name="process_perf_data"><![CDATA[1]]></prop>
+<prop name="check_period"><![CDATA[24x7]]></prop>
+<prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+<prop name="notification_period"><![CDATA[24x7]]></prop>
+<prop name="max_check_attempts"><![CDATA[3]]></prop>
+<prop name="retain_status_information"><![CDATA[1]]></prop>
+<prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+<prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+<prop name="name"><![CDATA[generic-service]]></prop>
+<prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+<prop name="normal_check_interval"><![CDATA[10]]></prop>
+<prop name="obsess_over_service"><![CDATA[1]]></prop>
+<prop name="notification_interval"><![CDATA[60]]></prop>
+</service_template>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache..accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache..cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache..cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache..hitsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache..maxAllocateIterations]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.docs.accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.docs.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.docs.cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.docs.hitsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.docs.maxAllocateIterations]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.examples.accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.examples.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.examples.cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.examples.hitsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.examples.maxAllocateIterations]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.hitsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.gwostomcatmonitoringAgent.maxAllocateIterations]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.hostmanager.accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.hostmanager.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.hostmanager.cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.hostmanager.hitsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.hostmanager.maxAllocateIterations]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.manager.accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.manager.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.manager.cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.manager.hitsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Cache.manager.maxAllocateIterations]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Connector.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.http8080.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.http8080.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.http8080.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.http8080.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.GlobalRequestProcessor.jk8009.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.JkHandler.channelSocket.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.JkHandler.channelSocket.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Manager..processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Manager.docs.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Manager.examples.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Manager.gwostomcatmonitoringAgent.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Manager.hostmanager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Manager.manager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.ProtocolHandler.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.RequestProcessor.HttpRequest1.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.RequestProcessor.HttpRequest1.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.RequestProcessor.HttpRequest1.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.RequestProcessor.HttpRequest1.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.ChatServlet.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.ChatServlet.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.ChatServlet.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.ChatServlet.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.ChatServlet.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CompressionFilterTestServlet.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CookieExample.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CookieExample.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CookieExample.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CookieExample.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.CookieExample.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.GWOSTomcatServlet.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLHostManager.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLHostManager.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLHostManager.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLHostManager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLHostManager.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLManager.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLManager.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLManager.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLManager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HTMLManager.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HelloWorldExample.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HelloWorldExample.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HelloWorldExample.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HelloWorldExample.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HelloWorldExample.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HostManager.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HostManager.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HostManager.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HostManager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.HostManager.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.JMXProxy.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.JMXProxy.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.JMXProxy.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.JMXProxy.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.JMXProxy.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Manager.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Manager.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Manager.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Manager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Manager.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestHeaderExample.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestHeaderExample.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestHeaderExample.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestHeaderExample.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestHeaderExample.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestInfoExample.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestInfoExample.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestInfoExample.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestInfoExample.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestInfoExample.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestParamExample.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestParamExample.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestParamExample.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestParamExample.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.RequestParamExample.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.SessionExample.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.SessionExample.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.SessionExample.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.SessionExample.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.SessionExample.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Status.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Status.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Status.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Status.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.Status.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.default.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.default.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.default.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.default.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.default.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.jsp.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.jsp.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.jsp.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.jsp.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.jsp.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.servletToJsp.errorCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.servletToJsp.maxTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.servletToJsp.minTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.servletToJsp.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.Servlet.servletToJsp.requestCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.StringCache.accessCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.StringCache.cacheSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.ThreadPool.http8080.currentThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.ThreadPool.http8080.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.ThreadPool.jk8009.currentThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.ThreadPool.jk8009.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhost.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhost.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostdocs.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostdocs.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostexamples.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostexamples.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostgwostomcatmonitoringAgent.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostgwostomcatmonitoringAgent.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhosthostmanager.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhosthostmanager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostmanager.cacheMaxSize]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[Catalina.WebModule.localhostmanager.processingTime]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+</service_profile>
+</profile>

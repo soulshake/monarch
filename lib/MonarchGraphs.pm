@@ -66,7 +66,7 @@ sub graph_commit {
     # and if still equal, somewhat arbitrarily by the name.
     my @periods = sort { $$a[2] <=> $$b[2] || $$b[1] <=> $$a[1] || $$a[0] cmp $$b[0] } @phases;
 
-    my $commit_rrd          = '/usr/local/groundwork/rrd/commit.rrd';
+    my $commit_rrd          = 'commit.rrd';
     my $internal_image_path = '/usr/local/nagios/share/images/commit.png';
     my $external_image_path = '/nagios/images/commit.png';
 

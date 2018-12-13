@@ -1,0 +1,3111 @@
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.AllocateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.AllocateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllocateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllocateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.CloseCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.CloseCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CloseCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CloseCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.CreateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.CreateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CreateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CreateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.FaultCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.FaultCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FaultCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FaultCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.FreePoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.FreePoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FreePoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FreePoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.JDBCTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.JDBCTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>JDBCTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:JDBCTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.PercentUsed">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PercentUsed]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PercentUsed</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PercentUsed:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.PrepStmtCacheDiscardCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.PrepStmtCacheDiscardCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PrepStmtCacheDisc</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PrepStmtCacheDiscardCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.ReturnCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.ReturnCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReturnCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReturnCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.UseTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.UseTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>UseTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:UseTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.WaitTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.WaitTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider.DefaultDatasource.WaitingThreadCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider.DefaultDatasource.WaitingThreadCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitingThreadCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitingThreadCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.AllocateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.AllocateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllocateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllocateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CloseCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CloseCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CloseCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CloseCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CreateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.CreateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CreateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CreateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FaultCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FaultCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FaultCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FaultCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FreePoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.FreePoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FreePoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FreePoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.JDBCTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.JDBCTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>JDBCTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:JDBCTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PercentUsed">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PercentUsed]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PercentUsed</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PercentUsed:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PrepStmtCacheDiscardCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.PrepStmtCacheDiscardCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PrepStmtCacheDisc</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PrepStmtCacheDiscardCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.ReturnCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.ReturnCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReturnCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReturnCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.UseTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.UseTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>UseTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:UseTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitingThreadCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Derby_JDBC_Provider_XA.jdbcDefaultEJBTimerDataSource.WaitingThreadCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitingThreadCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitingThreadCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsByWebSphere.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.PlantsByWebSpherePlantsGallery.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGallery.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGallery.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGallery.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGallery.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGallery.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.SamplesGalleryGalleryMenu.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.AllocateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.AllocateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllocateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllocateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CloseCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CloseCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CloseCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CloseCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CreateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.CreateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CreateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CreateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FaultCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FaultCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FaultCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FaultCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FreePoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.FreePoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FreePoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FreePoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.JDBCTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.JDBCTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>JDBCTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:JDBCTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PercentUsed">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PercentUsed]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PercentUsed</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PercentUsed:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PrepStmtCacheDiscardCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.PrepStmtCacheDiscardCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PrepStmtCacheDisc</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PrepStmtCacheDiscardCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.ReturnCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.ReturnCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReturnCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReturnCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.UseTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.UseTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>UseTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:UseTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitingThreadCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSource.WaitingThreadCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitingThreadCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitingThreadCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.AllocateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.AllocateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>AllocateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AllocateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CloseCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CloseCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CloseCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CloseCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CreateCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.CreateCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CreateCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:CreateCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FaultCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FaultCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FaultCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FaultCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FreePoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.FreePoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>FreePoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:FreePoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.JDBCTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.JDBCTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>JDBCTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:JDBCTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PercentUsed">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PercentUsed]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PercentUsed</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PercentUsed:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PrepStmtCacheDiscardCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.PrepStmtCacheDiscardCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PrepStmtCacheDisc</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PrepStmtCacheDiscardCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.ReturnCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.ReturnCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ReturnCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ReturnCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.UseTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.UseTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>UseTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:UseTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitingThreadCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.Samples_Derby_JDBC_Provider_XA.jdbcPlantsByWebSphereDataSourceNONJTA.WaitingThreadCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>WaitingThreadCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:WaitingThreadCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.cacheModule.objectCache.cacheModule.counters.HitsInMemoryCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.cacheModule.objectCache.cacheModule.counters.HitsInMemoryCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>HitsInMemoryCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:HitsInMemoryCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.cacheModule.objectCache.cacheModule.counters.MissCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.cacheModule.objectCache.cacheModule.counters.MissCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>MissCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:MissCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteWIMPortlet.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteWIMPortlet.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteWIMPortlet.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteWIMPortlet.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteWIMPortlet.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteiehs.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteiehs.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteiehs.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.iscliteiehs.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.iscliteiehs.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.ivtAppivt_app.war.webAppModule.servlets.ConcurrentRequests">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ConcurrentRequests]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ConcurrentRequests</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ConcurrentRequests:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.ivtAppivt_app.war.webAppModule.servlets.ErrorCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ErrorCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ErrorCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ErrorCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.ivtAppivt_app.war.webAppModule.servlets.RequestCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.RequestCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RequestCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:RequestCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.ivtAppivt_app.war.webAppModule.servlets.ServiceTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.ivtAppivt_app.war.webAppModule.servlets.ServiceTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ServiceTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ServiceTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.DefaultApplicationDefaultWebApplication.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.DefaultApplicationDefaultWebApplication.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsByWebSphere.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.PlantsByWebSpherePlantsGallery.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.PlantsByWebSpherePlantsGallery.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGallery.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGallery.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.SamplesGalleryGalleryMenu.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.SamplesGalleryGalleryMenu.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.filetransferSecuredfiletransfer.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.filetransferSecuredfiletransfer.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.gwoswasmonitoringAgent_wargwoswasmonitoringAgent.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ibmasyncrspibmasyncrsp.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ibmasyncrspibmasyncrsp.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteISCAdminPortlet.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteISCAdminPortlet.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteWIMPortlet.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteWIMPortlet.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteadminredirector.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteadminredirector.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteiehs.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteiehs.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.iscliteisclite.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.iscliteisclite.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.isclitewasportlet.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.isclitewasportlet.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.ExternalReadSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalReadSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.ExternalReadTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalReadTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalReadTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalReadTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.ExternalWriteSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalWriteSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.ExternalWriteTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.ExternalWriteTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ExternalWriteTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ExternalWriteTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.LifeTime">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.LifeTime]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LifeTime</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LifeTime:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.LiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.LiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>LiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:LiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.servletSess.ivtAppivt_app.war.NoRoomForNewSessionCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.servletSess.ivtAppivt_app.war.NoRoomForNewSessionCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>NoRoomForNewSessi</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:NoRoomForNewSessionCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.Default.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.Default.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.Default.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.Default.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.HAManager.thread.pool.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.HAManager.thread.pool.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.HAManager.thread.pool.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.HAManager.thread.pool.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.MessageListenerThreadPool.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.MessageListenerThreadPool.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.MessageListenerThreadPool.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.MessageListenerThreadPool.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.ORB.thread.pool.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.ORB.thread.pool.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.ORB.thread.pool.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.ORB.thread.pool.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.SIBFAPInboundThreadPool.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.SIBFAPInboundThreadPool.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.SIBFAPInboundThreadPool.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.SIBFAPInboundThreadPool.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.SIBFAPThreadPool.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.SIBFAPThreadPool.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.SIBFAPThreadPool.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.SIBFAPThreadPool.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.SoapConnectorThreadPool.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.SoapConnectorThreadPool.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.SoapConnectorThreadPool.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.SoapConnectorThreadPool.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.TCPChannel.DCS.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.TCPChannel.DCS.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.TCPChannel.DCS.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.TCPChannel.DCS.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.WMQJCAResourceAdapter.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.WMQJCAResourceAdapter.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.WMQJCAResourceAdapter.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.WMQJCAResourceAdapter.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.WebContainer.ActiveCount">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.WebContainer.ActiveCount]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ActiveCount</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:ActiveCount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="was.threadPool.WebContainer.PoolSize">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[was.threadPool.WebContainer.PoolSize]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>PoolSize</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:PoolSize:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

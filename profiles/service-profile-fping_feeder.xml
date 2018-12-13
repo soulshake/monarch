@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2014 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[fping_feeder]]></prop>
+  <prop name="description"><![CDATA[These services will go into alarm if the fping feeder fails]]></prop>
+  <prop name="service"><![CDATA[fping_receiver]]></prop>
+  <prop name="service"><![CDATA[fping_sweep]]></prop>
+  <prop name="service"><![CDATA[local_process_fping_feeder]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_for_passive result]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 2 "No results received from passive service!"]]></prop>
+ </command>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mem -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[###############################################################################
+]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_wmi_mem!Arg1!Arg2]]></prop>
+  <prop name="template"><![CDATA[gws-generic]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[c,r]]></prop>
+  <prop name="name"><![CDATA[default-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[120]]></prop>
+ </service_template>
+ <command>
+  <prop name="name"><![CDATA[check_by_ssh_load]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_by_ssh -H $HOSTADDRESS$ -t 60 -l "$USER17$" -C "$USER22$/check_load -w $ARG1$ -c $ARG2$"]]></prop>
+ </command>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_by_ssh_load!Arg1(5,4,3)!Arg2(10,8,6)]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[c,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[gws-generic]]></prop>
+  <prop name="check_command"><![CDATA[check_by_ssh_load]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[120]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_wmi_mem!Arg1!Arg2]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[300]]></prop>
+  <prop name="template"><![CDATA[default-service]]></prop>
+  <prop name="name"><![CDATA[fping_receiver]]></prop>
+  <prop name="check_command"><![CDATA[check_for_passive result]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[fping_sweep]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/fping_process.pl --plugin]]></prop>
+ </command>
+ <service_name>
+  <prop name="template"><![CDATA[default-service]]></prop>
+  <prop name="name"><![CDATA[fping_sweep]]></prop>
+  <prop name="check_command"><![CDATA[fping_sweep]]></prop>
+  <prop name="normal_check_interval"><![CDATA[2]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_local_procs_string]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_procs -w "$ARG1$" -c "$ARG2$" -a "$ARG3$"]]></prop>
+ </command>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_wmi_mem!Arg1!Arg2]]></prop>
+  <prop name="template"><![CDATA[gws-generic]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[120]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[graph.gif]]></prop>
+  <prop name="name"><![CDATA[number_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Graph]]></prop>
+ </extended_service_info_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_local_procs_string!10!20!fping_process.pl]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[local_process_fping_feeder]]></prop>
+  <prop name="description"><![CDATA[local_process_fping_feeder]]></prop>
+  <prop name="check_command"><![CDATA[check_local_procs_string]]></prop>
+ </service_name>
+</profile>

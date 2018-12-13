@@ -1,0 +1,235 @@
+<!--
+Copyright 2007 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="windows_time_sync profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_time_sync]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Time Sync on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:DiffSec:GAUGE:1800:U:U DS:DiffSec_wn:GAUGE:1800:U:U DS:DiffSec_cr:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode 
+ DEF:a=rrd_source:ds_source_0:AVERAGE 
+ DEF:aw="rrd_source":ds_source_1:AVERAGE
+ DEF:ac="rrd_source":ds_source_2:AVERAGE
+ CDEF:cdefa=a 
+ AREA:a#33FFFF:"Seconds Difference from Time Source" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf  
+ GPRINT:cdefa:MAX:"max=%.2lf\l"
+ LINE:aw#FFCC33:"Warning Threshold" 
+ GPRINT:aw:LAST:"%.1lf"
+ LINE:ac#FF0000:"Critical Threshold"
+ GPRINT:ac:LAST:"%.1lf\l"
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_net profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[windows_net]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Windows Network Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr 
+ DS:S_Utilisation:GAUGE:1800:U:U 
+ DS:S_Utilisation_wn:GAUGE:1800:U:U 
+ DS:S_Utilisation_cr:GAUGE:1800:U:U 
+ DS:R_Utilization:GAUGE:1800:U:U  
+ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE2$:$WARN2$:$CRIT2$:$VALUE4$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode 
+ DEF:a=rrd_source:ds_source_0:AVERAGE 
+ DEF:b=rrd_source:ds_source_3:AVERAGE
+ CDEF:cdefa=a 
+ CDEF:cdefb=b
+ AREA:a#AAFF44:"Send Bandwidth Percent" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf  
+ GPRINT:cdefa:MAX:"max=%.2lf\l"
+ STACK:b#BB33FF:"Receive Bandwidth Percent" GPRINT:cdefb:MIN:min=%.2lf  GPRINT:cdefb:AVERAGE:avg=%.2lf  
+ GPRINT:cdefb:MAX:"max=%.2lf\l"
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y  --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_mem profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_mem]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>RAM use on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:Utilisation:GAUGE:1800:U:U DS:Utilisation_wn:GAUGE:1800:U:U DS:Utilisation_cr:GAUGE:1800:U:U DS:Memory:GAUGE:1800:U:U DS:Memory_wn:GAUGE:1800:U:U DS:Memory_cr:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE2$:$WARN2$:$CRIT2$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode 
+ DEF:a=rrd_source:ds_source_0:AVERAGE 
+ DEF:aw="rrd_source":ds_source_1:AVERAGE
+ DEF:ac="rrd_source":ds_source_2:AVERAGE
+ DEF:z=rrd_source:ds_source_3:AVERAGE
+ CDEF:cdefa=a 
+ CDEF:cdefz=z
+ AREA:a#33FFFF:"RAM Utilization Percent" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf  
+ GPRINT:cdefa:MAX:"max=%.2lf\l"
+ LINE:aw#FFCC33:"Warning Threshold" 
+ GPRINT:aw:LAST:"%.1lf"
+ LINE:ac#FF0000:"Critical Threshold"
+ GPRINT:ac:LAST:"%.1lf\l"
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_eventlog profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_eventlog]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Windows events</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+ DEF:a="rrd_source":ds_source_0:AVERAGE 
+ DEF:aw="rrd_source":ds_source_1:AVERAGE 
+ DEF:ac="rrd_source":ds_source_2:AVERAGE 
+ CDEF:cdefa=a 
+ AREA:cdefa#FF335B:"Number of Events" 
+ GPRINT:cdefa:MIN:min=%.2lf 
+ GPRINT:cdefa:AVERAGE:avg=%.2lf 
+ GPRINT:cdefa:MAX:max=%.2lf 
+ LINE:aw#FFCC33:"Warning Threshold" 
+ GPRINT:aw:LAST:"%.1lf"
+ LINE:ac#FF0000:"Critical Threshold"
+ GPRINT:ac:LAST:"%.1lf\l"
+ -c BACK#FFFFFF 
+ -c CANVAS#FFFFFF 
+ -c GRID#C0C0C0 
+ -c MGRID#404040 
+ -c ARROW#FFFFFF 
+ -Y --height 120 -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_disks profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[windows_disks]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Space on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+$LISTSTART$ 
+DEF:$DEFLABEL#$:AVERAGE 
+CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ 
+LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ 
+$LISTEND$  
+-c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_disk_. profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_disk_.]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Space on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:C_Utilisation:GAUGE:1800:U:U DS:C_Utilisation_wn:GAUGE:1800:U:U DS:C_Utilisation_cr:GAUGE:1800:U:U DS:C_Space:GAUGE:1800:U:U DS:C_Space_wn:GAUGE:1800:U:U DS:C_Space_cr:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE2$:$WARN2$:$CRIT2$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - --imgformat=PNG --slope-mode 
+ DEF:a=rrd_source:ds_source_0:AVERAGE 
+ DEF:aw="rrd_source":ds_source_1:AVERAGE
+ DEF:ac="rrd_source":ds_source_2:AVERAGE
+ DEF:z=rrd_source:ds_source_3:AVERAGE
+ CDEF:cdefa=a 
+ CDEF:cdefz=z
+ AREA:a#C956AA:"Disk Utilization Percent" GPRINT:cdefa:MIN:min=%.2lf  GPRINT:cdefa:AVERAGE:avg=%.2lf  
+ GPRINT:cdefa:MAX:"max=%.2lf\l"
+ LINE:aw#FFCC33:"Warning Threshold" 
+ GPRINT:aw:LAST:"%.1lf"
+ LINE:ac#FF0000:"Critical Threshold"
+ GPRINT:ac:LAST:"%.1lf\l"
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_cpu profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_cpu]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CPU Utilization on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AvgCPU:GAUGE:1800:U:U DS:AvgCPU_wn:GAUGE:1800:U:U DS:AvgCPU_cr:GAUGE:1800:U:U  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+ DEF:a="rrd_source":ds_source_0:AVERAGE 
+ DEF:w="rrd_source":ds_source_1:AVERAGE 
+ DEF:c="rrd_source":ds_source_2:AVERAGE 
+ CDEF:cdefa=a 
+ CDEF:cdefb=a,0.99,* 
+ AREA:cdefa#7D1B7E:"Percent CPU Utilization" 
+ GPRINT:cdefa:LAST:Current=%.2lf 
+ GPRINT:cdefa:MIN:min=%.2lf 
+ GPRINT:cdefa:AVERAGE:avg=%.2lf 
+ GPRINT:cdefa:MAX:max="%.2lf\l" 
+ AREA:cdefb#571B7E: 
+ CDEF:cdefw=w
+ CDEF:cdefc=c 
+ CDEF:cdefm=cdefc,1.01,* 
+ LINE2:cdefw#FFFF00:"Warning Threshold\:" 
+ GPRINT:cdefw:LAST:"%.2lf" 
+ LINE2:cdefc#FF0033:"Critical Threshold\:" 
+ GPRINT:cdefc:LAST:"%.2lf\l" 
+ COMMENT:"Service\: SERVICE"
+ CDEF:cdefws=a,cdefw,GT,a,0,IF AREA:cdefws#FFFF00 CDEF:cdefcs=a,cdefc,GT,a,0,IF AREA:cdefcs#FF0033
+ CDEF:cdefwt=a,cdefw,GT,cdefw,0,IF LINE:cdefwt#000000 CDEF:cdefct=a,cdefc,GT,cdefc,0,IF LINE:cdefct#000000
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120 --rigid -u 100 -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="windows_cpu_queue profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[windows_cpu_queue]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CPU Queue on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:metric:GAUGE:1800:U:U RRA:AVERAGE:0.99:1:8640 RRA:AVERAGE:0.99:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+ DEF:a="rrd_source":ds_source_0:AVERAGE 
+ CDEF:cdefa=a 
+ AREA:cdefa#F000FF:"CPU Execution Queue" 
+ GPRINT:cdefa:MIN:min=%.2lf 
+ GPRINT:cdefa:AVERAGE:avg=%.2lf 
+ GPRINT:cdefa:MAX:max=%.2lf 
+ -c BACK#FFFFFF 
+ -c CANVAS#FFFFFF 
+ -c GRID#C0C0C0 
+ -c MGRID#404040 
+ -c ARROW#FFFFFF 
+ -Y --height 120 -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

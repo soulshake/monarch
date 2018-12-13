@@ -3794,8 +3794,8 @@ sub discovery_manage_method {
 	my @service_names    = StorProc->fetch_list( 'service_names',    'name' );
 	my @service_profiles = StorProc->fetch_list( 'profiles_service', 'name' );
 	my @host_profiles    = StorProc->fetch_list( 'profiles_host',    'name' );
-	if ( !opendir( DIR, '/usr/local/groundwork/core/profiles' ) ) {
-	    $errstr .= "<br>&bull;&nbsp;Error: cannot open /usr/local/groundwork/core/profiles to read ($!)";
+	if ( !opendir( DIR, '/usr/local/groundwork/monarch/profiles' ) ) {
+	    $errstr .= "<br>&bull;&nbsp;Error: cannot open /usr/local/groundwork/monarch/profiles to read ($!)";
 	}
 	else {
 	    while ( my $file = readdir(DIR) ) {

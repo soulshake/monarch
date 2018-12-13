@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[c,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[gws-generic]]></prop>
+  <prop name="check_command"><![CDATA[check_by_ssh_load]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[120]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[graph.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Graph]]></prop>
+ </extended_service_info_template>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_cisco_memutil]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp_cisco_memutil.pl -H $HOSTADDRESS$   -C "$USER7$" -w "$ARG1$" -c "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_snmp_cisco_memutil!80!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[cisco_memory_utilization]]></prop>
+  <prop name="description"><![CDATA[check_snmp_cisco_memutil]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_cisco_memutil]]></prop>
+ </service_name>
+</profile>

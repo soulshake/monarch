@@ -1,0 +1,34 @@
+<groundwork_performance_configuration>
+    <service_profile name="groundwork.all.sessioncount">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[groundwork.all.sessioncount]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>sessioncount</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:sessioncount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="groundwork.authfailures">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[groundwork.authfailures]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>authfailures</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:authfailures:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+</groundwork_performance_configuration>

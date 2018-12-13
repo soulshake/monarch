@@ -1607,7 +1607,7 @@ sub apply_automation_template(@) {
 		    my $value    = $node->textContent;
 		    if ( $property eq 'default_profile' ) {
 			unless ( $hostprofile_name{$value} ) {
-			    my $folder = '/usr/local/groundwork/core/profiles';
+			    my $folder = '/usr/local/groundwork/monarch/profiles';
 			    my $file   = "host-profile-$value.xml";
 			    if ( -e "$folder/$file" ) {
 				my @msgs = import_profile( '', $folder, $file, '' );
@@ -1700,7 +1700,7 @@ sub apply_automation_template(@) {
 		    foreach my $match_key ( keys %{ $columns{$column_key}{'match'} } ) {
 			my $hp_name = $columns{$column_key}{'match'}{$match_key}{'hostprofile'};
 			unless ( !defined($hp_name) || $hostprofile_name{$hp_name} ) {
-			    my $folder = '/usr/local/groundwork/core/profiles';
+			    my $folder = '/usr/local/groundwork/monarch/profiles';
 			    my $file   = "host-profile-$hp_name.xml";
 			    if ( -e "$folder/$file" ) {
 				my @msgs = import_profile( '', $folder, $file, '' );
@@ -1765,7 +1765,7 @@ sub apply_automation_template(@) {
 			    if ( $columns{$column_key}{'match'}{$match_key}{'object_type'} eq 'Service profile' ) {
 				foreach my $obj ( @{ $columns{$column_key}{'match'}{$match_key}{'Service profile'} } ) {
 				    unless ( $serviceprofile_name{$obj} ) {
-					my $folder = '/usr/local/groundwork/core/profiles';
+					my $folder = '/usr/local/groundwork/monarch/profiles';
 					my $file   = "service-profile-$obj.xml";
 					if ( -e "$folder/$file" ) {
 

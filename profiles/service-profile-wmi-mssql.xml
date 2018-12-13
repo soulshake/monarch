@@ -1,0 +1,285 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2007 GroundWork Open Source, Inc.  
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[wmi-mssql]]></prop>
+  <prop name="description"><![CDATA[Windows MSSQL Server (via WMI)]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_deadlocks]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_full_scans]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_lock_wait_time]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_lock_waits]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_log_growths]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_log_used]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_transactions]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_users]]></prop>
+  <prop name="service"><![CDATA[wmi_service_DcomLaunch]]></prop>
+  <prop name="service"><![CDATA[wmi_service_Dfs]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSSQLSERVER]]></prop>
+  <prop name="service"><![CDATA[wmi_service_MSSQLServerADHelper]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SQLBrowser]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SQLSERVERAGENT]]></prop>
+  <prop name="service"><![CDATA[wmi_service_SQLWriter]]></prop>
+  <prop name="service"><![CDATA[wmi_service_W32Time]]></prop>
+  <prop name="service"><![CDATA[wmi_service_msftesql]]></prop>
+ </service_profile>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[]]></prop> 
+  <prop name="template"><![CDATA[]]></prop>   
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[]]></prop>   
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_buf_cache_hit -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <command>
+  <prop name="name"><![CDATA[check_alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_buffer_cache_hits!80!50]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_buffer_cache_hits]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_buffer_cache_hits]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_deadlocks]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_deadlocks -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_deadlocks!Name=_Total!50!100]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_deadlocks]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_deadlocks]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_deadlocks]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_full_scans]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_fullscans -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_full_scans!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_full_scans]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_full_scans]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_full_scans]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_lock_wait_time]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_lock_wait_time -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_lock_wait_time!Name=_Total!1000!1500]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_lock_wait_time]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_lock_wait_time]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_lock_wait_time]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_lock_waits]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_lock_waits -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_lock_waits!Name=_Total!4!6]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_lock_waits]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_lock_waits]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_lock_waits]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_log_growths]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_log_growth -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_log_growths!Name=_Total!5!8]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_log_growths]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_log_growths]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_log_growths]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_log_used]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_log_used -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_log_used!Name=_Total!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_log_used]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_log_used]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_log_used]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_memgrantspending -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_memory_grants_pending!1!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_memory_grants_pending]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_memory_grants_pending]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_transactions]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_transactions -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$" "$ARG3$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_transactions!Name=_Total!10!20]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_transactions]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_transactions]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_transactions]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_users]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mssql_users -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_users!1!5]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_users]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_users]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_users]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_service]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -H $USER21$ -t 60 -c get_service -a "$HOSTADDRESS$" "$ARG1$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!DcomLaunch]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_DcomLaunch]]></prop>
+  <prop name="description"><![CDATA[Check DCOM Server Process Launcher process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!Dfs]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_Dfs]]></prop>
+  <prop name="description"><![CDATA[Check Distributed File System process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSSQLSERVER]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSSQLSERVER]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server (MSSQLSERVER) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!MSSQLServerADHelper]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_MSSQLServerADHelper]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server Active Directory Helper process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SQLBrowser]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SQLBrowser]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server Browser process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SQLSERVERAGENT]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SQLSERVERAGENT]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server Agent (MSSQLSERVER) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!SQLWriter]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_SQLWriter]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server VSS Writer process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!W32Time]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_W32Time]]></prop>
+  <prop name="description"><![CDATA[Check Windows Time process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_service!msftesql]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wmi_service_msftesql]]></prop>
+  <prop name="description"><![CDATA[Check SQL Server FullText Search (MSSQLSERVER) process via WMI]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_service]]></prop>
+ </service_name>
+</profile>

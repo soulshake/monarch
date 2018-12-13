@@ -722,7 +722,7 @@ elsif ( $query->param('args') && $session_id ) {
 	}
 	elsif ( $input[2] == 2 ) {
 	    $input[4] .= 'view=profile_importer&obj=profiles&task=import&name=';
-	    @nodes = sort nocase grep { $_ ne 'cgi-bin' && $_ ne 'WEB-INF' } StorProc->get_dir( '/usr/local/groundwork/core/profiles', '', 1, 1 );
+	    @nodes = sort nocase grep { $_ ne 'cgi-bin' && $_ ne 'WEB-INF' } StorProc->get_dir( '/usr/local/groundwork/monarch/profiles', '', 1, 1 );
 	    $detail = Tree->child_tree( \@nodes, $input[1], $input[2], '2', $input[3], $input[4] );
 	}
     }

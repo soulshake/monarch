@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[citrix-xenapp-services]]></prop>
+  <prop name="description"><![CDATA[service profile for Citrix XenApp Server]]></prop>
+  <prop name="service"><![CDATA[citrix-64-bitvmopt]]></prop>
+  <prop name="service"><![CDATA[citrix-apphostsvc]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixeuem]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixvirtualmemoryoptimization]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixwmiservice]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixxteserver]]></prop>
+  <prop name="service"><![CDATA[citrix-cpsvc]]></prop>
+  <prop name="service"><![CDATA[citrix-ctxcpubal]]></prop>
+  <prop name="service"><![CDATA[citrix-ctxcpusched]]></prop>
+  <prop name="service"><![CDATA[citrix-iisadmin]]></prop>
+  <prop name="service"><![CDATA[citrix-imaservice]]></prop>
+  <prop name="service"><![CDATA[citrix-lanmanserver]]></prop>
+  <prop name="service"><![CDATA[citrix-lanmanws]]></prop>
+  <prop name="service"><![CDATA[citrix-mfcom]]></prop>
+  <prop name="service"><![CDATA[citrix-mssql-citrix_metaframe]]></prop>
+  <prop name="service"><![CDATA[citrix-netlogon]]></prop>
+  <prop name="service"><![CDATA[citrix-radehlprsvc]]></prop>
+  <prop name="service"><![CDATA[citrix-radesvc]]></prop>
+  <prop name="service"><![CDATA[citrix-rpcss]]></prop>
+  <prop name="service"><![CDATA[citrix-sessionenv]]></prop>
+  <prop name="service"><![CDATA[citrix-spooler]]></prop>
+  <prop name="service"><![CDATA[citrix-termservice]]></prop>
+  <prop name="service"><![CDATA[citrix-umrdpservice]]></prop>
+  <prop name="service"><![CDATA[citrix-w3svc]]></prop>
+  <prop name="service"><![CDATA[citrix-was]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[900]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-64-bitvmopt]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-64-bitvmopt[1]_Enable="ON"
+Check_gdma_citrix-64-bitvmopt[1]_Service="citrix-64-bitvmopt"
+Check_gdma_citrix-64-bitvmopt[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service 'Citrix 64-bit Virtual Memory Optimization' "
+Check_gdma_citrix-64-bitvmopt[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-64-bitvmopt]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix 64-bit Virtual Memory Optimization service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-64-bitvmopt]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-apphostsvc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-apphostsvc[1]_Enable="ON"
+Check_gdma_citrix-apphostsvc[1]_Service="citrix-apphostsvc"
+Check_gdma_citrix-apphostsvc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service AppHostSvc "
+Check_gdma_citrix-apphostsvc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-apphostsvc]]></prop>
+  <prop name="description"><![CDATA[check presence of Application Host Helper Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-apphostsvc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixeuem]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixeuem[1]_Enable="ON"
+Check_gdma_citrix-citrixeuem[1]_Service="citrix-citrixeuem"
+Check_gdma_citrix-citrixeuem[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service 'Citrix EUEM' "
+Check_gdma_citrix-citrixeuem[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixeuem]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix End User Experiencing Monitoring service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixeuem]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixvirtualmemoryoptimization]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixvirtualmemoryoptimization[1]_Enable="ON"
+Check_gdma_citrix-citrixvirtualmemoryoptimization[1]_Service="citrix-citrixvirtualmemoryoptimization"
+Check_gdma_citrix-citrixvirtualmemoryoptimization[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service 'Citrix Virtual Memory Optimization' "
+Check_gdma_citrix-citrixvirtualmemoryoptimization[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixvirtualmemoryoptimization]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Virtual Memory Optimization service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixvirtualmemoryoptimization]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixwmiservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixwmiservice[1]_Enable="ON"
+Check_gdma_citrix-citrixwmiservice[1]_Service="citrix-citrixwmiservice"
+Check_gdma_citrix-citrixwmiservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixWMIService "
+Check_gdma_citrix-citrixwmiservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixwmiservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix WMI Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixwmiservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixxteserver]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixxteserver[1]_Enable="ON"
+Check_gdma_citrix-citrixxteserver[1]_Service="citrix-citrixxteserver"
+Check_gdma_citrix-citrixxteserver[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixXTEServer "
+Check_gdma_citrix-citrixxteserver[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixxteserver]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix XTE Server service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixxteserver]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-cpsvc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-cpsvc[1]_Enable="ON"
+Check_gdma_citrix-cpsvc[1]_Service="citrix-cpsvc"
+Check_gdma_citrix-cpsvc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service cpsvc "
+Check_gdma_citrix-cpsvc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-cpsvc]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Print Manager Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-cpsvc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-ctxcpubal]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-ctxcpubal[1]_Enable="ON"
+Check_gdma_citrix-ctxcpubal[1]_Service="citrix-ctxcpubal"
+Check_gdma_citrix-ctxcpubal[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CTXCPUBal "
+Check_gdma_citrix-ctxcpubal[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-ctxcpubal]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix CPU Utilization Mgmt/CPU Rebalancer service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-ctxcpubal]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-ctxcpusched]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-ctxcpusched[1]_Enable="ON"
+Check_gdma_citrix-ctxcpusched[1]_Service="citrix-ctxcpusched"
+Check_gdma_citrix-ctxcpusched[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service ctxcpuSched "
+Check_gdma_citrix-ctxcpusched[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-ctxcpusched]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix CPU Utilization Mgmt/Resource Mgmt service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-ctxcpusched]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-iisadmin]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-iisadmin[1]_Enable="ON"
+Check_gdma_citrix-iisadmin[1]_Service="citrix-iisadmin"
+Check_gdma_citrix-iisadmin[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service IISADMIN "
+Check_gdma_citrix-iisadmin[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-iisadmin]]></prop>
+  <prop name="description"><![CDATA[check presence of IIS Admin Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-iisadmin]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-imaservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-imaservice[1]_Enable="ON"
+Check_gdma_citrix-imaservice[1]_Service="citrix-imaservice"
+Check_gdma_citrix-imaservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service IMAService "
+Check_gdma_citrix-imaservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-imaservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Independent Management Architecture service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-imaservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-lanmanserver]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-lanmanserver[1]_Enable="ON"
+Check_gdma_citrix-lanmanserver[1]_Service="citrix-lanmanserver"
+Check_gdma_citrix-lanmanserver[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service LanmanServer "
+Check_gdma_citrix-lanmanserver[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-lanmanserver]]></prop>
+  <prop name="description"><![CDATA[check presence of Lanmanager Server service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-lanmanserver]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-lanmanws]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-lanmanws[1]_Enable="ON"
+Check_gdma_citrix-lanmanws[1]_Service="citrix-lanmanws"
+Check_gdma_citrix-lanmanws[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service LanmanWorkstation "
+Check_gdma_citrix-lanmanws[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-lanmanws]]></prop>
+  <prop name="description"><![CDATA[check presence of LanManager Workstation service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-lanmanws]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-mfcom]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-mfcom[1]_Enable="ON"
+Check_gdma_citrix-mfcom[1]_Service="citrix-mfcom"
+Check_gdma_citrix-mfcom[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service MFCom "
+Check_gdma_citrix-mfcom[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-mfcom]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix MFCOM Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-mfcom]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-mssql-citrix_metaframe]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-mssql-citrix_metaframe[1]_Enable="ON"
+Check_gdma_citrix-mssql-citrix_metaframe[1]_Service="citrix-mssql-citrix_metaframe"
+Check_gdma_citrix-mssql-citrix_metaframe[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service MSSQL$CITRIX_METAFRAME "
+Check_gdma_citrix-mssql-citrix_metaframe[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-mssql-citrix_metaframe]]></prop>
+  <prop name="description"><![CDATA[check presence of unique MSSQL for Citrix service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-mssql-citrix_metaframe]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-netlogon]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-netlogon[1]_Enable="ON"
+Check_gdma_citrix-netlogon[1]_Service="citrix-netlogon"
+Check_gdma_citrix-netlogon[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service Netlogon "
+Check_gdma_citrix-netlogon[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-netlogon]]></prop>
+  <prop name="description"><![CDATA[check presence of Netlogon service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-netlogon]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-radehlprsvc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-radehlprsvc[1]_Enable="ON"
+Check_gdma_citrix-radehlprsvc[1]_Service="citrix-radehlprsvc"
+Check_gdma_citrix-radehlprsvc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service RadeHlprSvc "
+Check_gdma_citrix-radehlprsvc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-radehlprsvc]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Streaming Helper Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-radehlprsvc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-radesvc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-radesvc[1]_Enable="ON"
+Check_gdma_citrix-radesvc[1]_Service="citrix-radesvc"
+Check_gdma_citrix-radesvc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service RadeSvc "
+Check_gdma_citrix-radesvc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-radesvc]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Streaming Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-radesvc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-rpcss]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-rpcss[1]_Enable="ON"
+Check_gdma_citrix-rpcss[1]_Service="citrix-rpcss"
+Check_gdma_citrix-rpcss[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service RpcSs "
+Check_gdma_citrix-rpcss[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-rpcss]]></prop>
+  <prop name="description"><![CDATA[check presence of Remote Procedure Call service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-rpcss]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-sessionenv]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-sessionenv[1]_Enable="ON"
+Check_gdma_citrix-sessionenv[1]_Service="citrix-sessionenv"
+Check_gdma_citrix-sessionenv[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service SessionEnv "
+Check_gdma_citrix-sessionenv[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-sessionenv]]></prop>
+  <prop name="description"><![CDATA[check presence of Remote Desktop Configuration service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-sessionenv]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-spooler]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-spooler[1]_Enable="ON"
+Check_gdma_citrix-spooler[1]_Service="citrix-spooler"
+Check_gdma_citrix-spooler[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service Spooler "
+Check_gdma_citrix-spooler[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-spooler]]></prop>
+  <prop name="description"><![CDATA[check presence of Print Spooler service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-spooler]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-termservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-termservice[1]_Enable="ON"
+Check_gdma_citrix-termservice[1]_Service="citrix-termservice"
+Check_gdma_citrix-termservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service TermService "
+Check_gdma_citrix-termservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-termservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Remote Desktop Services service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-termservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-umrdpservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-umrdpservice[1]_Enable="ON"
+Check_gdma_citrix-umrdpservice[1]_Service="citrix-umrdpservice"
+Check_gdma_citrix-umrdpservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service UmRdpService "
+Check_gdma_citrix-umrdpservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-umrdpservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Remote Desktop Services UserMode Port Redirector service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-umrdpservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-w3svc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-w3svc[1]_Enable="ON"
+Check_gdma_citrix-w3svc[1]_Service="citrix-w3svc"
+Check_gdma_citrix-w3svc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service w3svc "
+Check_gdma_citrix-w3svc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-w3svc]]></prop>
+  <prop name="description"><![CDATA[check presence of www service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-w3svc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-was]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-was[1]_Enable="ON"
+Check_gdma_citrix-was[1]_Service="citrix-was"
+Check_gdma_citrix-was[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service WAS "
+Check_gdma_citrix-was[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-was]]></prop>
+  <prop name="description"><![CDATA[check presence of Windows Process Activation service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-was]]></prop>
+ </service_name>
+</profile>

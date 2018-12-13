@@ -1,0 +1,29 @@
+<groundwork_performance_configuration>
+<service_profile name="windows_cpu_queue profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[windows_cpu_queue]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CPU Queue on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:metric:GAUGE:1800:U:U RRA:AVERAGE:0.99:1:8640 RRA:AVERAGE:0.99:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+ DEF:a="rrd_source":ds_source_0:AVERAGE 
+ CDEF:cdefa=a 
+ AREA:cdefa#F000FF:"CPU Execution Queue" 
+ GPRINT:cdefa:MIN:min=%.2lf 
+ GPRINT:cdefa:AVERAGE:avg=%.2lf 
+ GPRINT:cdefa:MAX:max=%.2lf 
+ -c BACK#FFFFFF 
+ -c CANVAS#FFFFFF 
+ -c GRID#C0C0C0 
+ -c MGRID#404040 
+ -c ARROW#FFFFFF 
+ -Y --height 120 -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

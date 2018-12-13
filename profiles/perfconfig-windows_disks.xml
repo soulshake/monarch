@@ -1,0 +1,23 @@
+<groundwork_performance_configuration>
+<service_profile name="windows_disks profile">
+<graph name="graph">
+<host>*</host>
+<service regx=""><![CDATA[windows_disks]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Disk Space on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr $LISTSTART$ DS:$LABEL#$:GAUGE:1800:U:U DS:$LABEL#$_wn:GAUGE:1800:U:U DS:$LABEL#$_cr:GAUGE:1800:U:U $LISTEND$  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ --template $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+$LISTSTART$ 
+DEF:$DEFLABEL#$:AVERAGE 
+CDEF:cdef$CDEFLABEL#$=$CDEFLABEL#$ 
+LINE2:$CDEFLABEL#$$COLORLABEL#$:$DSLABEL#$ 
+$LISTEND$  
+-c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120]]></graphcgi>
+<parseregx first=""><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

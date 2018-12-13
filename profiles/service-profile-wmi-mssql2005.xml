@@ -1,0 +1,321 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[wmi-mssql2005]]></prop>
+  <prop name="description"><![CDATA[Windows MSSQL2005 Server (via WMI)]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_batchrequestspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_checkpointpagespersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_deadlockspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_errorspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_lazywritespersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_locktimeoutspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_locktimeoutstimeout0persec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_lockwaitspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_logbytesflushedpersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_logflushespersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_logflushwaitspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_pagelifeexpectancy]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_pagelookupspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_pagereadspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_pagewritespersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_processesblocked]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_readaheadpagespersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_targetservermemory]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_totalservermemory]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_transactionspersec]]></prop>
+  <prop name="service"><![CDATA[wmi_mssql_userconnections]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_batchrequestspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerSQLStatistics" "*" "BatchRequestsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!
+]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_batchrequestspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_batchrequestspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_batchrequestspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_batchrequestspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_checkpointpagespersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "CheckpointpagesPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_checkpointpagespersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_checkpointpagespersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_checkpointpagespersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_checkpointpagespersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_deadlockspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerLocks" "Name=_Total" "NumberofDeadlocksPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_deadlockspersec!80!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_deadlockspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_deadlockspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_deadlockspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_errorspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerSQLErrors" "Name=_Total" "ErrorsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_errorspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_errorspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_errorspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_errorspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_lazywritespersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "LazywritesPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_lazywritespersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_lazywritespersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_lazywritespersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_lazywritespersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_locktimeoutspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerLocks" "Name=_Total" "LockTimeoutsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_locktimeoutspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_locktimeoutspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_locktimeoutspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_locktimeoutspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_locktimeoutstimeout0persec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerLocks" "Name=_Total" "LockTimeoutstimeout0Persec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_locktimeoutstimeout0persec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_locktimeoutstimeout0persec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_locktimeoutstimeout0persec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_locktimeoutstimeout0persec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_lockwaitspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerLocks" "Name=_Total" "LockWaitsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_lockwaitspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_lockwaitspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_lockwaitspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_lockwaitspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_logbytesflushedpersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerDatabases" "Name=_Total" "LogBytesFlushedPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_logbytesflushedpersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_logbytesflushedpersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_logbytesflushedpersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_logbytesflushedpersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_logflushespersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerDatabases" "Name=_Total" "LogFlushesPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_logflushespersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_logflushespersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_logflushespersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_logflushespersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_logflushwaitspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerDatabases" "Name=_Total" "LogFlushWaitsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_logflushwaitspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_logflushwaitspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_logflushwaitspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_logflushwaitspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_pagelifeexpectancy]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_large_rawcount -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "Pagelifeexpectancy" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_pagelifeexpectancy!600000!700000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_pagelifeexpectancy]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_pagelifeexpectancy]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_pagelifeexpectancy]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_pagelookupspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "PagelookupsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_pagelookupspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_pagelookupspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_pagelookupspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_pagelookupspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_pagereadspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "PagereadsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_pagereadspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_pagereadspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_pagereadspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_pagereadspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_pagewritespersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "PagewritesPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_pagewritespersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_pagewritespersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_pagewritespersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_pagewritespersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_processesblocked]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_large_rawcount -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerGeneralStatistics" "*" "Processesblocked" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_processesblocked!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_processesblocked]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_processesblocked]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_processesblocked]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_readaheadpagespersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager" "*" "ReadaheadpagesPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_readaheadpagespersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_readaheadpagespersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_readaheadpagespersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_readaheadpagespersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_targetservermemory]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_large_rawcount -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerMemoryManager" "*" "TargetServerMemoryKB" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_targetservermemory!300000!400000]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_targetservermemory]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_targetservermemory]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_targetservermemory]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_totalservermemory]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_large_rawcount -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerMemoryManager" "*" "TotalServerMemoryKB" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_totalservermemory!10000!17000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_totalservermemory]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_totalservermemory]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_totalservermemory]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_transactionspersec]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_bulk_count -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerDatabases" "Name=_Total" "TransactionsPersec" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_transactionspersec!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_transactionspersec]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_transactionspersec]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_transactionspersec]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mssql_userconnections]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_counter_large_rawcount -a "$HOSTADDRESS$" "Win32_PerfRawData_MSSQLSERVER_SQLServerGeneralStatistics" "*" "UserConnections" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_wmi_mssql_userconnections!80!90]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[wmi_mssql_userconnections]]></prop>
+  <prop name="description"><![CDATA[gwsn-wmi_mssql_userconnections]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mssql_userconnections]]></prop>
+ </service_name>
+</profile>

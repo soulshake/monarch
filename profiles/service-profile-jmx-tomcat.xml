@@ -1,0 +1,127 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[jmx-tomcat]]></prop>
+  <prop name="description"><![CDATA[A collection of Tomcat JVM checks]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_CollectionCount]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_CollectionTime]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_bytesSent]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_currentThreadCount]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_currentThreadsBusy]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_errorCount]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_maxThreads]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_maxTime]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_processingTime]]></prop>
+  <prop name="service"><![CDATA[jmx_tomcat_requestCount]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_jvm]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_jvm.pl -H $HOSTADDRESS$ -m "$ARG1$" -p $USER28$ -u $USER29$ -P $USER30$ -a "$ARG2$"]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[# '24x7' timeperiod definition
+]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[]]></prop>
+  <prop name="template"><![CDATA[]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm!java.lang:name=Copy,type=GarbageCollector!CollectionCount]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_CollectionCount]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm!java.lang:name=Copy,type=GarbageCollector!CollectionTime]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_CollectionTime]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm!Catalina:type=GlobalRequestProcessor,name=http-8080!bytesSent]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_bytesSent]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_jvm_th]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_jvm.pl -H $HOSTADDRESS$ -m "$ARG1$" -p $USER28$ -u $USER29$ -P $USER30$ -a "$ARG2$" -w $ARG3$ -c $ARG4$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm_th!Catalina:name=http-8080,type=ThreadPool!currentThreadCount!50!100]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_currentThreadCount]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm_th]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm_th!Catalina:name=http-8080,type=ThreadPool!currentThreadsBusy!50!100]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_currentThreadsBusy]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm_th]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm_th!Catalina:type=GlobalRequestProcessor,name=http-8080!errorCount!10!100]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_errorCount]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm_th]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm_th!Catalina:name=http-8080,type=ThreadPool!maxThreads!75!150]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_maxThreads]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm_th]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm_th!Catalina:type=GlobalRequestProcessor,name=http-8080!maxTime!1000!10000]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_maxTime]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm_th]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm!Catalina:type=GlobalRequestProcessor,name=http-8080!processingTime]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_processingTime]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_jvm!Catalina:type=GlobalRequestProcessor,name=http-8080!requestCount]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[jmx_tomcat_requestCount]]></prop>
+  <prop name="check_command"><![CDATA[check_jvm]]></prop>
+ </service_name>
+</profile>

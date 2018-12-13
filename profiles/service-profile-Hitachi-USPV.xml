@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[Hitachi-USPV]]></prop>
+  <prop name="description"><![CDATA[Standard selection of services for an Hitachi USPV]]></prop>
+  <prop name="service"><![CDATA[HTnM_AG]]></prop>
+  <prop name="service"><![CDATA[HTnM_CLPR]]></prop>
+  <prop name="service"><![CDATA[HTnM_PROC]]></prop>
+  <prop name="service"><![CDATA[HTnM_PortIOPS]]></prop>
+  <prop name="service"><![CDATA[HTnM_PortXfer]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[1800]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_win_HTnM_AG]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_HTnM_AG[1]_Enable="ON"
+Check_HTnM_AG[1]_Service="HTnM_AG"
+Check_HTnM_AG[1]_Command="$Plugin_Directory$\check_HTnM.exe -s $Monitor_Host$ -t AG -w 50 -c 94"
+Check_HTnM_AG[1]_Check_Interval="1"
+Check_HTnM_AG[1]_Timeout="30"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[HTnM_AG]]></prop>
+  <prop name="apply_service_externals"><![CDATA[checked]]></prop>
+  <prop name="service_external"><![CDATA[gdma_win_HTnM_AG]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_win_HTnM_CLPR]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_HTnM_CLPR[1]_Enable="ON"
+Check_HTnM_CLPR[1]_Service="HTnM_CLPR"
+Check_HTnM_CLPR[1]_Command="$Plugin_Directory$\check_HTnM.exe -s $Monitor_Host$ -t CLPR -w 35 -c 45"
+Check_HTnM_CLPR[1]_Check_Interval="1"
+Check_HTnM_CLPR[1]_Timeout="30"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[HTnM_CLPR]]></prop>
+  <prop name="apply_service_externals"><![CDATA[checked]]></prop>
+  <prop name="service_external"><![CDATA[gdma_win_HTnM_CLPR]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_win_HTnM_PROC]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_HTnM_PROC[1]_Enable="ON"
+Check_HTnM_PROC[1]_Service="HTnM_PROC"
+Check_HTnM_PROC[1]_Command="$Plugin_Directory$\check_HTnM.exe -s $Monitor_Host$ -t Proc -w 85 -c 93"
+Check_HTnM_PROC[1]_Check_Interval="1"
+Check_HTnM_PROC[1]_Timeout="30"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="name"><![CDATA[HTnM_PROC]]></prop>
+  <prop name="apply_service_externals"><![CDATA[checked]]></prop>
+  <prop name="service_external"><![CDATA[gdma_win_HTnM_PROC]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_win_HTnM_PortIOPS]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_HTnM_PortIOPS[1]_Enable="ON"
+Check_HTnM_PortIOPS[1]_Service="HTnM_PortIOPS"
+Check_HTnM_PortIOPS[1]_Command="$Plugin_Directory$\check_HTnM.exe -s $Monitor_Host$ -t PortIOPS -w 3000 -c 5000"
+Check_HTnM_PortIOPS[1]_Check_Interval="1"
+Check_HTnM_PortIOPS[1]_Timeout="30"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="notifications_enabled"><![CDATA[0]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[HTnM_PortIOPS]]></prop>
+  <prop name="apply_service_externals"><![CDATA[checked]]></prop>
+  <prop name="service_external"><![CDATA[gdma_win_HTnM_PortIOPS]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_win_HTnM_PortXfer]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_HTnM_PortXfer[1]_Enable="ON"
+Check_HTnM_PortXfer[1]_Service="HTnM_PortXfer"
+Check_HTnM_PortXfer[1]_Command="$Plugin_Directory$\check_HTnM.exe -s $Monitor_Host$ -t PortXfer -w 400 -c 500"
+Check_HTnM_PortXfer[1]_Check_Interval="1"
+Check_HTnM_PortXfer[1]_Timeout="30"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[HTnM_PortXfer]]></prop>
+  <prop name="apply_service_externals"><![CDATA[checked]]></prop>
+  <prop name="service_external"><![CDATA[gdma_win_HTnM_PortXfer]]></prop>
+ </service_name>
+</profile>

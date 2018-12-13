@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<profile>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <command>
+  <prop name="name"><![CDATA[check-host-alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <host_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[-zero-]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[d,r,u]]></prop>
+  <prop name="name"><![CDATA[gdma-windows-host]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check-host-alive]]></prop>
+  <prop name="comment"><![CDATA[# host_templates gdma-windows-host]]></prop>
+  <prop name="obsess_over_host"><![CDATA[-zero-]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+ </host_template>
+ <service_profile>
+  <prop name="name"><![CDATA[citrix-provisioning-services]]></prop>
+  <prop name="description"><![CDATA[service profile for Citrix Provisioning Server]]></prop>
+  <prop name="service"><![CDATA[citrix-bnpxe]]></prop>
+  <prop name="service"><![CDATA[citrix-bntftp]]></prop>
+  <prop name="service"><![CDATA[citrix-pvstsb]]></prop>
+  <prop name="service"><![CDATA[citrix-soapserver]]></prop>
+  <prop name="service"><![CDATA[citrix-streamservice]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[900]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-bnpxe]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-bnpxe[1]_Enable="ON"
+Check_gdma_citrix-bnpxe[1]_Service="citrix-bnpxe"
+Check_gdma_citrix-bnpxe[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service BNPXE "
+Check_gdma_citrix-bnpxe[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-bnpxe]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix PVS PXE Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-bnpxe]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-bntftp]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-bntftp[1]_Enable="ON"
+Check_gdma_citrix-bntftp[1]_Service="citrix-bntftp"
+Check_gdma_citrix-bntftp[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service BNTFTP "
+Check_gdma_citrix-bntftp[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-bntftp]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix PVS TFTP Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-bntftp]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-pvstsb]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-pvstsb[1]_Enable="ON"
+Check_gdma_citrix-pvstsb[1]_Service="citrix-pvstsb"
+Check_gdma_citrix-pvstsb[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service PVSTSB "
+Check_gdma_citrix-pvstsb[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-pvstsb]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix PVS Two-Stage Boot Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-pvstsb]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-soapserver]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-soapserver[1]_Enable="ON"
+Check_gdma_citrix-soapserver[1]_Service="citrix-soapserver"
+Check_gdma_citrix-soapserver[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service soapserver "
+Check_gdma_citrix-soapserver[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-soapserver]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix PVS Soap Server service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-soapserver]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-streamservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-streamservice[1]_Enable="ON"
+Check_gdma_citrix-streamservice[1]_Service="citrix-streamservice"
+Check_gdma_citrix-streamservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service StreamService "
+Check_gdma_citrix-soapserver[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-streamservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix PVS Stream Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-streamservice]]></prop>
+ </service_name>
+ <service_profile>
+  <prop name="name"><![CDATA[citrix-xendesk-services]]></prop>
+  <prop name="description"><![CDATA[service profile for Citrix XenDesk Server]]></prop>
+  <prop name="service"><![CDATA[citrix-cdfsvc]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixadidentityservice]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixbrokerservice]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixconfigurationservice]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixhostservice]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixmachinecreationservice]]></prop>
+  <prop name="service"><![CDATA[citrix-citrixmonitor]]></prop>
+ </service_profile>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-cdfsvc]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-cdfsvc[1]_Enable="ON"
+Check_gdma_citrix-cdfsvc[1]_Service="citrix-cdfsvc"
+Check_gdma_citrix-cdfsvc[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CdfSvc "
+Check_gdma_citrix-cdfsvc[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-cdfsvc]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Diagnostic Facility COM Server service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-cdfsvc]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixadidentityservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixadidentityservice[1]_Enable="ON"
+Check_gdma_citrix-citrixadidentityservice[1]_Service="citrix-citrixadidentityservice"
+Check_gdma_citrix-citrixadidentityservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixAdIdentityService "
+Check_gdma_citrix-citrixadidentityservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixadidentityservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix AD Identity Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixadidentityservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixbrokerservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixbrokerservice[1]_Enable="ON"
+Check_gdma_citrix-citrixbrokerservice[1]_Service="citrix-citrixbrokerservice"
+Check_gdma_citrix-citrixbrokerservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixBrokerService "
+Check_gdma_citrix-citrixbrokerservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixbrokerservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Broker Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixbrokerservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixconfigurationservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixconfigurationservice[1]_Enable="ON"
+Check_gdma_citrix-citrixconfigurationservice[1]_Service="citrix-citrixconfigurationservice"
+Check_gdma_citrix-citrixconfigurationservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixConfigurationService "
+Check_gdma_citrix-citrixconfigurationservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixconfigurationservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Configuration Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixconfigurationservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixhostservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixhostservice[1]_Enable="ON"
+Check_gdma_citrix-citrixhostservice[1]_Service="citrix-citrixhostservice"
+Check_gdma_citrix-citrixhostservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixHostService "
+Check_gdma_citrix-citrixhostservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixhostservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Host Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixhostservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixmachinecreationservice]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixmachinecreationservice[1]_Enable="ON"
+Check_gdma_citrix-citrixmachinecreationservice[1]_Service="citrix-citrixmachinecreationservice"
+Check_gdma_citrix-citrixmachinecreationservice[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixMachineCreationService "
+Check_gdma_citrix-citrixmachinecreationservice[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixmachinecreationservice]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Machine Creation Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixmachinecreationservice]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[citrix-citrixmonitor]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_citrix-citrixmonitor[1]_Enable="ON"
+Check_gdma_citrix-citrixmonitor[1]_Service="citrix-citrixmonitor"
+Check_gdma_citrix-citrixmonitor[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\ps_service.ps1' -service CitrixMonitor "
+Check_gdma_citrix-citrixmonitor[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[citrix-citrixmonitor]]></prop>
+  <prop name="description"><![CDATA[check presence of Citrix Monitor Service service]]></prop>
+  <prop name="service_external"><![CDATA[citrix-citrixmonitor]]></prop>
+ </service_name>
+ <service_profile>
+  <prop name="name"><![CDATA[citrix-system]]></prop>
+  <prop name="description"><![CDATA[Base OS service profile for Citrix Servers]]></prop>
+  <prop name="service"><![CDATA[gdma_poller]]></prop>
+  <prop name="service"><![CDATA[gdma_spooler]]></prop>
+  <prop name="service"><![CDATA[win_ps_diskfree]]></prop>
+  <prop name="service"><![CDATA[win_ps_diskfree_c]]></prop>
+  <prop name="service"><![CDATA[win_ps_mem_avail]]></prop>
+  <prop name="service"><![CDATA[win_ps_mem_leak]]></prop>
+  <prop name="service"><![CDATA[win_ps_mem_rate]]></prop>
+  <prop name="service"><![CDATA[win_ps_mem_used]]></prop>
+  <prop name="service"><![CDATA[win_ps_net_bw]]></prop>
+  <prop name="service"><![CDATA[win_ps_proc_que]]></prop>
+  <prop name="service"><![CDATA[win_ps_proc_time]]></prop>
+ </service_profile>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="name"><![CDATA[gdma_poller]]></prop>
+  <prop name="description"><![CDATA[GDMA poller process status]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="name"><![CDATA[gdma_spooler]]></prop>
+  <prop name="description"><![CDATA[GDMA spooler process status]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_diskfree]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_diskfree[1]_Enable="ON"
+Check_gdma_win_ps_diskfree[1]_Service="win_ps_diskfree"
+Check_gdma_win_ps_diskfree[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\diskfree.ps1' -path c: "
+Check_gdma_win_ps_diskfree[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_diskfree]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_diskfree]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_diskfree]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_diskfree_c]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_diskfree_c[1]_Enable="ON"
+Check_gdma_win_ps_diskfree_c[1]_Service="win_ps_diskfree_c"
+Check_gdma_win_ps_diskfree_c[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\diskfree.ps1' -path c: "
+Check_gdma_win_ps_diskfree_c[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_diskfree_c]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_diskfree_c]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_mem_avail]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_mem_avail[1]_Enable="ON"
+Check_gdma_win_ps_mem_avail[1]_Service="win_ps_mem_avail"
+Check_gdma_win_ps_mem_avail[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\mem_avail.ps1' -warning 200 -critical 100 "
+Check_gdma_win_ps_mem_avail[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_mem_avail]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_mem_avail]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_mem_avail]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_mem_leak]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_mem_leak[1]_Enable="ON"
+Check_gdma_win_ps_mem_leak[1]_Service="win_ps_mem_leak"
+Check_gdma_win_ps_mem_leak[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\mem_paging.ps1' -warning 5 -critical 5 -waittime 2 "
+Check_gdma_win_ps_mem_leak[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_mem_leak]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_mem_leak]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_mem_leak]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_mem_rate]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_mem_rate[1]_Enable="ON"
+Check_gdma_win_ps_mem_rate[1]_Service="win_ps_mem_rate"
+Check_gdma_win_ps_mem_rate[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\mem_pages_sec.ps1' -warning 750 -critical 1000 -waittime 2 "
+Check_gdma_win_ps_mem_rate[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_mem_rate]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_mem_rate]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_mem_rate]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_mem_used]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_mem_used[1]_Enable="ON"
+Check_gdma_win_ps_mem_used[1]_Service="win_ps_mem_used"
+Check_gdma_win_ps_mem_used[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\mem_page_file.ps1' -warning 80 -critical 90 -waittime 2 "
+Check_gdma_win_ps_mem_used[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_mem_used]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_mem_use]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_mem_used]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_net_bw]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_net_bw[1]_Enable="ON"
+Check_gdma_win_ps_net_bw[1]_Service="win_ps_net_bw"
+Check_gdma_win_ps_net_bw[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\net_bw.ps1' -warning 7,1 -critical 10,10 -instance * -waittime 2 "
+Check_gdma_win_ps_net_bw[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_net_bw]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_net_bw]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_net_bw]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_proc_que]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_proc_que[1]_Enable="ON"
+Check_gdma_win_ps_proc_que[1]_Service="win_ps_proc_que"
+Check_gdma_win_ps_proc_que[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\process_queue.ps1' -warning 5 -critical 10 -waittime 2 "
+Check_gdma_win_ps_proc_que[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_proc_que]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_proc_que]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_proc_que]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_ps_proc_time]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_win_ps_proc_time[1]_Enable="ON"
+Check_gdma_win_ps_proc_time[1]_Service="win_ps_proc_time"
+Check_gdma_win_ps_proc_time[1]_Command="powershell.exe -noprofile -file '$Plugin_Directory$\v3\processor_time.ps1' -warning 50 -critical 75 -waittime 2 "
+Check_gdma_win_ps_proc_time[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_ps_proc_time]]></prop>
+  <prop name="description"><![CDATA[desc-win_ps_proc_time]]></prop>
+  <prop name="service_external"><![CDATA[win_ps_proc_time]]></prop>
+ </service_name>
+ <service_profile>
+  <prop name="name"><![CDATA[gdma-win-disk]]></prop>
+  <prop name="description"><![CDATA[Windows Disk Performance Metrics]]></prop>
+  <prop name="service"><![CDATA[win_disk_queue_length]]></prop>
+  <prop name="service"><![CDATA[win_disk_read_time]]></prop>
+  <prop name="service"><![CDATA[win_disk_time]]></prop>
+  <prop name="service"><![CDATA[win_disk_transfer_time]]></prop>
+  <prop name="service"><![CDATA[win_disk_write_time]]></prop>
+ </service_profile>
+ <service_external>
+  <prop name="name"><![CDATA[win_disk_queue_length]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_win_disk_queue_length[1]_Enable="ON"
+Check_win_disk_queue_length[1]_Service="win_disk_queue_length"
+Check_win_disk_queue_length[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop CurrentDiskQueueLength -w 1 -c 2"
+Check_win_disk_queue_length[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_disk_queue_length]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[win_disk_queue_length]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_disk_read_time]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_win_disk_read_time[1]_Enable="ON"
+Check_win_disk_read_time[1]_Service="win_disk_read_time"
+Check_win_disk_read_time[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop AvgDiskSecPerRead -w 15 -c 20"
+Check_win_disk_read_time[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_disk_read_time]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[win_disk_read_time]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_disk_time]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_win_disk_time[1]_Enable="ON"
+Check_win_disk_time[1]_Service="win_disk_time"
+Check_win_disk_time[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop PercentDiskTime -w 70 -c 90"
+Check_win_disk_time[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_disk_time]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[win_disk_time]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_disk_transfer_time]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_win_disk_transfer_time[1]_Enable="ON"
+Check_win_disk_transfer_time[1]_Service="win_disk_transfer_time"
+Check_win_disk_transfer_time[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop AvgDiskSecPerTransfer -w 15 -c 20"
+Check_win_disk_transfer_time[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_disk_transfer_time]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[win_disk_transfer_time]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[win_disk_write_time]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_win_disk_write_time[1]_Enable="ON"
+Check_win_disk_write_time[1]_Service="win_disk_write_time"
+Check_win_disk_write_time[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop AvgDiskSecPerWrite -w 15 -c 20"
+Check_win_disk_write_time[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[win_disk_write_time]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[win_disk_write_time]]></prop>
+ </service_name>
+ <host_external>
+  <prop name="name"><![CDATA[gdma-windows]]></prop>
+  <prop name="type"><![CDATA[host]]></prop>
+  <prop name="data"><![CDATA[### Start "gdma-windows" host externals ###
+
+# How often to attempt to pull the configuration.
+# Specified as how many Poller_Proc_Interval periods between attempts.
+#ConfigFile_Pull_Cycle = "1"
+
+# URL timeout in seconds when trying to fetch the configuration via HTTP/S.
+#ConfigPull_Timeout = "10"
+
+# Enable/Disable autoconfiguration.
+# This needs to be explicitly set "off" to override the gdma_auto.conf contents.
+# Otherwise, the agent will never leave autoconfiguration mode.
+Enable_Auto = "off"
+
+# Enable target logging.
+# Leave this off except when debugging.
+Enable_Local_Logging = "off"
+
+# Directory path with respect to the Apache document root,
+# which contains the host config file on the server.
+#GDMAConfigDir ="gdma"
+
+# Hostname under which to submit autoconfiguration results.
+#GDMA_Auto_Host = "gdma-autohost"
+
+# Servicename under which to submit autoconfiguration results.
+#GDMA_Auto_Service = "gdma_auto"
+
+# Log directory location on GDMA client.
+# 32-bit Windows:
+#Logdir = "C:\Program Files\groundwork\gdma\log\"
+# 64-bit Windows:
+#Logdir = "C:\Program Files (x86)\groundwork\gdma\log\"
+
+# Path to the local plugins.
+# 32-bit Windows:
+#Poller_Plugin_Directory = "C:\Program Files\groundwork\gdma\libexec"
+# 64-bit Windows:
+#Poller_Plugin_Directory = "C:\Program Files (x86)\groundwork\gdma\libexec"
+
+# Default timeout for plugin execution, specified in seconds.
+# Can be overridden by Check_{service}_Timeout for a given service.
+#Poller_Plugin_Timeout = "20"
+
+# Time in seconds for the polling interval.
+# Look at service gdma_poller run times if this is set to less than the time it takes
+# to run all checks for the host.  Then checks will be killed by GDMA.
+#Poller_Proc_Interval = "600"
+
+# Timer to revert to autoconfiguration mode if configuration cannot be pulled.
+# Defaults to 1 day.
+#Poller_Pull_Failure_Interval = "86400"
+
+# Service name under which to submit poller notifications.
+#Poller_Service = "gdma_poller"
+
+# Poller_Status is left defaulted (typically set on in gdma_auto.conf, to
+# enable heartbeat messages about polling status).  This should be on if your
+# setup includes the Poller_Service service (named above) for this host.
+#Poller_Status = "On"
+
+# Number of results per batch for send_nsca.
+#Spooler_Batch_Size = "20"
+
+# Number of times to retry sending spooled results.
+# Specified as a multiple of the Spooler_Proc_Interval time.
+#Spooler_Max_Retries = "10"
+
+# The NSCA port.
+#Spooler_NSCA_Port = "5667"
+
+# Send NSCA Executable location.
+# 32-bit Windows:
+#Spooler_NSCA_Program = "C:\Program Files\groundwork\gdma\bin\send_nsca.exe"
+# 64-bit Windows:
+#Spooler_NSCA_Program = "C:\Program Files (x86)\groundwork\gdma\bin\send_nsca.exe"
+
+# Timeout in seconds for NSCA port check.
+#Spooler_NSCA_Timeout = "5"
+
+# Execution interval for spool processor, in seconds.
+# Setting this too low will increase processing overhead on the GDMA client.
+#Spooler_Proc_Interval = "30"
+
+# Spooled result retention time in seconds.
+# Setting this to something greater than the bronx listener_max_packet_age
+# will result in lost check results.
+#Spooler_Retention_Time = "900"
+
+# Service name under which to submit spooler notifications.
+#Spooler_Service = "gdma_spooler"
+
+# Spooler_Status is left at "updates", which does not send heartbeats
+# but does send spooled message summaries.
+Spooler_Status = "Updates"
+
+# Target_Server is the host (or hosts) to receive GDMA results.
+# This is also the location where configurations are pulled from.
+# Multiple entries may be specified, separated by commas.
+#Target_Server = "http://gdma-autohost"
+
+# Secondary target location.  Only used in N+1 HA configurations.
+#Target_Server_Secondary = "https://gdma-autohost"
+
+### End "gdma-windows" host externals ###]]></prop>
+ </host_external>
+ <host_profile>
+  <prop name="host_template"><![CDATA[gdma-windows-host]]></prop>
+  <prop name="host_external"><![CDATA[gdma-windows]]></prop>
+  <prop name="name"><![CDATA[host-profile-citrix-xendesk]]></prop>
+  <prop name="description"><![CDATA[GDMA based monitoring profile for all in one Citrix XenDesk]]></prop>
+  <prop name="service_profile"><![CDATA[citrix-provisioning-services]]></prop>
+  <prop name="service_profile"><![CDATA[citrix-xendesk-services]]></prop>
+  <prop name="service_profile"><![CDATA[citrix-system]]></prop>
+  <prop name="service_profile"><![CDATA[gdma-win-disk]]></prop>
+ </host_profile>
+</profile>

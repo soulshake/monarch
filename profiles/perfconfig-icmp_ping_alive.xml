@@ -1,0 +1,17 @@
+<groundwork_performance_configuration>
+<service_profile name="_alive profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[_alive]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Response Time</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$  2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['']]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

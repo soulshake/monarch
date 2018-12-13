@@ -1,0 +1,4 @@
+Windows/NRPE-related profiles
+
+These profiles relate to monitoring Windows machines
+via the Nagios Remote Plugin Executor (NRPE).

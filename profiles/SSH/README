@@ -1,0 +1,5 @@
+SSH-related profiles
+
+These profiles relate to monitoring various entities or capabilities
+via SSH (that is, by remote login to the target machine using the
+Secure Shell).

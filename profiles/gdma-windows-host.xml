@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!--
+Copyright 2012 GroundWork, Inc.  All rights reserved.
+Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <command>
+  <prop name="name"><![CDATA[check-host-alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <host_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[-zero-]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="notification_options"><![CDATA[d,u,r]]></prop>
+  <prop name="name"><![CDATA[gdma-windows-host]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check-host-alive]]></prop>
+  <prop name="comment"><![CDATA[# host_templates gdma-windows-host]]></prop>
+  <prop name="obsess_over_host"><![CDATA[-zero-]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+ </host_template>
+ <service_profile>
+  <prop name="name"><![CDATA[gdma-21-windows]]></prop>
+  <prop name="description"><![CDATA[GDMA Windows Server (via WMI)]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_cpu]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_disk_C]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_disk_all]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_disktransfers]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_mem]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_memory_pages]]></prop>
+  <prop name="service"><![CDATA[gdma_21_wmi_uptime]]></prop>
+  <prop name="service"><![CDATA[gdma_poller]]></prop>
+  <prop name="service"><![CDATA[gdma_spooler]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[900]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_cpu]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_cpu[1]_Enable="ON"
+Check_gdma_wmi_cpu[1]_Service="gdma_21_wmi_cpu"
+Check_gdma_wmi_cpu[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_cpu_load_percentage.vbs' -h $Monitor_Host$ -inst _Total -t 80,90"
+Check_gdma_wmi_cpu[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_cpu]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_cpu]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_disk_C]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_disk_C[1]_Enable="ON"
+Check_gdma_wmi_disk_C[1]_Service="gdma_21_wmi_disk_C"
+Check_gdma_wmi_disk_C[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_disks_percentage_space_used.vbs' -h $Monitor_Host$ -inst C: -t 80,90"
+Check_gdma_wmi_disk_C[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_disk_C]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_disk_C]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_disk_C]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_disk_all]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_disk_all[1]_Enable="ON"
+Check_gdma_wmi_disk_all[1]_Service="gdma_21_wmi_disk_all"
+Check_gdma_wmi_disk_all[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_disks_percentage_space_used.vbs' -h $Monitor_Host$ -inst * -t 80,90"
+Check_gdma_wmi_disk_all[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_disk_all]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_disk_C]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_disk_all]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_disktransfers]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_disktransfers[1]_Enable="ON"
+Check_gdma_wmi_disktransfers[1]_Service="gdma_21_wmi_disktransfers"
+Check_gdma_wmi_disktransfers[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop DiskTransfersPersec -w 10 -c 20"
+Check_gdma_wmi_disktransfers[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_disktransfers]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_disktransfers]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_disktransfers]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_mem]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_mem[1]_Enable="ON"
+Check_gdma_wmi_mem[1]_Service="gdma_21_wmi_mem"
+Check_gdma_wmi_mem[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_memory_percentage_space_used.vbs' -h $Monitor_Host$ -inst _Total -t 80,90"
+Check_gdma_wmi_mem[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_mem]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_mem]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_mem]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_memory_pages]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_memory_pages[1]_Enable="ON"
+Check_gdma_wmi_memory_pages[1]_Service="gdma_21_wmi_memory_pages"
+Check_gdma_wmi_memory_pages[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfOS_Memory -inst * -prop PagesPerSec -w 10 -c 20"
+Check_gdma_wmi_memory_pages[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_memory_pages]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_memory_pages]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_memory_pages]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[gdma_21_wmi_uptime]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_gdma_wmi_uptime[1]_Enable="ON"
+Check_gdma_wmi_uptime[1]_Service="gdma_21_wmi_uptime"
+Check_gdma_wmi_uptime[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\get_system_uptime.vbs' -h 127.0.0.1 -w 1800 -c 900"
+Check_gdma_wmi_uptime[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[gdma_21_wmi_uptime]]></prop>
+  <prop name="description"><![CDATA[desc-gdma_wmi_cpu]]></prop>
+  <prop name="service_external"><![CDATA[gdma_21_wmi_uptime]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="name"><![CDATA[gdma_poller]]></prop>
+  <prop name="description"><![CDATA[GDMA poller process status]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="name"><![CDATA[gdma_spooler]]></prop>
+  <prop name="description"><![CDATA[GDMA spooler process status]]></prop>
+ </service_name>
+ <host_external>
+  <prop name="name"><![CDATA[gdma-windows]]></prop>
+  <prop name="type"><![CDATA[host]]></prop>
+  <prop name="data"><![CDATA[### Start "gdma-windows" host externals ###
+
+# How often to attempt to pull the configuration.
+# Specified as how many Poller_Proc_Interval periods between attempts.
+#ConfigFile_Pull_Cycle = "1"
+
+# URL timeout in seconds when trying to fetch the configuration via HTTP/S.
+#ConfigPull_Timeout = "10"
+
+# Enable/Disable autoconfiguration.
+# This needs to be explicitly set "off" to override the gdma_auto.conf contents.
+# Otherwise, the agent will never leave autoconfiguration mode.
+Enable_Auto = "off"
+
+# Enable target logging.
+# Leave this off except when debugging.
+Enable_Local_Logging = "off"
+
+# Directory path with respect to the Apache document root,
+# which contains the host config file on the server.
+#GDMAConfigDir ="gdma"
+
+# Hostname under which to submit autoconfiguration results.
+#GDMA_Auto_Host = "gdma-autohost"
+
+# Servicename under which to submit autoconfiguration results.
+#GDMA_Auto_Service = "gdma_auto"
+
+# Log directory location on GDMA client.
+# 32-bit Windows:
+#Logdir = "C:\Program Files\groundwork\gdma\log\"
+# 64-bit Windows:
+#Logdir = "C:\Program Files (x86)\groundwork\gdma\log\"
+
+# Path to the local plugins.
+# 32-bit Windows:
+#Poller_Plugin_Directory = "C:\Program Files\groundwork\gdma\libexec"
+# 64-bit Windows:
+#Poller_Plugin_Directory = "C:\Program Files (x86)\groundwork\gdma\libexec"
+
+# Default timeout for plugin execution, specified in seconds.
+# Can be overridden by Check_{service}_Timeout for a given service.
+#Poller_Plugin_Timeout = "20"
+
+# Time in seconds for the polling interval.
+# Look at service gdma_poller run times if this is set to less than the time it takes
+# to run all checks for the host.  Then checks will be killed by GDMA.
+#Poller_Proc_Interval = "600"
+
+# Timer to revert to autoconfiguration mode if configuration cannot be pulled.
+# Defaults to 1 day.
+#Poller_Pull_Failure_Interval = "86400"
+
+# Service name under which to submit poller notifications.
+#Poller_Service = "gdma_poller"
+
+# Poller_Status is left defaulted (typically set on in gdma_auto.conf, to
+# enable heartbeat messages about polling status).  This should be on if your
+# setup includes the Poller_Service service (named above) for this host.
+#Poller_Status = "On"
+
+# Number of results per batch for send_nsca.
+#Spooler_Batch_Size = "20"
+
+# Number of times to retry sending spooled results.
+# Specified as a multiple of the Spooler_Proc_Interval time.
+#Spooler_Max_Retries = "10"
+
+# The NSCA port.
+#Spooler_NSCA_Port = "5667"
+
+# Send NSCA Executable location.
+# 32-bit Windows:
+#Spooler_NSCA_Program = "C:\Program Files\groundwork\gdma\bin\send_nsca.exe"
+# 64-bit Windows:
+#Spooler_NSCA_Program = "C:\Program Files (x86)\groundwork\gdma\bin\send_nsca.exe"
+
+# Timeout in seconds for NSCA port check.
+#Spooler_NSCA_Timeout = "5"
+
+# Execution interval for spool processor, in seconds.
+# Setting this too low will increase processing overhead on the GDMA client.
+#Spooler_Proc_Interval = "30"
+
+# Spooled result retention time in seconds.
+# Setting this to something greater than the bronx listener_max_packet_age
+# will result in lost check results.
+#Spooler_Retention_Time = "900"
+
+# Service name under which to submit spooler notifications.
+#Spooler_Service = "gdma_spooler"
+
+# Spooler_Status is left at "updates", which does not send heartbeats
+# but does send spooled message summaries.
+Spooler_Status = "Updates"
+
+# Target_Server is the host (or hosts) to receive GDMA results.
+# This is also the location where configurations are pulled from.
+# Multiple entries may be specified, separated by commas.
+#Target_Server = "http://gdma-autohost"
+
+# Secondary target location.  Only used in N+1 HA configurations.
+#Target_Server_Secondary = "https://gdma-autohost"
+
+### End "gdma-windows" host externals ###]]></prop>
+ </host_external>
+ <host_profile>
+  <prop name="host_template"><![CDATA[gdma-windows-host]]></prop>
+  <prop name="host_external"><![CDATA[gdma-windows]]></prop>
+  <prop name="name"><![CDATA[gdma-windows-host]]></prop>
+  <prop name="description"><![CDATA[GDMA-monitored Windows host]]></prop>
+  <prop name="service_profile"><![CDATA[gdma-21-windows]]></prop>
+ </host_profile>
+</profile>

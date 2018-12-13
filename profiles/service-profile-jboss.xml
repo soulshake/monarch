@@ -1,0 +1,341 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2014 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+<service_profile>
+<prop name="name"><![CDATA[jboss]]></prop>
+<prop name="description"><![CDATA[Collection of common JBoss 4.2 services]]></prop>
+<prop name="service"><![CDATA[jboss.jca.ManagedConnectionPool.DefaultDS.AvailableConnectionCount]]></prop>
+<prop name="service"><![CDATA[jboss.jca.ManagedConnectionPool.DefaultDS.InUseConnectionCount]]></prop>
+<prop name="service"><![CDATA[jboss.jca.ManagedConnectionPool.JmsXA.AvailableConnectionCount]]></prop>
+<prop name="service"><![CDATA[jboss.jca.ManagedConnectionPool.JmsXA.InUseConnectionCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.A.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.A.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.B.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.B.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.C.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.C.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.D.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.D.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.DLQ.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.DLQ.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.ex.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.ex.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.testQueue.ReceiversCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Queue.testQueue.ScheduledMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.securedTopic.AllMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.securedTopic.AllSubscriptionsCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.securedTopic.DurableMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.securedTopic.DurableSubscriptionsCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.AllMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.AllSubscriptionsCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.DurableMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.DurableSubscriptionsCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testTopic.AllMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testTopic.AllSubscriptionsCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testTopic.DurableMessageCount]]></prop>
+<prop name="service"><![CDATA[jboss.mq.destination.Topic.testTopic.DurableSubscriptionsCount]]></prop>
+<prop name="service"><![CDATA[jboss.web.Connector.maxThreads]]></prop>
+<prop name="service"><![CDATA[jboss.web.ProtocolHandler.maxThreads]]></prop>
+<prop name="service"><![CDATA[jboss.web.ThreadPool.ajp127.0.0.18009.currentThreadCount]]></prop>
+<prop name="service"><![CDATA[jboss.web.ThreadPool.ajp127.0.0.18009.maxThreads]]></prop>
+<prop name="service"><![CDATA[jboss.web.ThreadPool.http127.0.0.18080.currentThreadCount]]></prop>
+<prop name="service"><![CDATA[jboss.web.ThreadPool.http127.0.0.18080.maxThreads]]></prop>
+<command>
+<prop name="name"><![CDATA[check_alive]]></prop>
+<prop name="type"><![CDATA[check]]></prop>
+<prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+</command>
+<service_template>
+<prop name="name"><![CDATA[generic-service-volatile]]></prop>
+<prop name="template"><![CDATA[generic-service]]></prop>
+<prop name="is_volatile"><![CDATA[1]]></prop>
+</service_template>
+<time_period>
+<prop name="comment"><![CDATA[All day, every day.]]></prop>
+<prop name="name"><![CDATA[24x7]]></prop>
+<prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+<prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+<prop name="friday"><![CDATA[00:00-24:00]]></prop>
+<prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+<prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+<prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+<prop name="monday"><![CDATA[00:00-24:00]]></prop>
+<prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+</time_period>
+<service_template>
+<prop name="retry_check_interval"><![CDATA[1]]></prop>
+<prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+<prop name="event_handler_enabled"><![CDATA[1]]></prop>
+<prop name="notifications_enabled"><![CDATA[1]]></prop>
+<prop name="active_checks_enabled"><![CDATA[1]]></prop>
+<prop name="process_perf_data"><![CDATA[1]]></prop>
+<prop name="check_period"><![CDATA[24x7]]></prop>
+<prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+<prop name="notification_period"><![CDATA[24x7]]></prop>
+<prop name="max_check_attempts"><![CDATA[3]]></prop>
+<prop name="retain_status_information"><![CDATA[1]]></prop>
+<prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+<prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+<prop name="name"><![CDATA[generic-service]]></prop>
+<prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+<prop name="normal_check_interval"><![CDATA[10]]></prop>
+<prop name="obsess_over_service"><![CDATA[1]]></prop>
+<prop name="notification_interval"><![CDATA[60]]></prop>
+</service_template>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.jca.ManagedConnectionPool.DefaultDS.AvailableConnectionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.jca.ManagedConnectionPool.DefaultDS.InUseConnectionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.jca.ManagedConnectionPool.JmsXA.AvailableConnectionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.jca.ManagedConnectionPool.JmsXA.InUseConnectionCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.A.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.A.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.B.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.B.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.C.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.C.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.D.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.D.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.DLQ.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.DLQ.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.ex.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.ex.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.testQueue.ReceiversCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Queue.testQueue.ScheduledMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.securedTopic.AllMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.securedTopic.AllSubscriptionsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.securedTopic.DurableMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.securedTopic.DurableSubscriptionsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.AllMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.AllSubscriptionsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.DurableMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testDurableTopic.DurableSubscriptionsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testTopic.AllMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testTopic.AllSubscriptionsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testTopic.DurableMessageCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.mq.destination.Topic.testTopic.DurableSubscriptionsCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.web.Connector.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.web.ProtocolHandler.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.web.ThreadPool.ajp127.0.0.18009.currentThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.web.ThreadPool.ajp127.0.0.18009.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.web.ThreadPool.http127.0.0.18080.currentThreadCount]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+<service_name>
+<prop name="active_checks_enabled"><![CDATA[0]]></prop>
+<prop name="max_check_attempts"><![CDATA[1]]></prop>
+<prop name="template"><![CDATA[generic-service-volatile]]></prop>
+<prop name="name"><![CDATA[jboss.web.ThreadPool.http127.0.0.18080.maxThreads]]></prop>
+<prop name="check_command"><![CDATA[check_alive]]></prop>
+</service_name>
+</service_profile>
+</profile>

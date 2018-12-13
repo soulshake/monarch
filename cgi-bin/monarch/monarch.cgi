@@ -9136,7 +9136,7 @@ sub profile_importer() {
     my $overwrite   = $query->param('overwrite');
     my $form        = undef;
     my @messages    = ();
-    my $base_dir    = '/usr/local/groundwork/core/profiles';
+    my $base_dir    = '/usr/local/groundwork/monarch/profiles';
     my %links       = ();
     my @dirs        = ();
     my %description = ();
@@ -9296,7 +9296,7 @@ sub profile_importer() {
 	    my @errs = @$errs;
 	    if (@errs) {
 		push @errors, @errs;
-		if ( $errs[0] =~ m{cannot open "[^:]+:(/usr/local/groundwork/core/profiles/.+)" for writing \(Permission denied\)}
+		if ( $errs[0] =~ m{cannot open "[^:]+:(/usr/local/groundwork/monarch/profiles/.+)" for writing \(Permission denied\)}
 		  && -f "$1" && !-w "$1" ) {
 		    push @errors, 'Hint: you are not allowed to overwrite an existing read-only file during an upload.  To avoid such collisions, rename your file before uploading.';
 		}

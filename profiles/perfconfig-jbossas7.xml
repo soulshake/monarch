@@ -1,0 +1,130 @@
+<groundwork_performance_configuration>
+    <service_profile name="jboss.memory.heapmemoryusage.committed">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.memory.heapmemoryusage.committed]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>committed</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:committed:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.memory.heapmemoryusage.init">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.memory.heapmemoryusage.init]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>init</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:init:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.memory.heapmemoryusage.max">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.memory.heapmemoryusage.max]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>max</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:max:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.memory.heapmemoryusage.used">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.memory.heapmemoryusage.used]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>used</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:used:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.operatingsystem.processcpuload">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.operatingsystem.processcpuload]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>processcpuload</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:processcpuload:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.threading.peakthreadcount">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.threading.peakthreadcount]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>peakthreadcount</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:peakthreadcount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.threading.threadcount">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.threading.threadcount]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>threadcount</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:threadcount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+    <service_profile name="jboss.portal.ui.activesessions">
+        <graph name="graph">
+            <host>*</host>
+            <service regx="0"><![CDATA[jboss.portal.ui.activesessions]]></service>
+            <type>nagios</type>
+            <enable>1</enable>
+            <label>activesessions</label>
+            <rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+            <rrdcreatestring>
+                <![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:threadcount:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+            <rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+            <graphcgi><![CDATA['']]></graphcgi>
+            <parseregx first="0"><![CDATA[]]></parseregx>
+            <perfidstring></perfidstring>
+        </graph>
+    </service_profile>
+</groundwork_performance_configuration>

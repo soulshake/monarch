@@ -1,0 +1,39 @@
+<groundwork_performance_configuration>
+<service_profile name="windows_cpu profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[windows_cpu]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>CPU Utilization on Windows</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 300 --start n-1yr DS:AvgCPU:GAUGE:1800:U:U DS:AvgCPU_wn:GAUGE:1800:U:U DS:AvgCPU_cr:GAUGE:1800:U:U  RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$WARN1$:$CRIT1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[rrdtool graph - 
+ DEF:a="rrd_source":ds_source_0:AVERAGE 
+ DEF:w="rrd_source":ds_source_1:AVERAGE 
+ DEF:c="rrd_source":ds_source_2:AVERAGE 
+ CDEF:cdefa=a 
+ CDEF:cdefb=a,0.99,* 
+ AREA:cdefa#7D1B7E:"Percent CPU Utilization" 
+ GPRINT:cdefa:LAST:Current=%.2lf 
+ GPRINT:cdefa:MIN:min=%.2lf 
+ GPRINT:cdefa:AVERAGE:avg=%.2lf 
+ GPRINT:cdefa:MAX:max="%.2lf\l" 
+ AREA:cdefb#571B7E: 
+ CDEF:cdefw=w
+ CDEF:cdefc=c 
+ CDEF:cdefm=cdefc,1.01,* 
+ LINE2:cdefw#FFFF00:"Warning Threshold\:" 
+ GPRINT:cdefw:LAST:"%.2lf" 
+ LINE2:cdefc#FF0033:"Critical Threshold\:" 
+ GPRINT:cdefc:LAST:"%.2lf\l" 
+ COMMENT:"Service\: SERVICE"
+ CDEF:cdefws=a,cdefw,GT,a,0,IF AREA:cdefws#FFFF00 CDEF:cdefcs=a,cdefc,GT,a,0,IF AREA:cdefcs#FF0033
+ CDEF:cdefwt=a,cdefw,GT,cdefw,0,IF LINE:cdefwt#000000 CDEF:cdefct=a,cdefc,GT,cdefc,0,IF LINE:cdefct#000000
+ -c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120 --rigid -u 100 -l 0]]></graphcgi>
+<parseregx first=""><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

@@ -81,8 +81,8 @@ sub show_file {
 
     $absolute_path =
 	 abs_filepath( $relative_path, '/monarch/download/',  '/usr/local/groundwork/monarch/htdocs' )
-      || abs_filepath( $relative_path, '/monarch/workspace/', '/usr/local/groundwork/core' )
-      || abs_filepath( $relative_path, '/profiles/',          '/usr/local/groundwork/core' );
+      || abs_filepath( $relative_path, '/monarch/workspace/', '/usr/local/groundwork' )
+      || abs_filepath( $relative_path, '/profiles/',          '/usr/local/groundwork/monarch' );
 
     if ( !defined($absolute_path) || !-f $absolute_path || !-r $absolute_path ) {
 	print "Content-type: text/plain \n\n";

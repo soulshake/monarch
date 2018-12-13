@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2008 DSP Global Ltd (for GroundWork Open Source, Inc.)
+-->
+<groundwork_performance_configuration>
+<service_profile name="check_oracle_max_processes profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[check_oracle_max_processes]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Oracle Database Processes</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:Actual:GAUGE:1800:U:U DS:Max:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE2$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['rrdtool graph -
+DEF:a="rrd_source":ds_source_0:AVERAGE
+DEF:b="rrd_source":ds_source_1:AVERAGE
+CDEF:cdefa=a AREA:cdefa#0000FF:"Number of Processes"
+GPRINT:cdefa:MIN:min=%.2lf
+GPRINT:cdefa:AVERAGE:avg=%.2lf
+GPRINT:cdefa:MAX:max=%.2lf
+CDEF:cdefb=b LINE1:cdefb#33EEEE:"Max Processes Allowed"
+GPRINT:cdefb:LAST:"%.2lf\l"
+COMMENT:"Service\: SERVICE"
+-c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120 -l 0']]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="check_oracle_locks profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[check_oracle_locks]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Oracle Database Locks</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:Total:GAUGE:1800:U:U DS:Blocking:GAUGE:1800:U:U DS:Max:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$:$VALUE3$:$VALUE2$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA['rrdtool graph -
+DEF:t="rrd_source":ds_source_0:AVERAGE
+DEF:b="rrd_source":ds_source_1:AVERAGE
+DEF:m="rrd_source":ds_source_2:AVERAGE
+CDEF:cdeft=t
+CDEF:cdeft1=t,0.99,*
+AREA:cdeft#009977:"Total Locks"
+GPRINT:cdeft:LAST:Current=%.2lf
+GPRINT:cdeft:MIN:min=%.2lf
+GPRINT:cdeft:AVERAGE:avg=%.2lf
+GPRINT:cdeft:MAX:max="%.2lf\l"
+AREA:cdeft1#009955:
+CDEF:cdefb=b
+CDEF:cdefm=m
+CDEF:cdefm1=cdefm,1.01,*
+ LINE2:cdefb#CC0033:"Blocking Locks\:"
+ GPRINT:cdefb:LAST:"%.2lf"
+ LINE2:cdefm#0099DD:"Total Locks Allowed\:"
+ GPRINT:cdefm:LAST:"%.2lf\l"
+ COMMENT:"Service\: SERVICE"
+-c BACK#FFFFFF -c CANVAS#FFFFFF -c GRID#C0C0C0 -c MGRID#404040 -c ARROW#FFFFFF -Y --height 120']]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

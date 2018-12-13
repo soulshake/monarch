@@ -1,0 +1,97 @@
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="snmp_esx3_server_cpu profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[snmp_esx3_server_cpu]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ESX3 server cpu measures</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:$LABEL1$:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:2880 RRA:AVERAGE:0.5:5:4032 RRA:AVERAGE:0.5:15:5760 ]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$  $LASTCHECK$:$VALUE1$]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="snmp_esx3_server_mem profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[snmp_esx3_server_mem]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ESX3 server memory measures</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="snmp_esx3_server_net profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[snmp_esx3_server_net]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ESX3 server network IO measures</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480
+]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="snmp_esx3_vm_cpu profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[snmp_esx3_vm_cpu]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ESX3 vm cpu measures</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="snmp_esx3_vm_mem profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[snmp_esx3_vm_mem]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ESX3 vm memory measures</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="snmp_esx3_vm_net profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[snmp_esx3_vm_net]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>ESX3 vm network IO measures</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr $LISTSTART$DS:$LABEL#$:GAUGE:1800:U:U$LISTEND$ RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t $LABELLIST$ $LASTCHECK$:$VALUELIST$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

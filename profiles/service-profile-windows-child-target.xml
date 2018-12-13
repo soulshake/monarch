@@ -1,0 +1,192 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[windows-child-target]]></prop>
+  <prop name="description"><![CDATA[Windows host monitored by Windows Child Server]]></prop>
+  <prop name="service"><![CDATA[wchild_cpu]]></prop>
+  <prop name="service"><![CDATA[wchild_disk_C]]></prop>
+  <prop name="service"><![CDATA[wchild_disk_D]]></prop>
+  <prop name="service"><![CDATA[wchild_disk_all]]></prop>
+  <prop name="service"><![CDATA[wchild_disktransfers]]></prop>
+  <prop name="service"><![CDATA[wchild_mem]]></prop>
+  <prop name="service"><![CDATA[wchild_memory_pages]]></prop>
+  <prop name="service"><![CDATA[wchild_uptime]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_fresh!"Stale Status"]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[1800]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="name"><![CDATA[windows-child-service]]></prop>
+  <prop name="check_command"><![CDATA[check_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[15]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_cpu]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_cpu[1]_Enable="ON"
+Check_wchild_cpu[1]_Service="wchild_cpu"
+Check_wchild_cpu[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_cpu_load_percentage.vbs' -h $Monitor_Host$ -inst _Total -t 80,90"
+Check_wchild_cpu[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_cpu]]></prop>
+  <prop name="description"><![CDATA[wchild_cpu]]></prop>
+  <prop name="service_external"><![CDATA[wchild_cpu]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_disk_C]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_disk_C[1]_Enable="ON"
+Check_wchild_disk_C[1]_Service="wchild_disk_C"
+Check_wchild_disk_C[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_disks_percentage_space_used.vbs' -h $Monitor_Host$ -inst C: -t 80,90"
+Check_wchild_disk_C[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_fresh!"Stale Status"]]></prop>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_disk_C]]></prop>
+  <prop name="description"><![CDATA[wchild_disk_c]]></prop>
+  <prop name="check_command"><![CDATA[check_fresh]]></prop>
+  <prop name="service_external"><![CDATA[wchild_disk_C]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_disk_D]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_disk_D[1]_Enable="ON"
+Check_wchild_disk_D[1]_Service="wchild_disk_D"
+Check_wchild_disk_D[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_disks_percentage_space_used.vbs' -h $Monitor_Host$ -inst D: -t 80,90"
+Check_wchild_disk_D[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="name"><![CDATA[wchild_disk_D]]></prop>
+  <prop name="service_external"><![CDATA[wchild_disk_D]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_disk_all]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_disk_all[1]_Enable="ON"
+Check_wchild_disk_all[1]_Service="wchild_disk_all"
+Check_wchild_disk_all[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_disks_percentage_space_used.vbs' -h $Monitor_Host$ -inst * -t 80,90"
+Check_wchild_disk_all[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_disk_all]]></prop>
+  <prop name="description"><![CDATA[wchild_disk_all]]></prop>
+  <prop name="service_external"><![CDATA[wchild_disk_all]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_disktransfers]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_disktransfers[1]_Enable="ON"
+Check_wchild_disktransfers[1]_Service="wchild_disktransfers"
+Check_wchild_disktransfers[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfDisk_PhysicalDisk -inst Name=_Total -prop DiskTransfersPersec -w 10 -c 20"
+Check_wchild_disktransfers[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_disktransfers]]></prop>
+  <prop name="description"><![CDATA[gwsn-wchild_disk_transfers]]></prop>
+  <prop name="service_external"><![CDATA[wchild_disktransfers]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_mem]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_mem[1]_Enable="ON"
+Check_wchild_mem[1]_Service="wchild_mem"
+Check_wchild_mem[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_memory_percentage_space_used.vbs' -h $Monitor_Host$ -inst _Total -t 80,90"
+Check_wchild_mem[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_fresh!"Stale Status"]]></prop>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_mem]]></prop>
+  <prop name="description"><![CDATA[wchild_mem]]></prop>
+  <prop name="check_command"><![CDATA[check_fresh]]></prop>
+  <prop name="service_external"><![CDATA[wchild_mem]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_memory_pages]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_memory_pages[1]_Enable="ON"
+Check_wchild_memory_pages[1]_Service="wchild_memory_pages"
+Check_wchild_memory_pages[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_counter.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_PerfOS_Memory -inst * -prop PagesPerSec -w 10 -c 20"
+Check_wchild_memory_pages[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_fresh!"Stale Status"]]></prop>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_memory_pages]]></prop>
+  <prop name="description"><![CDATA[wchild_memory_pages]]></prop>
+  <prop name="check_command"><![CDATA[check_fresh]]></prop>
+  <prop name="service_external"><![CDATA[wchild_memory_pages]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[wchild_uptime]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_wchild_uptime[1]_Enable="ON"
+Check_wchild_uptime[1]_Service="wchild_uptime"
+Check_wchild_uptime[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\get_system_uptime.vbs' -h $Monitor_Host$ -w 1800 -c 900"
+Check_wchild_uptime[1]_Check_Interval="1"]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[windows-child-service]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[wchild_uptime]]></prop>
+  <prop name="description"><![CDATA[wchild_uptime]]></prop>
+  <prop name="service_external"><![CDATA[wchild_uptime]]></prop>
+ </service_name>
+</profile>

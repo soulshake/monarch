@@ -138,8 +138,8 @@ sub check_version {
 	my ($got_major, $got_minor) = split(/\./, $version);
 	if ( $cur_major > $got_major || ( $cur_major == $got_major && $cur_minor > $got_minor ) ) {
 	    my $migration_script = $cur_major < 4
-		? '/usr/local/groundwork/core/migration/migrate-monarch.pl'
-		: '/usr/local/groundwork/core/migration/postgresql/pg_migrate_monarch.pl';
+		? '/usr/local/groundwork/monarch/bin/migrate-monarch.pl'
+		: '/usr/local/groundwork/monarch/bin/pg_migrate_monarch.pl';
 	    push @errors, "You must run the migration script ($migration_script) to convert the schema to the current release.";
 	}
 	else {
@@ -7538,7 +7538,7 @@ sub backup(@) {
 	}
 
 	if ( defined($dbtype) && $dbtype eq 'postgresql' ) {
-	    my $postgres_dump = ( -x '/usr/bin/pg_dump' ) ? '/usr/local/groundwork/postgresql/bin/pg_dump' : undef;
+	    my $postgres_dump = ( -x '/usr/bin/pg_dump' ) ? '/usr/bin/pg_dump' : undef;
 	    if (not $postgres_dump) {
 		push @errors, "Error:  Cannot find pg_dump!  Unable to back up the $database database.";
 	    }
@@ -7707,7 +7707,7 @@ sub restore(@) {
 	else {
 	    my $pgrestore = $sqlfile =~ /\.tar$/ ? 'pg_restore' : 'psql';
 	    my $postgres_restore =
-	      ( -x "/usr/bin/$pgrestore" ) ? "/usr/local/groundwork/postgresql/bin/$pgrestore" : undef;
+	      ( -x "/usr/bin/$pgrestore" ) ? "/usr/bin/$pgrestore" : undef;
 	    if ( not $postgres_restore ) {
 		push @errors, "Error:  Cannot find $pgrestore!  Unable to restore the $database database.";
 	    }

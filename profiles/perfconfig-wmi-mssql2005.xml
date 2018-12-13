@@ -1,0 +1,321 @@
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="wmi_mssql_checkpointpagespersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_checkpointpagespersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Checkpoint Pages Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_lazywritespersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_lazywritespersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Lazy Writes Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_pagelifeexpectancy profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_pagelifeexpectancy]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Page Life Expectancy</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_pagelookupspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_pagelookupspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Page  Lookups Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_pagereadspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_pagereadspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Page Reads Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_pagewritespersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_pagewritespersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Page Writes Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_readaheadpagespersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_readaheadpagespersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Read Ahead Pages Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_logbytesflushedpersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_logbytesflushedpersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Log Bytes Flushed Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_logflushwaitspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_logflushwaitspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Log Flush Waits Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_logflushespersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_logflushespersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Log Flushes Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_transactionspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_transactionspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Transactions Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_processesblocked profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_processesblocked]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Processes Blocked</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_userconnections profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_userconnections]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>User Connections</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_locktimeoutspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_locktimeoutspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Lock Time Outs Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_locktimeoutstimeout0persec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_locktimeoutstimeout0persec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Lock Time Outs Time Out 0 Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_lockwaitspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_lockwaitspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Lock Waits Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_deadlockspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_deadlockspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Dead Locks Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_targetservermemory profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_targetservermemory]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Target Server Memory</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_totalservermemory profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_totalservermemory]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Total Server Memory</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_errorspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_errorspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Errors Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="wmi_mssql_batchrequestspersec profile">
+<graph name="graph">
+<host>*</host>
+<service regx="0"><![CDATA[wmi_mssql_batchrequestspersec]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Batch Requests Per Sec</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:number:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ $LASTCHECK$:$VALUE1$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[]]></graphcgi>
+<parseregx first="0"><![CDATA[ ]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

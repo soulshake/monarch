@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2014 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+    <service_profile>
+        <prop name="name"><![CDATA[tomcat]]></prop>
+        <prop name="description"><![CDATA[GroundWork session and authentication failure services]]></prop>
+        <prop name="service"><![CDATA[groundwork.all.sessioncount]]></prop>
+        <prop name="service"><![CDATA[groundwork.authfailures]]></prop>
+        <command>
+            <prop name="name"><![CDATA[check_alive]]></prop>
+            <prop name="type"><![CDATA[check]]></prop>
+            <prop name="command_line">
+                <![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+        </command>
+        <service_template>
+            <prop name="name"><![CDATA[generic-service-volatile]]></prop>
+            <prop name="template"><![CDATA[generic-service]]></prop>
+            <prop name="is_volatile"><![CDATA[1]]></prop>
+        </service_template>
+        <time_period>
+            <prop name="comment"><![CDATA[All day, every day.]]></prop>
+            <prop name="name"><![CDATA[24x7]]></prop>
+            <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+            <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+            <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+            <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+            <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+            <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+            <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+            <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+        </time_period>
+        <service_template>
+            <prop name="retry_check_interval"><![CDATA[1]]></prop>
+            <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+            <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+            <prop name="notifications_enabled"><![CDATA[1]]></prop>
+            <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+            <prop name="process_perf_data"><![CDATA[1]]></prop>
+            <prop name="check_period"><![CDATA[24x7]]></prop>
+            <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+            <prop name="notification_period"><![CDATA[24x7]]></prop>
+            <prop name="max_check_attempts"><![CDATA[3]]></prop>
+            <prop name="retain_status_information"><![CDATA[1]]></prop>
+            <prop name="parallelize_check"><![CDATA[1]]></prop>
+            <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+            <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+            <prop name="name"><![CDATA[generic-service]]></prop>
+            <prop name="comment">
+                <![CDATA[# Generic service definition template - This is NOT a real service, just a template!]]></prop>
+            <prop name="normal_check_interval"><![CDATA[10]]></prop>
+            <prop name="obsess_over_service"><![CDATA[1]]></prop>
+            <prop name="notification_interval"><![CDATA[60]]></prop>
+        </service_template>
+        <service_name>
+            <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+            <prop name="max_check_attempts"><![CDATA[1]]></prop>
+            <prop name="parallelize_check"><![CDATA[0]]></prop>
+            <prop name="template"><![CDATA[generic-service-volatile]]></prop>
+            <prop name="name"><![CDATA[groundwork.all.sessioncount]]></prop>
+            <prop name="check_command"><![CDATA[check_alive]]></prop>
+        </service_name>
+        <service_name>
+            <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+            <prop name="max_check_attempts"><![CDATA[1]]></prop>
+            <prop name="parallelize_check"><![CDATA[0]]></prop>
+            <prop name="template"><![CDATA[generic-service-volatile]]></prop>
+            <prop name="name"><![CDATA[groundwork.authfailures]]></prop>
+            <prop name="check_command"><![CDATA[check_alive]]></prop>
+        </service_name>
+    </service_profile>
+</profile>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[Juniper_FW_Checks]]></prop>
+  <prop name="description"><![CDATA[Juniper Firewall checks]]></prop>
+  <prop name="service"><![CDATA[check_icmp_latency]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_cpu]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_failover]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_interface_list]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_interface_problems]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_interface_stats]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_interface_status]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_memory]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_sensors]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_session]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_uptime]]></prop>
+  <prop name="service"><![CDATA[check_juniper_fw_version]]></prop>
+  <prop name="service"><![CDATA[check_snmp]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_icmp_latency]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 600.0,33% -c 1000.0,66% -n 6 -t 5]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[2.5]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="high_flap_threshold"><![CDATA[20]]></prop>
+  <prop name="notification_options"><![CDATA[n]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[service-active-notify-off]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[0]]></prop>
+  <prop name="low_flap_threshold"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_icmp_latency!AGENTIP]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-off]]></prop>
+  <prop name="name"><![CDATA[check_icmp_latency]]></prop>
+  <prop name="check_command"><![CDATA[check_icmp_latency]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_juniper_fw_snmp.pl -i $HOSTADDRESS$ -h $HOSTNAME$ -v $ARG1$ -c $ARG2$ -l $ARG3$ -t $ARG4$]]></prop>
+ </command>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[2.5]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="high_flap_threshold"><![CDATA[20]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[5]]></prop>
+  <prop name="low_flap_threshold"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+ </service_template>
+ <service_dependency_template>
+  <prop name="execution_failure_criteria"><![CDATA[u,c]]></prop>
+  <prop name="service_name"><![CDATA[check_icmp_latency]]></prop>
+  <prop name="comment"><![CDATA[# service_dependency_templates check_icmp_latency_dependency]]></prop>
+  <prop name="notification_failure_criteria"><![CDATA[u,c]]></prop>
+  <prop name="name"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="service"><![CDATA[check_icmp_latency]]></prop>
+ </service_dependency_template>
+ <service_dependency_template>
+  <prop name="execution_failure_criteria"><![CDATA[w,u,c]]></prop>
+  <prop name="service_name"><![CDATA[check_snmp]]></prop>
+  <prop name="comment"><![CDATA[# service_dependency_templates check_snmp_dependency]]></prop>
+  <prop name="notification_failure_criteria"><![CDATA[w,u,c]]></prop>
+  <prop name="name"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="service"><![CDATA[check_snmp]]></prop>
+ </service_dependency_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!85:95!cpu]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_cpu]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[2.5]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[1]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="high_flap_threshold"><![CDATA[20]]></prop>
+  <prop name="notification_options"><![CDATA[c,w]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[service-active-notify-stateless]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[0]]></prop>
+  <prop name="low_flap_threshold"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!ARG4!failover]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-stateless]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_failover]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!ARG4!int_list]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-off]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_interface_list]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_dummy]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy $ARG1$ "$ARG2$"]]></prop>
+ </command>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[2.5]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[3600]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="high_flap_threshold"><![CDATA[20]]></prop>
+  <prop name="notification_options"><![CDATA[n]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[service-passive-notify-off]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[0]]></prop>
+  <prop name="low_flap_threshold"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_dummy!3!Interface results stale]]></prop>
+  <prop name="template"><![CDATA[service-passive-notify-off]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_interface_problems]]></prop>
+  <prop name="check_command"><![CDATA[check_dummy]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_dummy!3!Interface results stale]]></prop>
+  <prop name="template"><![CDATA[service-passive-notify-off]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_interface_stats]]></prop>
+  <prop name="check_command"><![CDATA[check_dummy]]></prop>
+ </service_name>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[2.5]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[3600]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="high_flap_threshold"><![CDATA[20]]></prop>
+  <prop name="notification_options"><![CDATA[c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[service-passive-notify-on]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="notification_interval"><![CDATA[5]]></prop>
+  <prop name="low_flap_threshold"><![CDATA[10]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_dummy!3!Interface results stale]]></prop>
+  <prop name="template"><![CDATA[service-passive-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_interface_status]]></prop>
+  <prop name="check_command"><![CDATA[check_dummy]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!85:90!mem]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_memory]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!ARG4!sensors]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_sensors]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!80:90!sessions]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_session]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!999:1999!uptime]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-stateless]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_uptime]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_juniper_fw_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!ARG4!version]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="dependency"><![CDATA[check_snmp_dependency]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_juniper_fw_version]]></prop>
+  <prop name="check_command"><![CDATA[check_juniper_fw_snmp_agent]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_agent]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp.pl -i $HOSTADDRESS$ -v $ARG1$ -c $ARG2$ -u $ARG3$ -a $ARG4$ -p $ARG5$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_snmp_agent!SNMPVERSION!SNMPCOMMUNITY!SNMPUSER!SNMPAUTHPASS!SNMPPRIVPASS]]></prop>
+  <prop name="dependency"><![CDATA[check_icmp_latency_dependency]]></prop>
+  <prop name="apply_services"><![CDATA[replace]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="template"><![CDATA[service-active-notify-on]]></prop>
+  <prop name="name"><![CDATA[check_snmp]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_agent]]></prop>
+ </service_name>
+</profile>

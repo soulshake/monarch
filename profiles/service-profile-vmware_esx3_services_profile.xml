@@ -1,0 +1,273 @@
+<?xml version="1.0" ?>
+<!--
+Copyright 2011 GroundWork Open Source, Inc.
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[vmware_esx3_services_profile]]></prop>
+  <prop name="description"><![CDATA[vmware_esx3_services_profile]]></prop>
+  <prop name="service"><![CDATA[check_esx3_instance_list]]></prop>
+  <prop name="service"><![CDATA[check_esx3_memory_available]]></prop>
+  <prop name="service"><![CDATA[check_esx3_memory_console]]></prop>
+  <prop name="service"><![CDATA[check_esx3_memory_total]]></prop>
+  <prop name="service"><![CDATA[check_esx3_num_system_processes]]></prop>
+  <prop name="service"><![CDATA[check_esx3_num_users]]></prop>
+  <prop name="service"><![CDATA[check_esx3_server_cpu]]></prop>
+  <prop name="service"><![CDATA[check_esx3_server_mem]]></prop>
+  <prop name="service"><![CDATA[check_esx3_server_net]]></prop>
+  <prop name="service"><![CDATA[check_esx3_uptime]]></prop>
+  <prop name="service"><![CDATA[check_esx3_vm_cpu_Despina_1]]></prop>
+  <prop name="service"><![CDATA[check_esx3_vm_mem_Despina_1]]></prop>
+  <prop name="service"><![CDATA[check_esx3_vm_net_Despina_1]]></prop>
+  <prop name="service"><![CDATA[icmp_ping_alive]]></prop>
+  <prop name="service"><![CDATA[tcp_ssh]]></prop>
+ </service_profile>
+
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_vm_instance_list]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l LIST -w $ARG1$ -c $ARG2$]]></prop>
+ </command>
+ <command>
+  <prop name="name"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -t 60 -H $USER21$ -c get_mem -a "$HOSTADDRESS$" "$ARG1$" "$ARG2$"]]></prop>
+ </command>
+ <time_period>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+ </time_period>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="template"><![CDATA[default-service]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="parallelize_check"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[generic-service]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="comment"><![CDATA[# Generic service definition template - This is NOT a real service, just a template!
+]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[120]]></prop>
+ </service_template>
+ <service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[0]]></prop>
+  <prop name="check_freshness"><![CDATA[0]]></prop>
+  <prop name="notifications_enabled"><![CDATA[0]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[0]]></prop>
+  <prop name="template"><![CDATA[default-service]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="max_check_attempts"><![CDATA[3]]></prop>
+  <prop name="retain_status_information"><![CDATA[0]]></prop>
+  <prop name="parallelize_check"><![CDATA[0]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[0]]></prop>
+  <prop name="name"><![CDATA[default-service]]></prop>
+  <prop name="check_command"><![CDATA[check_wmi_mem]]></prop>
+  <prop name="normal_check_interval"><![CDATA[5]]></prop>
+  <prop name="obsess_over_service"><![CDATA[0]]></prop>
+  <prop name="notification_interval"><![CDATA[120]]></prop>
+ </service_template>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_vm_instance_list!10%!5%]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_instance_list]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_vm_instance_list]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_esx3_available_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o ".1.3.6.1.4.1.6876.3.2.3.0" -l "Available Mem"  -C '$USER7$']]></prop>
+ </command>
+ <service_name>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_memory_available]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_esx3_available_mem]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_esx3_mem_console_used]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o ".1.3.6.1.4.1.6876.3.2.2.0" -l "Console Used Mem"  -C '$USER7$']]></prop>
+ </command>
+ <service_name>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_memory_console]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_esx3_mem_console_used]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_esx3_total_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o ".1.3.6.1.4.1.6876.3.2.1.0" -l "Total_server_memory"  -C '$USER7$']]></prop>
+ </command>
+ <service_name>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_memory_total]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_esx3_total_mem]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_esx3_num_system_processes]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o ".1.3.6.1.2.1.25.1.6.0" -l "number_processes"  -C '$USER7$']]></prop>
+ </command>
+ <service_name>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_num_system_processes]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_esx3_num_system_processes]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_esx3_num_users]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o ".1.3.6.1.2.1.25.1.5.0" -l "Number of Users"  -C '$USER7$']]></prop>
+ </command>
+ <service_name>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_num_users]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_esx3_num_users]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_server_cpu]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l CPU -w $ARG1$ -c $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_server_cpu!85!95]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_server_cpu]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_server_cpu]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_server_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l MEM -w $ARG1$ -c $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_server_mem!80!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_server_mem]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_server_mem]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_server_net]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l NET -w $ARG1$ -c $ARG2$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_server_net!120!150]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_server_net]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_server_net]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_snmp_esx3_uptime]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o ".1.3.6.1.2.1.25.1.1.0" -r "Timeticks"  -C '$USER7$']]></prop>
+ </command>
+ <service_name>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_uptime]]></prop>
+  <prop name="check_command"><![CDATA[check_snmp_esx3_uptime]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_vm_instance_cpu]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l CPU -V $ARG1$ -w $ARG2$ -c $ARG3$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_vm_instance_cpu!Despina_1!80!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_vm_cpu_Despina_1]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_vm_instance_cpu]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_vm_instance_mem]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l MEM -V $ARG1$ -w $ARG2$ -c $ARG3$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_vm_instance_mem!Despina_1!80!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_vm_mem_Despina_1]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_vm_instance_mem]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_esx_gw_vm_instance_net]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_esx3_gw.pl -H $HOSTADDRESS$ -C $USER7$ -l NET -V $ARG1$ -w $ARG2$ -c $ARG3$]]></prop>
+ </command>
+ <service_name>
+  <prop name="command_line"><![CDATA[check_esx_gw_vm_instance_net!Despina_1!80!90]]></prop>
+  <prop name="apply_services"><![CDATA[merge]]></prop>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="name"><![CDATA[check_esx3_vm_net_Despina_1]]></prop>
+  <prop name="check_command"><![CDATA[check_esx_gw_vm_instance_net]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_alive]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_icmp -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -n 1]]></prop>
+ </command>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[number_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_name>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[icmp_ping_alive]]></prop>
+  <prop name="description"><![CDATA[Ping host to see if it is Alive]]></prop>
+  <prop name="check_command"><![CDATA[check_alive]]></prop>
+ </service_name>
+ <command>
+  <prop name="name"><![CDATA[check_ssh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_ssh -H $HOSTADDRESS$ -t 60]]></prop>
+ </command>
+ <service_name>
+  <prop name="template"><![CDATA[generic-service]]></prop>
+  <prop name="extinfo"><![CDATA[number_graph]]></prop>
+  <prop name="name"><![CDATA[tcp_ssh]]></prop>
+  <prop name="description"><![CDATA[Check SSH server running at host]]></prop>
+  <prop name="check_command"><![CDATA[check_ssh]]></prop>
+ </service_name>
+</profile>

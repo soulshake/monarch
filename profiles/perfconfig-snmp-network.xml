@@ -1,0 +1,36 @@
+<!--
+Copyright 2007 GroundWork Open Source, Inc.  
+All rights reserved. Use is subject to GroundWork commercial license terms.
+-->
+<groundwork_performance_configuration>
+<service_profile name="snmp_if_ profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[snmp_if_]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Interface Statistics</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:in:COUNTER:1800:U:U DS:out:COUNTER:1800:U:U DS:indis:COUNTER:1800:U:U DS:outdis:COUNTER:1800:U:U DS:inerr:COUNTER:1800:U:U  DS:outerr:COUNTER:1800:U:U RRA:AVERAGE:0.5:1:2880 RRA:AVERAGE:0.5:5:4032]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t in:out:indis:outdis:inerr:outerr $LASTCHECK$:$VALUE1$:$VALUE2$:$VALUE3$:$VALUE4$:$VALUE5$:$VALUE6$  2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/if_graph2.cgi]]></graphcgi>
+<parseregx first="1"><![CDATA[SNMP OK - (\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)\s(\d+)]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+<service_profile name="snmp_ifbandwidth_ profile">
+<graph name="graph">
+<host>*</host>
+<service regx="1"><![CDATA[snmp_ifbandwidth_]]></service>
+<type>nagios</type>
+<enable>1</enable>
+<label>Interface Bandwidth Utilization</label>
+<rrdname><![CDATA[$HOST$_$SERVICE$.rrd]]></rrdname>
+<rrdcreatestring><![CDATA[$RRDTOOL$ create $RRDNAME$ --step 600 --start n-1yr DS:in:COUNTER:1800:U:U DS:out:COUNTER:1800:U:U DS:ifspeed:GAUGE:1800:U:U RRA:AVERAGE:0.5:1:8640 RRA:AVERAGE:0.5:12:9480]]></rrdcreatestring>
+<rrdupdatestring><![CDATA[$RRDTOOL$ update $RRDNAME$ -t in:out:ifspeed $LASTCHECK$:$VALUE1$:$VALUE2$:$VALUE3$ 2>&1]]></rrdupdatestring>
+<graphcgi><![CDATA[/nagios/cgi-bin/if_bandwidth_graph.cgi]]></graphcgi>
+<parseregx first="0"><![CDATA[SNMP OK - (\d+)\s+(\d+)\s+(\d+)]]></parseregx>
+<perfidstring></perfidstring>
+</graph>
+</service_profile>
+</groundwork_performance_configuration>

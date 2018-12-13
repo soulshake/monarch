@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<!--
+Copyright 2014 GroundWork, Inc.  All rights reserved.
+Use is subject to GroundWork commercial license terms.
+-->
+<profile>
+ <service_profile>
+  <prop name="name"><![CDATA[gdma-mssql2008]]></prop>
+  <prop name="description"><![CDATA[Group of all GroundWork services for MSSQL 2008 monitoring via GDMA.]]></prop>
+  <prop name="service"><![CDATA[mssql_buffer_cache_hits]]></prop>
+  <prop name="service"><![CDATA[mssql_number_of_deadlocks]]></prop>
+  <prop name="service"><![CDATA[mssql_page_life_expectancy]]></prop>
+  <prop name="service"><![CDATA[mssql_totalservermemory]]></prop>
+  <prop name="service"><![CDATA[mssql_userconnections]]></prop>
+  <prop name="service"><![CDATA[mssql_processes_blocked]]></prop>
+  <prop name="service"><![CDATA[mssql_mssqlserver]]></prop>
+  <prop name="service"><![CDATA[mssql_sqlserveragent]]></prop>
+  <prop name="service"><![CDATA[mssql_sqlbrowser]]></prop>
+  <prop name="service"><![CDATA[mssql_MSSQLFDLauncher]]></prop>
+ </service_profile>
+ <command>
+  <prop name="name"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="type"><![CDATA[check]]></prop>
+  <prop name="command_line"><![CDATA[$USER1$/check_dummy 1 $ARG1$]]></prop>
+ </command>
+ <time_period>
+  <prop name="comment"><![CDATA[All day, every day.]]></prop>
+  <prop name="name"><![CDATA[24x7]]></prop>
+  <prop name="alias"><![CDATA[24 Hours A Day, 7 Days A Week]]></prop>
+  <prop name="wednesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="sunday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="tuesday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="monday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="thursday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="friday"><![CDATA[00:00-24:00]]></prop>
+  <prop name="saturday"><![CDATA[00:00-24:00]]></prop>
+ </time_period>
+<service_template>
+  <prop name="retry_check_interval"><![CDATA[1]]></prop>
+  <prop name="flap_detection_enabled"><![CDATA[1]]></prop>
+  <prop name="check_freshness"><![CDATA[1]]></prop>
+  <prop name="event_handler_enabled"><![CDATA[1]]></prop>
+  <prop name="notifications_enabled"><![CDATA[1]]></prop>
+  <prop name="command_line"><![CDATA[check_gdma_fresh!"Stale Status"]]></prop>
+  <prop name="process_perf_data"><![CDATA[1]]></prop>
+  <prop name="active_checks_enabled"><![CDATA[0]]></prop>
+  <prop name="check_period"><![CDATA[24x7]]></prop>
+  <prop name="is_volatile"><![CDATA[0]]></prop>
+  <prop name="freshness_threshold"><![CDATA[900]]></prop>
+  <prop name="passive_checks_enabled"><![CDATA[1]]></prop>
+  <prop name="notification_period"><![CDATA[24x7]]></prop>
+  <prop name="retain_status_information"><![CDATA[1]]></prop>
+  <prop name="max_check_attempts"><![CDATA[1]]></prop>
+  <prop name="notification_options"><![CDATA[u,c,w,r]]></prop>
+  <prop name="name"><![CDATA[gdma]]></prop>
+  <prop name="retain_nonstatus_information"><![CDATA[1]]></prop>
+  <prop name="check_command"><![CDATA[check_gdma_fresh]]></prop>
+  <prop name="normal_check_interval"><![CDATA[0]]></prop>
+  <prop name="obsess_over_service"><![CDATA[1]]></prop>
+  <prop name="notification_interval"><![CDATA[60]]></prop>
+ </service_template>
+ <extended_service_info_template>
+  <prop name="script"><![CDATA[]]></prop>
+  <prop name="comment"><![CDATA[]]></prop>
+  <prop name="icon_image"><![CDATA[services.gif]]></prop>
+  <prop name="name"><![CDATA[percent_graph]]></prop>
+  <prop name="notes_url"><![CDATA[/graphs/cgi-bin/label_graph.cgi?host=$HOSTNAME$&service=$SERVICENAME$]]></prop>
+  <prop name="icon_image_alt"><![CDATA[Service Detail]]></prop>
+ </extended_service_info_template>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_buffer_cache_hits]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_buffer_cache_hits[1]_Enable="ON"
+Check_mssql_buffer_cache_hits[1]_Service="mssql_buffer_cache_hits"
+Check_mssql_buffer_cache_hits[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_raw_fraction.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager -inst * -prop Buffercachehitratio -w 95 -c 90"
+Check_mssql_buffer_cache_hits[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_buffer_cache_hits]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_buffer_cache_hits]]></prop>
+  <prop name="service_external"><![CDATA[mssql_buffer_cache_hits]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_number_of_deadlocks]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_number_of_deadlocks[1]_Enable="ON"
+Check_mssql_number_of_deadlocks[1]_Service="mssql_number_of_deadlocks"
+Check_mssql_number_of_deadlocks[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_rawcount.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_MSSQLSERVER_SQLServerLocks -inst Name=_Total -prop NumberofDeadlocksPersec -w 1 -c 2"
+Check_mssql_number_of_deadlocks[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_number_of_deadlocks]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_number_of_deadlocks]]></prop>
+  <prop name="service_external"><![CDATA[mssql_number_of_deadlocks]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_page_life_expectancy]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_page_life_expectancy[1]_Enable="ON"
+Check_mssql_page_life_expectancy[1]_Service="mssql_page_life_expectancy"
+Check_mssql_page_life_expectancy[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_large_rawcount.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_MSSQLSERVER_SQLServerBufferManager -inst * -prop Pagelifeexpectancy -w 150 -c 100"
+Check_mssql_page_life_expectancy[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_page_life_expectancy]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_page_life_expectancy]]></prop>
+  <prop name="service_external"><![CDATA[mssql_page_life_expectancy]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_totalservermemory]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_totalservermemory[1]_Enable="ON"
+Check_mssql_totalservermemory[1]_Service="mssql_totalservermemory"
+Check_mssql_totalservermemory[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_large_rawcount.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_MSSQLSERVER_SQLServerMemoryManager -inst * -prop TotalServerMemoryKB -w 0 -c 0"
+Check_mssql_totalservermemory[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_totalservermemory]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_totalservermemory]]></prop>
+  <prop name="service_external"><![CDATA[mssql_totalservermemory]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_userconnections]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_userconnections[1]_Enable="ON"
+Check_mssql_userconnections[1]_Service="mssql_userconnections"
+Check_mssql_userconnections[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_large_rawcount.vbs' -h $Monitor_Host$ -class  Win32_PerfRawData_MSSQLSERVER_SQLServerGeneralStatistics -inst * -prop UserConnections -w 500 -c 750"
+Check_mssql_userconnections[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_userconnections]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_userconnections]]></prop>
+  <prop name="service_external"><![CDATA[mssql_userconnections]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_processes_blocked]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_processes_blocked[1]_Enable="ON"
+Check_mssql_processes_blocked[1]_Service="mssql_processes_blocked"
+Check_mssql_processes_blocked[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\check_counter_large_rawcount.vbs' -h $Monitor_Host$ -class Win32_PerfRawData_MSSQLSERVER_SQLServerGeneralStatistics -inst * -prop Processesblocked -w 1 -c 2" 
+Check_mssql_processes_blocked[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_processes_blocked]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_processes_blocked]]></prop>
+  <prop name="service_external"><![CDATA[mssql_processes_blocked]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_mssqlserver]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_mssqlserver[1]_Enable="ON"
+Check_mssql_mssqlserver[1]_Service="mssql_mssqlserver"
+Check_mssql_mssqlserver[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\get_service_status.vbs' -h $Monitor_Host$ -ignore no -inst mssqlserver"
+Check_mssql_mssqlserver[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_mssqlserver]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_mssqlserver]]></prop>
+  <prop name="service_external"><![CDATA[mssql_mssqlserver]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_sqlserveragent]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_sqlserveragent[1]_Enable="ON"
+Check_mssql_sqlserveragent[1]_Service="mssql_sqlserveragent"
+Check_mssql_sqlserveragent[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\get_service_status.vbs' -h $Monitor_Host$ -ignore no -inst sqlserveragent"
+Check_mssql_sqlserveragent[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_sqlserveragent]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_sqlserveragent]]></prop>
+  <prop name="service_external"><![CDATA[mssql_sqlserveragent]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_sqlbrowser]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_sqlbrowser[1]_Enable="ON"
+Check_mssql_sqlbrowser[1]_Service="mssql_sqlbrowser"
+Check_mssql_sqlbrowser[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\get_service_status.vbs' -h $Monitor_Host$ -ignore no -inst sqlbrowser"
+Check_mssql_sqlbrowser[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_sqlbrowser]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_sqlbrowser]]></prop>
+  <prop name="service_external"><![CDATA[mssql_sqlbrowser]]></prop>
+ </service_name>
+ <service_external>
+  <prop name="name"><![CDATA[mssql_MSSQLFDLauncher]]></prop>
+  <prop name="type"><![CDATA[service]]></prop>
+  <prop name="data"><![CDATA[Check_mssql_MSSQLFDLauncher[1]_Enable="ON"
+Check_mssql_MSSQLFDLauncher[1]_Service="mssql_MSSQLFDLauncher"
+Check_mssql_MSSQLFDLauncher[1]_Command="cscript.exe //nologo //T:60 '$Plugin_Directory$\v2\get_service_status.vbs' -h $Monitor_Host$ -ignore no -inst MSSQLFDLauncher"
+Check_mssql_MSSQLFDLauncher[1]_Check_Interval="1"
+]]></prop>
+ </service_external>
+ <service_name>
+  <prop name="template"><![CDATA[gdma]]></prop>
+  <prop name="extinfo"><![CDATA[percent_graph]]></prop>
+  <prop name="name"><![CDATA[mssql_MSSQLFDLauncher]]></prop>
+  <prop name="description"><![CDATA[desc-mssql_MSSQLFDLauncher]]></prop>
+  <prop name="service_external"><![CDATA[mssql_MSSQLFDLauncher]]></prop>
+ </service_name>
+</profile>
