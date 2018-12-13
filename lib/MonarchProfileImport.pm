@@ -1919,7 +1919,7 @@ sub import_profile(@) {
 	my $file_link;
 	my $via_phrase;
 	if ($file) {
-	    ( my $relative_file = $file ) =~ s@/usr/local/groundwork/core@@;
+	    ( my $relative_file = $file ) =~ s@/usr/local/groundwork/monarch@/monarch@;
 	    my $url = Forms->get_file_url($relative_file);
 	    if ($url) {
 		$file_link  = "<a href=\"$url\" target=\"_blank\"><b><code>$file</code></b></a>";

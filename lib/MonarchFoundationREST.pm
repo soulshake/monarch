@@ -18,7 +18,7 @@ package FoundationREST;
 # Historical options
 # --------------------------------------------------------------------------------
 
-my $sync_logfile = "/usr/local/groundwork/foundation/container/logs/monarch_foundation_sync.log";
+my $sync_logfile = "/usr/local/groundwork/monarch/logs/monarch_foundation_sync.log";
 
 # --------------------------------------------------------------------------------
 # Options for sending data to Foundation via the Foundation REST API.

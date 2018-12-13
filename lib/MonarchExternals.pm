@@ -30,7 +30,7 @@ use MonarchStorProc;
 package Externals;
 
 # The $default_location must be specified as an absolute pathname.
-my $default_location = '/usr/local/groundwork/distribution';
+my $default_location = '/usr/local/groundwork/monarch/distribution';
 
 # Creating secondary symlinks was an experimental feature, now deprecated (GWMON-10525).
 my $make_symlinks = 0;
@@ -112,7 +112,7 @@ sub build_some_externals(@) {
 
     # FIX MINOR:  revise this config-file pathname as needed before formal release
     # of the custom package API
-    my $config_file = '/usr/local/groundwork/common/etc/MonarchExternals.conf';
+    my $config_file = '/usr/local/groundwork/monarch/etc/MonarchExternals.conf';
     my $custom_package;
     my $initialize_custom_externals = 0;
     my $validate_custom_externals   = 0;

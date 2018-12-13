@@ -16,6 +16,7 @@ MKDIR = mkdir
 CP = cp
 CC = gcc
 CHOWN = chown
+CHMOD = chmod
 
 # Nagois install
 NAGIOS_BASE = /usr/local/nagios
@@ -67,11 +68,13 @@ install : all
 	    exit 1; \
 	fi
 	${RM} -r ${MONARCH_BASE}
-	${MKDIR} ${MONARCH_BASE}
+	${MKDIR} -p ${MONARCH_BASE}
+	${MKDIR} ${MONARCH_BASE}/distribution
 	${MKDIR} ${MONARCH_BASE}/workspace
 	${MKDIR} ${MONARCH_BASE}/backup
-	${MKDIR} ${MONARCH_BASE}
+	${MKDIR} ${MONARCH_BASE}/logs
 	${CP} -pr automation bin cgi-bin htdocs lib etc profiles ${MONARCH_BASE}
+	${MKDIR} ${MONARCH_BASE}/htdocs/gdma
 	${CP} -p ${TARGETDIR}/nagios_reload ${MONARCH_BASE}/bin
 	${CP} -p ${TARGETDIR}/nmap_scan_one ${MONARCH_BASE}/bin
 	${CP} -p ${TARGETDIR}/monarch_as_nagios ${MONARCH_BASE}/bin
@@ -79,8 +82,8 @@ install : all
 	${CHMOD} 750 ${MONARCH_BASE}/bin/nagios_reload
 	${CHMOD} u+s ${MONARCH_BASE}/bin/nagios_reload
 	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nmap_scan_one
-	${CHOWN} 750 ${MONARCH_BASE}/bin/nmap_scan_one
-	${CHOWN} u+s ${MONARCH_BASE}/bin/nmap_scan_one
+	${CHMOD} 750 ${MONARCH_BASE}/bin/nmap_scan_one
+	${CHMOD} u+s ${MONARCH_BASE}/bin/nmap_scan_one
 	${CHOWN} nagios:nagios -R ${MONARCH_BASE}
 	${MKDIR} -p ${CONFIG_BASE}
 	${CP} -pn config/*.properties ${CONFIG_BASE}

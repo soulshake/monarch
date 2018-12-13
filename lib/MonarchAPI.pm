@@ -45,13 +45,6 @@ sub config_settings() {
     $config_settings{'nagios_bin'}   = $objects{'nagios_bin'}[2];
     $config_settings{'nagios_etc'}   = $objects{'nagios_etc'}[2];
     $config_settings{'monarch_home'} = $objects{'monarch_home'}[2];
-    if ( -e '/usr/local/groundwork/config/db.properties' ) {
-	$config_settings{'groundwork_home'} = '/usr/local/groundwork';
-    }
-    else {
-	$config_settings{'groundwork_home'} = $objects{'monarch_home'}[2];
-    }
-    $config_settings{'monarch_home'} = $objects{'monarch_home'}[2];
     $config_settings{'backup_dir'}   = $objects{'backup_dir'}[2];
     return %config_settings;
 }

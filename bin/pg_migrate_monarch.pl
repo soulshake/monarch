@@ -1351,7 +1351,7 @@ if ($auto_registration_is_enabled) {
 	    "(DEFAULT,
 	    $quoted_monarch_group,
 	    'Group for management of auto-registered GDMA systems.  See the default_monarch_group in config/register_agent.properties for details.',
-	    '/usr/local/groundwork/apache2/htdocs/gdma',
+	    '/usr/local/groundwork/monarch/htdocs/gdma',
 	    null,
 	    '<?xml version=\"1.0\" ?>\n<data>\n <prop name=\"label_enabled\"><![CDATA[]]>\n </prop>\n <prop name=\"label\"><![CDATA[]]>\n </prop>\n <prop name=\"nagios_etc\"><![CDATA[]]>\n </prop>\n <prop name=\"use_hosts\"><![CDATA[]]>\n </prop>\n <prop name=\"inherit_host_active_checks_enabled\"><![CDATA[1]]>\n </prop>\n <prop name=\"inherit_host_passive_checks_enabled\"><![CDATA[1]]>\n </prop>\n <prop name=\"inherit_service_active_checks_enabled\"><![CDATA[1]]>\n </prop>\n <prop name=\"inherit_service_passive_checks_enabled\"><![CDATA[1]]>\n </prop>\n <prop name=\"host_active_checks_enabled\"><![CDATA[-zero-]]>\n </prop>\n <prop name=\"host_passive_checks_enabled\"><![CDATA[-zero-]]>\n </prop>\n <prop name=\"service_active_checks_enabled\"><![CDATA[-zero-]]>\n </prop>\n <prop name=\"service_passive_checks_enabled\"><![CDATA[-zero-]]>\n </prop>\n</data>')"
 	);

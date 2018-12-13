@@ -3328,7 +3328,7 @@ sub gen_files() {
 	## Disallowed characters:
 	## =*?[]<>{}();|&$!`'"\/^~#@: space \n \r \t nbs all-other-controls soft-hyphen non-ISO-8859-1
 	my @allowed_parent_dirs = qw(
-	  /usr/local/groundwork/apache2/htdocs
+	  /usr/local/groundwork/monarch/htdocs
 	  /usr/local/nagios/etc
 	);
 	foreach my $parent_dir (@allowed_parent_dirs) {

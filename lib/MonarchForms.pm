@@ -6939,7 +6939,7 @@ sub filter_results(@) {
 	    $file = $1;
 	}
 	if ($file) {
-	    ( my $relative_file = $file ) =~ s{/usr/local/groundwork/core}{};
+	    ( my $relative_file = $file ) =~ s{/usr/local/groundwork/monarch}{/monarch};
 	    my $url = get_file_url( '', $relative_file, $line );
 	    s{$file}{<a href="$url" target="_blank"><b><code>$file</code></b></a>};
 	}

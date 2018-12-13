@@ -70,10 +70,6 @@ sub graph_commit {
     my $internal_image_path = '/usr/local/nagios/share/images/commit.png';
     my $external_image_path = '/nagios/images/commit.png';
 
-    # FIX FUTURE:  Change the image paths to the apache2/htdocs/ directory?
-    # my $internal_image_path = '/usr/local/groundwork/apache2/htdocs/commit.png';
-    # my $external_image_path = '/commit.png';
-
     # Simple cache buster.
     $external_image_path .= '?time=' . time;
 
