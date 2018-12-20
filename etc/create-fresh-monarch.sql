@@ -1,4 +1,4 @@
--- Copyright (C) 2004-2014  GroundWork Inc.  www.gwos.com
+-- Copyright (C) 2004-2018  GroundWork Inc.  www.gwos.com
 --
 --    This program is free software; you can redistribute it and/or modify
 --    it under the terms of version 2 of the GNU General Public License
@@ -16,11 +16,10 @@
 -- 
 
 DROP DATABASE IF EXISTS monarch;
+REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public from monarch;
+DROP USER IF EXISTS monarch;
+CREATE USER monarch WITH PASSWORD 'gwrk';
 CREATE DATABASE monarch ENCODING='LATIN1' OWNER=monarch;
-
--- This would make the monarch.public schema owned by monarch, not by postgres.
--- \connect monarch
--- ALTER SCHEMA public OWNER TO monarch;
 
 -- Set permissions.
 GRANT ALL PRIVILEGES ON DATABASE monarch to monarch;
