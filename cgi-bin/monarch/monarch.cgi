@@ -274,6 +274,14 @@ my %nagios_options_step = (
     'Miscellaneous Directives'    => 4
 );
 
+# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
+# to convert the string to an expression and evaluate it).  This is what we need
+# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
+# that recodes plain zeros as NULLs.  We need to force a true zero in the database
+# to indicate that this value is really defined.
+my $DEFINED = '0+0';
+my $DEFINED_REF = \$DEFINED;
+
 #
 ############################################################################
 #	Sub to present errors
@@ -4474,7 +4482,7 @@ qq(An existing host wizard session exists for $host{'name'}. Do you wish to cont
 		    my @externals = StorProc->fetch_list_where( 'external_host_profile', 'external_id', \%w );
 		    foreach my $ext (@externals) {
 			my %e = StorProc->fetch_one( 'externals', 'external_id', $ext );
-			my @vals = ( $ext, $id, $e{'display'}, \'0+0' );
+			my @vals = ( $ext, $id, $e{'display'}, $DEFINED_REF );
 			$result = StorProc->insert_obj( 'external_host', \@vals );
 			if ( $result =~ /^Error/ ) { push @errors, $result }
 		    }
@@ -4615,7 +4623,7 @@ qq(An existing host wizard session exists for $host{'name'}. Do you wish to cont
 
 		    foreach my $ext (@externals) {
 			my %e = StorProc->fetch_one( 'externals', 'external_id', $ext );
-			my @vals = ( $ext, $properties{'host_id'}, $id, $e{'display'}, \'0+0' );
+			my @vals = ( $ext, $properties{'host_id'}, $id, $e{'display'}, $DEFINED_REF );
 			$result = StorProc->insert_obj( 'external_service', \@vals );
 			if ( $result =~ /^Error/ ) { push @errors, $result }
 		    }
@@ -4711,7 +4719,7 @@ qq(An existing host wizard session exists for $host{'name'}. Do you wish to cont
 		my @externals = StorProc->fetch_list_where( 'external_service_names', 'external_id', \%w );
 		foreach my $ext (@externals) {
 		    my %e = StorProc->fetch_one( 'externals', 'external_id', $ext );
-		    my @vals = ( $ext, $properties{'host_id'}, $id, $e{'display'}, \'0+0' );
+		    my @vals = ( $ext, $properties{'host_id'}, $id, $e{'display'}, $DEFINED_REF );
 		    $result = StorProc->insert_obj( 'external_service', \@vals );
 		    if ( $result =~ /^Error/ ) { push @errors, $result }
 		}
@@ -6270,7 +6278,7 @@ sub externals($) {
 	    $w{'modified'} = 0;
 	}
 	else {
-	    $values{'modified'} = \'0+0';
+	    $values{'modified'} = $DEFINED_REF;
 	}
 	my $result = StorProc->update_obj_where( $type eq 'host' ? 'external_host' : 'external_service', \%values, \%w );
 	if ( $result =~ /^Error/ ) { push @errors, $result }
@@ -7286,7 +7294,7 @@ sub host_profile() {
 			    if ( $result =~ /^Error/ ) { push @errors, $result }
 			    foreach my $ext (@externals) {
 				my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-				my @vals = ( $ext, $hid, $external{'display'}, \'0+0' );
+				my @vals = ( $ext, $hid, $external{'display'}, $DEFINED_REF );
 				$result = StorProc->insert_obj( 'external_host', \@vals );
 				if ( $result =~ /^Error/ ) { push @errors, $result }
 			    }
@@ -7301,14 +7309,14 @@ sub host_profile() {
 				if (@host_externals) {
 				    if ($host_externals[0] == 0) {
 					my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-					my %values = ( 'data' => $external{'display'}, 'modified' => \'0+0' );
+					my %values = ( 'data' => $external{'display'}, 'modified' => $DEFINED_REF );
 					my $result = StorProc->update_obj_where( 'external_host', \%values, \%where );
 					if ( $result =~ /^Error/ ) { push @errors, $result }
 				    }
 				}
 				else {
 				    my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-				    my @vals = ( $ext, $hid, $external{'display'}, \'0+0' );
+				    my @vals = ( $ext, $hid, $external{'display'}, $DEFINED_REF );
 				    my $result = StorProc->insert_obj( 'external_host', \@vals );
 				    if ( $result =~ /^Error/ ) { push @errors, $result }
 				}
@@ -8269,7 +8277,7 @@ sub service() {
 			if ( $result =~ /^Error/ ) { push @errors, $result }
 			foreach my $ext (@externals) {
 			    my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-			    my @vals = ( $ext, $services{$sid}[1], $sid, $external{'display'}, \'0+0' );
+			    my @vals = ( $ext, $services{$sid}[1], $sid, $external{'display'}, $DEFINED_REF );
 			    $result = StorProc->insert_obj( 'external_service', \@vals );
 			    if ( $result =~ /^Error/ ) { push @errors, $result }
 			}
@@ -8285,14 +8293,14 @@ sub service() {
 			    if (@host_service_externals) {
 				if ($host_service_externals[0] == 0) {
 				    my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-				    my %values = ( 'data' => $external{'display'}, 'modified' => \'0+0' );
+				    my %values = ( 'data' => $external{'display'}, 'modified' => $DEFINED_REF );
 				    my $result = StorProc->update_obj_where( 'external_service', \%values, \%where );
 				    if ( $result =~ /^Error/ ) { push @errors, $result }
 				}
 			    }
 			    else {
 				my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-				my @vals = ( $ext, $services{$sid}[1], $sid, $external{'display'}, \'0+0' );
+				my @vals = ( $ext, $services{$sid}[1], $sid, $external{'display'}, $DEFINED_REF );
 				my $result = StorProc->insert_obj( 'external_service', \@vals );
 				if ( $result =~ /^Error/ ) { push @errors, $result }
 			    }
@@ -9587,7 +9595,7 @@ sub apply_host_profile($@) {
 			if ( $result =~ /^Error/ ) { push @errors, $result }
 			foreach my $ext (@externals) {
 			    my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-			    my @vals = ( $ext, $hid, $external{'display'}, \'0+0' );
+			    my @vals = ( $ext, $hid, $external{'display'}, $DEFINED_REF );
 			    $result = StorProc->insert_obj( 'external_host', \@vals );
 			    if ( $result =~ /^Error/ ) { push @errors, $result }
 			}
@@ -9602,14 +9610,14 @@ sub apply_host_profile($@) {
 			    if (@host_externals) {
 				if ($host_externals[0] == 0) {
 				    my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-				    my %values = ( 'data' => $external{'display'}, 'modified' => \'0+0' );
+				    my %values = ( 'data' => $external{'display'}, 'modified' => $DEFINED_REF );
 				    my $result = StorProc->update_obj_where( 'external_host', \%values, \%where );
 				    if ( $result =~ /^Error/ ) { push @errors, $result }
 				}
 			    }
 			    else {
 				my %external = StorProc->fetch_one( 'externals', 'external_id', $ext );
-				my @vals = ( $ext, $hid, $external{'display'}, \'0+0' );
+				my @vals = ( $ext, $hid, $external{'display'}, $DEFINED_REF );
 				my $result = StorProc->insert_obj( 'external_host', \@vals );
 				if ( $result =~ /^Error/ ) { push @errors, $result }
 			    }
@@ -9758,7 +9766,7 @@ sub manage_host() {
 
 	    foreach my $ext (@externals) {
 		my %e = StorProc->fetch_one( 'externals', 'external_id', $ext );
-		my @vals = ( $ext, $host_id, $e{'display'}, \'0+0' );
+		my @vals = ( $ext, $host_id, $e{'display'}, $DEFINED_REF );
 		$result = StorProc->insert_obj( 'external_host', \@vals );
 		if ( $result =~ /^Error/ ) { push @errors, $result }
 	    }
@@ -9783,7 +9791,7 @@ sub manage_host() {
 		}
 		foreach my $ext (@externals) {
 		    my %e = StorProc->fetch_one( 'externals', 'external_id', $ext );
-		    @vals = ( $ext, $host_id, $service_id, $e{'display'}, \'0+0' );
+		    @vals = ( $ext, $host_id, $service_id, $e{'display'}, $DEFINED_REF );
 		    $result = StorProc->insert_obj( 'external_service', \@vals );
 		    if ( $result =~ /^Error/ ) { push @errors, $result }
 		}
@@ -9865,12 +9873,12 @@ sub manage_host() {
 	my %e             = StorProc->fetch_one_where( 'externals', \%w );
 	if ($e{'external_id'} ne '') {
 	    if ( $type eq 'service' ) {
-		my @vals = ( $e{'external_id'}, $host_id, $service_id, $e{'display'}, \'0+0' );
+		my @vals = ( $e{'external_id'}, $host_id, $service_id, $e{'display'}, $DEFINED_REF );
 		my $result = StorProc->insert_obj( 'external_service', \@vals );
 		if ( $result =~ /^Error/ ) { push @errors, $result }
 	    }
 	    else {
-		my @vals = ( $e{'external_id'}, $host_id, $e{'display'}, \'0+0' );
+		my @vals = ( $e{'external_id'}, $host_id, $e{'display'}, $DEFINED_REF );
 		my $result = StorProc->insert_obj( 'external_host', \@vals );
 		if ( $result =~ /^Error/ ) { push @errors, $result }
 	    }
@@ -10038,12 +10046,7 @@ sub manage_host() {
 		# unanchored host external, instead of using data from the user's screen.
 		my %external = StorProc->fetch_one( 'externals', 'external_id', $external_id );
 		$values{'data'} = $external{'display'};
-		# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
-		# to convert the string to an expression and evaluate it).  This is what we need
-		# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
-		# that recodes plain zeros as NULLs.  We need to force a true zero in the database
-		# to indicate that this value is really defined.
-		$values{'modified'} = \'0+0';
+		$values{'modified'} = $DEFINED_REF;
 	    }
 	    my %where         = (
 		'external_id' => $external_id,
@@ -10077,12 +10080,7 @@ sub manage_host() {
 		# unanchored service external, instead of using data from the user's screen.
 		my %external = StorProc->fetch_one( 'externals', 'external_id', $external_id );
 		$values{'data'} = $external{'display'};
-		# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
-		# to convert the string to an expression and evaluate it).  This is what we need
-		# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
-		# that recodes plain zeros as NULLs.  We need to force a true zero in the database
-		# to indicate that this value is really defined.
-		$values{'modified'} = \'0+0';
+		$values{'modified'} = $DEFINED_REF;
 	    }
 	    my %where = (
 		'external_id' => $external_id,
@@ -10499,7 +10497,7 @@ sub manage_host() {
 			if ( $result =~ /^Error/ ) { push @errors, $result }
 		    }
 		    foreach my $external_id ( keys %{ $service_name_externals{ $service_names{$service_name}{'id'} } } ) {
-			@values = ( $external_id, $properties{'host_id'}, $id, $externals{$external_id}, \'0+0' );
+			@values = ( $external_id, $properties{'host_id'}, $id, $externals{$external_id}, $DEFINED_REF );
 			$result = StorProc->insert_obj( 'external_service', \@values );
 			if ( $result =~ /^Error/ ) { push @errors, $result }
 		    }
@@ -13408,7 +13406,7 @@ sub nagios_cgi($$) {
 			    (my $label = "\u$name") =~ s/_/ /g;
 			    push @errors, "Error:  The \"$label\" value must be a simple integer or blank.";
 			}
-			if ( $val eq '0' ) { $val = \'0+0' }
+			if ( $val eq '0' ) { $val = $DEFINED_REF; }
 		    }
 		    if ($gid) {
 			if ( $nag_defined{$name} ) {

@@ -89,6 +89,14 @@ $textsize{'short'}   = 50;
 $textsize{'long'}    = 75;
 $textsize{'address'} = 17;
 
+# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
+# to convert the string to an expression and evaluate it).  This is what we need
+# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
+# that recodes plain zeros as NULLs.  We need to force a true zero in the database
+# to indicate that this value is really defined.
+my $DEFINED = '0+0';
+my $DEFINED_REF = \$DEFINED;
+
 sub error_out($) {
     my $err = shift;
     $body .= "<h2>$err</h2><br>";
@@ -196,7 +204,7 @@ sub apply_profile($) {
 	if ( $result =~ /^Error/ ) { push @errors, $result }
 	foreach my $ext (@externals) {
 	    my %e = StorProc->fetch_one( 'externals', 'external_id', $ext );
-	    my @vals = ( $ext, $hid, $e{'display'}, \'0+0' );
+	    my @vals = ( $ext, $hid, $e{'display'}, $DEFINED_REF );
 	    $result = StorProc->insert_obj( 'external_host', \@vals );
 	    if ( $result =~ /^Error/ ) { push @errors, $result }
 	}

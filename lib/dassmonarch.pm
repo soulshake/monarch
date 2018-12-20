@@ -39,48 +39,6 @@ use gwxml;
 use Data::Dumper;
 
 ## @class
-# This class provides methods related to the installed GroundWork
-# system like determining GroundWork's release version, etc.
-# This version is for use with GW Monitor 6.2 and later releases ONLY.
-# @brief Helper class to get information about the installed system
-package GWHelper;
-
-use IO::File;
-
-my @FILES = ('/usr/local/groundwork/Info.txt');
-
-## @method string gwbuild (void)
-# @return Groundwork build string, empty if not deduceable
-sub gwbuild {
-    my $build = '';
-  SEARCH: foreach my $fname (@FILES) {
-	my $fh = new IO::File( $fname, 'r' );
-	next if !$fh;
-	while ( my $line = $fh->getline() ) {
-	    if ( $line =~ /Core\s+\.+\s+(.*)/ ) {
-		$build = $1;
-		last;
-	    }
-	}
-	$fh->close();
-	last if $build;
-    }
-    return $build;
-}
-
-## @method string gwversion (void)
-# @return Groundwork version string, empty if not deduceable
-sub gwversion {
-    my $version = gwbuild();
-    if ( $version =~ /(.*?)-/ ) {
-	$version = $1;
-    }
-    return $version;
-}
-
-1;
-
-## @class
 # This class provides methods to access the monarch database to automatically import and manage configuration data.
 # A fair number of these routines can be called in either scalar or list context.  In such cases, the method prototype
 # lists only the most common usage.  The description of the method return value gives more detail on how the returned
@@ -106,6 +64,14 @@ my $VERSION = '4.4.2';
 my %debug_level = ( none => 0, error => 1, warning => 2, info => 3, verbose => 4 );
 
 my $max_external_description_length = 50;
+
+# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
+# to convert the string to an expression and evaluate it).  This is what we need
+# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
+# that recodes plain zeros as NULLs.  We need to force a true zero in the database
+# to indicate that this value is really defined.
+my $DEFINED = '0+0';
+my $DEFINED_REF = \$DEFINED;
 
 ## @cmethod object new (void)
 # @return the new object, or die trying (meaning, you'd better encapsulate your call inside eval{};)
@@ -136,11 +102,6 @@ sub new {
     };
     ## We bless early, to force a DESTROY (to force a disconnect) if the following code throws an exception.
     bless( $self, $class );
-
-    if ( GWHelper::gwversion() =~ /^v5\.[0-2]\./ || GWHelper::gwversion() =~ /^v[0-4]\./ ) {
-	$self->{'nagios_ver'}   = '2.x';
-	$self->{'monarch_home'} = '/usr/local/groundwork/monarch';
-    }
 
     # See http://stackoverflow.com/questions/1498042/should-a-perl-constructor-return-an-undef-or-a-invalid-object
     # for a good discussion about how to handle constructor errors.
@@ -5379,7 +5340,7 @@ sub apply_external_to_host {
 	return 0;
     }
 
-    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? \'0+0' : '0+0';
+    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? $DEFINED_REF : $DEFINED;
 
     eval {
 	my @values = ( $external_id, $host_id, $content, $modified );
@@ -5459,7 +5420,7 @@ sub apply_external_to_hostservice {
 	return 0;
     }
 
-    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? \'0+0' : '0+0';
+    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? $DEFINED_REF : $DEFINED;
 
     eval {
 	my @values = ( $external_id, $host_id, $hostservice_id, $content, $modified );
@@ -5586,7 +5547,7 @@ sub modify_host_external {
 	return 0;
     }
 
-    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? \'0+0' : '0+0' if defined $modified;
+    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? $DEFINED_REF : $DEFINED if defined $modified;
 
     if ( not defined($content) and not defined($modified) ) {
 	return 1;
@@ -5665,7 +5626,7 @@ sub modify_hostservice_external {
 	return 0;
     }
 
-    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? \'0+0' : '0+0' if defined $modified;
+    $modified = $modified ? 1 : ( $self->monarch_vstring() ge v4.0 ) ? $DEFINED_REF : $DEFINED if defined $modified;
 
     if ( not defined($content) and not defined($modified) ) {
 	return 1;
@@ -6421,7 +6382,7 @@ sub propagate_external {
 	my %where  = ( 'external_id' => $external_id );
 	my %values = ( 'data'        => $content );
 	if ($replace) {
-	    $values{'modified'} = ( $self->monarch_vstring() ge v4.0 ) ? \'0+0' : '0+0';
+	    $values{'modified'} = ( $self->monarch_vstring() ge v4.0 ) ? $DEFINED_REF : $DEFINED;
 	}
 	else {
 	    $where{'modified'} = 0;

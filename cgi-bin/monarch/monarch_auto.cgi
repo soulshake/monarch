@@ -263,13 +263,9 @@ sub nms_home() {
 	my %doc     = AutoConfig->doc();
 	my %options = ();
 	my $page    = Forms->form_top( 'NMS Integration Home', '', '2' );
-	if ( -e '/usr/local/groundwork/cacti' ) {
-	    %{ $options{'cacti_sync'} } = ( 'name' => 'cacti_sync', 'value' => 'Cacti Sync' );
-	}
-	if ( -e '/usr/local/groundwork/nedi' ) {
-	    %{ $options{'nedi_sync'} }   = ( 'name' => 'nedi_sync',   'value' => 'NeDi Sync' );
-	    %{ $options{'nedi_import'} } = ( 'name' => 'nedi_import', 'value' => 'NeDi Import' );
-	}
+	%{ $options{'cacti_sync'} } = ( 'name' => 'cacti_sync', 'value' => 'Cacti Sync' );
+	%{ $options{'nedi_sync'} }   = ( 'name' => 'nedi_sync',   'value' => 'NeDi Sync' );
+	%{ $options{'nedi_import'} } = ( 'name' => 'nedi_import', 'value' => 'NeDi Import' );
 	%{ $options{'other_import'} } = ( 'name' => 'other_import', 'value' => 'Other Import' );
 	if ($errstr) { $page .= Forms->form_doc("<h7>$errstr</h7>") }
 	$page .= AutoConfig->select_nms( \%options );
@@ -2576,9 +2572,7 @@ sub exit_if_locked {
 
     my $pid = $$;
 
-    # FIX MINOR:  Files in /usr/local/groundwork/tmp/ are subject to being asynchronously
-    # cleaned out at odd times by the gwservices script.  Choose some other directory.
-    my $tmpdir = '/usr/local/groundwork/tmp';
+    my $tmpdir = '/tmp';
     my $user   = $userid;                       # don't overwrite global $userid
     $user = 'nobody' unless ( defined($user) && $user ne '' );
     my $lockfile = "$tmpdir/gw-auto-discovery-$user.lock.$pid";

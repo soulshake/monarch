@@ -64,6 +64,14 @@ my ( $dbtype, $dbhost, $database, $user, $passwd ) = undef;
 my $is_portal = 0;
 if ( -e '/usr/local/groundwork/config/db.properties' ) { $is_portal = 1 }
 
+# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
+# to convert the string to an expression and evaluate it).  This is what we need
+# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
+# that recodes plain zeros as NULLs.  We need to force a true zero in the database
+# to indicate that this value is really defined.
+my $DEFINED = '0+0';
+my $DEFINED_REF = \$DEFINED;
+
 # It's not clear that this package is where the sanitize routines should reside.
 # We're putting them here temporarily as a convenience, and may move them.
 
@@ -1103,7 +1111,7 @@ sub insert_obj(@) {
 	    if (not defined $$val) {
 		$val = 'DEFAULT';
 	    }
-	    elsif ($$val eq '0+0') {
+	    elsif ($$val eq $DEFINED) {
 		$val = "'0'";
 	    }
 	    else {
@@ -1180,7 +1188,7 @@ sub insert_obj_id(@) {
 	    if (not defined $$val) {
 		$val = 'DEFAULT';
 	    }
-	    elsif ($$val eq '0+0') {
+	    elsif ($$val eq $DEFINED) {
 		$val = "'0'";
 	    }
 	    else {
@@ -1270,7 +1278,7 @@ sub update_obj(@) {
     foreach my $key ( keys %values ) {
 	unless ( $key =~ /^HASH(?:\(0x[0-9A-Fa-f]+\))?$/ ) {
 	    if (ref $values{$key}) {
-		if (${$values{$key}} eq '0+0') {
+		if (${$values{$key}} eq $DEFINED) {
 		    $values{$key} = "'0'";
 		}
 		else {
@@ -1323,7 +1331,7 @@ sub update_obj_where(@) {
     foreach my $key ( keys %values ) {
 	unless ( $key =~ /^HASH(?:\(0x[0-9A-Fa-f]+\))?$/ ) {
 	    if (ref $values{$key}) {
-		if (${$values{$key}} eq '0+0') {
+		if (${$values{$key}} eq $DEFINED) {
 		    $values{$key} = "'0'";
 		}
 		else {
@@ -4006,7 +4014,7 @@ sub service_profile_apply(@) {
 			    if ( $externals{$snid} ) {
 				foreach my $external_id ( keys %{ $externals{$snid} } ) {
 				    ## insert external_id, new host id, new service id, data, modified into external_service table
-				    my @values = ( $external_id, $hid, $sid, $externals_display{$external_id}, \'0+0' );
+				    my @values = ( $external_id, $hid, $sid, $externals_display{$external_id}, $DEFINED_REF );
 				    my $result = insert_obj( '', 'external_service', \@values );
 				    if ( $result =~ /Error/ ) {
 					push @errors, $result;
@@ -4303,7 +4311,7 @@ sub clone_host(@) {
     $sth = $dbh->prepare($sqlstmt);
     $sth->execute;
     while ( my @vals = $sth->fetchrow_array() ) {
-	@vals = ( $vals[0], $id, $vals[1], $vals[2] || \'0+0' );
+	@vals = ( $vals[0], $id, $vals[1], $vals[2] || $DEFINED_REF );
 	my $result = insert_obj( '', 'external_host', \@vals );
 	if ( $result =~ /Error/ ) { push @errors, $result }
     }
@@ -4366,7 +4374,7 @@ sub clone_host(@) {
 	    $sth2->execute;
 	    while ( my @vals = $sth2->fetchrow_array() ) {
 		## insert external_id, new host id, new service id, data, modified into external_service table
-		@vals = ( $vals[0], $id, $sid, $vals[1], $vals[2] || \'0+0' );
+		@vals = ( $vals[0], $id, $sid, $vals[1], $vals[2] || $DEFINED_REF );
 		my $result = insert_obj( '', 'external_service', \@vals );
 		if ( $result =~ /Error/ ) { push @errors, $result }
 	    }
@@ -6496,17 +6504,7 @@ sub nagios_defaults(@) {
 
     # Configuration Options
     $nagios{'resource_file'} = $nagios_dir . '/etc/private/resource.cfg';
-    my $gatein_sso_portal_url = '';
-    if ( open CONFIG, '<', '/usr/local/groundwork/foundation/container/jpp/standalone/configuration/gatein/configuration.properties' ) {
-	while (<CONFIG>) {
-	    if (m{^\s*gatein\.sso\.portal\.url\s*=\s*(http[-:/.a-zA-Z0-9]+)\s*$}) {
-		$gatein_sso_portal_url = $1;
-	    }
-	}
-	close CONFIG;
-	$gatein_sso_portal_url =~ s{/+$}{};
-    }
-    $nagios{'website_url'} = $gatein_sso_portal_url ? ( $gatein_sso_portal_url . '/nagios-app' ) : '';
+    $nagios{'website_url'} = '';
 
     # Time Format Options
     $nagios{'date_format'} = 'us';

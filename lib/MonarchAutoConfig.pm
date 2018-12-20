@@ -54,6 +54,14 @@ my $global_cell_pad = 3;
 
 my %config_settings = ();
 
+# '0+0' is treated by Perl as true, but by MySQL as zero (it is apparently able
+# to convert the string to an expression and evaluate it).  This is what we need
+# to sidestep the clumsy and inappropriate code in StorProc->update_obj_where()
+# that recodes plain zeros as NULLs.  We need to force a true zero in the database
+# to indicate that this value is really defined.
+my $DEFINED = '0+0';
+my $DEFINED_REF = \$DEFINED;
+
 sub dbconnect() {
     return StorProc->dbconnect();
 }
@@ -964,7 +972,7 @@ sub process_import_data(@) {
 			}
 		    }
 		    foreach my $ext ( keys %{ $host_profile_externals{ $profile{'hostprofile_id'} } } ) {
-			my @vals = ( $ext, $id, $externals{'host'}{$ext}, \'0+0' );
+			my @vals = ( $ext, $id, $externals{'host'}{$ext}, $DEFINED_REF );
 			my $result = StorProc->insert_obj( 'external_host', \@vals );
 			if ( $result =~ /^Error/ ) {
 			    $results{'errors'}{$rec} .= $result;
@@ -1114,7 +1122,7 @@ sub process_import_data(@) {
 			    }
 			}
 			foreach my $ext ( keys %{ $service_name_externals{ $service_name{$service}{'id'} } } ) {
-			    @values = ( $ext, $id, $sid, $externals{'service'}{$ext}, \'0+0' );
+			    @values = ( $ext, $id, $sid, $externals{'service'}{$ext}, $DEFINED_REF );
 			    my $result = StorProc->insert_obj( 'external_service', \@values );
 			    if ( $result =~ /^Error/ ) {
 				$results{'errors'}{$rec} .= $result;
