@@ -1640,6 +1640,11 @@ sub get_configs() {
 }
 
 my $auth = StorProc->dbconnect();
+if ( $auth == 4 ) {
+    ## Auth level 4 = open portal admin access no login.
+    $ENV{'REMOTE_USER'} = 'admin';
+    $auth = 1;
+}
 if ( $auth == 1 ) {
     $user_acct = 'super_user';
 }

@@ -241,6 +241,9 @@ sub dbconnect(;$) {
     elsif ( defined($login_type) && $login_type eq 'passive' ) {
 	return 3;
     }
+    elsif ( defined($login_type) && $login_type eq 'open' ) {
+	return 4;
+    }
     else {
 	return 2;
     }

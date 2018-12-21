@@ -128,6 +128,11 @@ $textsize{'long'}    = 75;
 $textsize{'address'} = 17;
 
 my $auth = StorProc->dbconnect();
+if ( $auth == 4 ) {
+    ## Auth level 4 = open portal admin access no login.
+    $ENV{'REMOTE_USER'} = 'admin';
+    $auth = 1;
+}
 %config_settings = AutoConfig->config_settings();
 
 my $monarch_ver         = $config_settings{'monarch_ver'};

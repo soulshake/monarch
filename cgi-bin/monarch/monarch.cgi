@@ -16732,6 +16732,11 @@ sub server_context {
 
 # db connection
 my $auth = StorProc->dbconnect();
+if ( $auth == 4 ) {
+    ## Auth level 4 = open portal admin access no login.
+    $ENV{'REMOTE_USER'} = 'admin';
+    $auth = 1;
+}
 
 # get config info
 my %where = ();

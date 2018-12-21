@@ -1758,7 +1758,7 @@ log_passive_checks	nagios	1
 log_passive_service_checks	nagios	\N
 log_rotation_method	nagios	d
 log_service_retries	nagios	1
-login_authentication		none
+login_authentication		open
 low_host_flap_threshold	nagios	25.0
 low_service_flap_threshold	nagios	25.0
 max_check_result_file_age	nagios	\N
