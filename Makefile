@@ -94,6 +94,7 @@ install : all
 	${CP} -pn etc/send_nsca.cfg ${NAGIOS_BASE}/etc
 	${CHOWN} nagios:nagios ${NAGIOS_BASE}/etc/send_nsca.cfg
 	${CP} -p etc/monarch.conf ${APACHE2_SITES}
+	${CP} -p etc/nagios.conf ${APACHE2_SITES}
 
 clean :
 	${RM} -r ${TARGETDIR}
