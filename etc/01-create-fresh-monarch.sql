@@ -14,9 +14,8 @@
 --    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
 -- 
-
+\c postgres
 DROP DATABASE IF EXISTS monarch;
-REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public from monarch;
 DROP USER IF EXISTS monarch;
 CREATE USER monarch WITH PASSWORD 'gwrk';
 CREATE DATABASE monarch TEMPLATE template0 ENCODING='LATIN1' LC_COLLATE='C' LC_CTYPE='C' OWNER=monarch;
