@@ -21,8 +21,9 @@ CHMOD = chmod
 # Nagois install
 NAGIOS_BASE = /usr/local/nagios
 
-# Apache2 sites configuration
+# Apache2 sites/suexec configuration
 APACHE2_SITES = /etc/apache2/sites-enabled
+APACHE2_SUEXEC = /etc/apache2/suexec/www-data
 
 # Groundwork Monarch install
 MONARCH_BASE = /usr/local/groundwork/monarch
@@ -95,6 +96,7 @@ install : all
 	${CHOWN} nagios:nagios ${NAGIOS_BASE}/etc/send_nsca.cfg
 	${CP} -p etc/monarch.conf ${APACHE2_SITES}
 	${CP} -p etc/nagios.conf ${APACHE2_SITES}
+	${CP} -p etc/suexec-www-data ${APACHE2_SUEXEC}
 
 clean :
 	${RM} -r ${TARGETDIR}
