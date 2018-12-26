@@ -901,7 +901,7 @@ sub sync($$$) {
 		    consolidationName => 'SYSTEM',
 		    appType           => 'SYSTEM',
 		    monitorServer     => 'localhost',
-		    device            => $remote_host,
+		    device            => '127.0.0.1',
 		    severity          => @errors ? 'CRITICAL' : @warnings ? 'WARNING' : 'OK',
 		    monitorStatus     => @errors ? 'CRITICAL' : @warnings ? 'WARNING' : 'OK',
 		    textMessage =>
