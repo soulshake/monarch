@@ -3,7 +3,7 @@
 #
 ############################################################################
 # Release 4.6
-# September 2018
+# December 2018
 ############################################################################
 #
 # Copyright 2007-2018 GroundWork Open Source, Inc. (GroundWork)
@@ -26,8 +26,6 @@ use strict;
 package FoundationSync;
 
 use Fcntl qw(F_GETFL F_SETFL O_APPEND);
-use IO::Socket;
-use Carp;
 use Time::HiRes;
 use DBI;
 use MonarchStorProc;
@@ -37,23 +35,14 @@ use MonarchAudit;
 # direct queries to gwcollagedb, this package inclusion should be dropped.
 use CollageQuery;
 
-# FIX MAJOR:  When using the REST API, make sure that we log details of what got sent
-# to be changed at the level of POSTed JSON or any URLs that carry no JSON payload,
-# even when there are no errors to report.
+# When using the REST API, we log details of what got sent to be changed at the level of
+# POSTed JSON or any URLs that carry no JSON payload, even when there are no errors to report.
 
 # --------------------------------------------------------------------------------
 # Historical options
 # --------------------------------------------------------------------------------
 
-my $use_sync_start_action = 1;    # Leave as 1 to get Foundation to flush its internal queues of results already received.
-my $use_sync_stop_action  = 0;    # Leave as 0.
-
-my $foundation_msg_count = 0;
-my $remote_host          = "127.0.0.1";
-my $remote_port          = 4913;
-my $logfile              = "/usr/local/groundwork/monarch/logs/monarch_foundation_sync.log";
-my $maxhostsendcount     = 256;   # a power of 2 makes division faster
-my $max_bulk_host_add    = 200;
+my $logfile              = "/usr/local/groundwork/monarch/var/monarch_foundation_sync.log";
 my $single_obj_timeout   = 0.350; # Estimated max seconds per object deletion or insertion.
 my $wait_sleep_seconds   = 3;     # May be set to a fractional value.
 my $abort_on_error       = 1;     # If set, abort Commit after first error seen.
@@ -78,7 +67,6 @@ my $debug_waits   = $debug >= 1;
 # Options for sending change data to Foundation via the Foundation REST API.
 # --------------------------------------------------------------------------------
 
-my $use_rest_api      = 0;    # set to 1 to use the REST API instead of the $remote_port socket API, 0 otherwise
 my $verify_rest_calls = 1;    # set to 1 to wait for confirmation at the database level after REST calls, 0 otherwise
 
 # The application name by which the MonarchFoundationSync.pm processing
@@ -122,7 +110,6 @@ my $max_rest_member_objects = 50;
 # Working variables
 # --------------------------------------------------------------------------------
 
-my $socket      = undef;
 my $collage_dbh = undef;
 my $change_time = undef;
 my $report_time = undef;
@@ -528,8 +515,6 @@ sub sync_group {
 #     delta between previous state and current state, based on
 #     difference between monarch and foundation databases.
 # Preserve current state of modified objects with calls to CollageQuery methods.  (???)
-# Prepare commands in XML format for consumption by Foundation, and
-#     send them to a socket on which Foundation is listening.
 # Restart event broker (all of nagios, including the event feeder, outside of this routine).
 
 sub sync($$$) {
@@ -584,11 +569,11 @@ sub sync($$$) {
 	print $logfh join( "\n", @errors ) . "\n" if defined fileno $logfh;
 	print STDERR join( "\n", @errors ) . "\n";
 	$errorstring = join( '<br>', @errors );
-	terminate_rest_api() if $use_rest_api;
+	terminate_rest_api();
 	return \@timing, $errorstring;
     }
 
-    if ( $use_rest_api and not connect_to_rest_api( 'started', $logfh ) ) {
+    if ( not connect_to_rest_api( 'started', $logfh ) ) {
 	push @errors, 'ERROR:  Failed to connect to the Foundation REST API';
     }
 
@@ -596,7 +581,7 @@ sub sync($$$) {
 	print $logfh join( "\n", @errors ) . "\n" if defined fileno $logfh;
 	print STDERR join( "\n", @errors ) . "\n";
 	$errorstring = join( '<br>', @errors );
-	terminate_rest_api() if $use_rest_api;
+	terminate_rest_api();
 	return \@timing, $errorstring;
     }
 
@@ -617,7 +602,7 @@ sub sync($$$) {
 	push @errors, "See $logfile (and possibly framework.log) for details." if $logging;
 	print $logfh join( "\n", @errors ) . "\n" if $logging;
 	$errorstring = join( '<br>', @errors );
-	terminate_rest_api() if $use_rest_api;
+	terminate_rest_api();
 	return \@timing, $errorstring;
     }
 
@@ -625,7 +610,7 @@ sub sync($$$) {
     unless ($delta{'add'} || $delta{'delete'} || $delta{'alter'}) {
 	$errorstring = "Synchronization with Foundation completed successfully. No changes were needed.";
 	print $logfh "$errorstring\n" if $logging;
-	terminate_rest_api() if $use_rest_api;
+	terminate_rest_api();
 	return \@timing, $errorstring;
     }
 
@@ -708,7 +693,7 @@ sub sync($$$) {
 	print $logfh join( "\n", @errors ) . "\n" if $logging;
 	print STDERR join( "\n", @errors ) . "\n";
 	$errorstring = join( '<br>', @errors );
-	terminate_rest_api() if $use_rest_api;
+	terminate_rest_api();
 	return \@timing, $errorstring;
     }
 
@@ -737,7 +722,7 @@ sub sync($$$) {
 	print $logfh join( "\n", @$errs ) . "\n" if $logging;
 	print STDERR join( "\n", @$errs ) . "\n";
 	$errorstring = join( '<br>', @$errs );
-	terminate_rest_api() if $use_rest_api;
+	terminate_rest_api();
 	return \@timing, $errorstring;
     }
 
@@ -760,34 +745,6 @@ sub sync($$$) {
 
     my $high_hostgroup_member_count    = $low_hostgroup_member_count    + $updated_hostgroup_members;
     my $high_servicegroup_member_count = $low_servicegroup_member_count + $updated_servicegroup_members;
-
-    if (not $use_rest_api) {
-	## Make a socket connection
-	my $max_connect_attempts = 3;
-	unless ($errorstring) {
-	    my $status;
-	    for (my $i = 0; $i <= $max_connect_attempts; $i++) {
-		if ($i == $max_connect_attempts) {
-		    print $logfh "Couldn't connect to $remote_host:$remote_port : $status\n" if $logging;
-		    $errorstring = "<h7>Error:  Unable to connect to Foundation port (check gwservices).</h7>\n";
-		} else {
-		    $socket = IO::Socket::INET->new( PeerAddr => $remote_host, PeerPort => $remote_port, Proto => "tcp", Type => SOCK_STREAM );
-		    if ($socket) {
-			# FIX THIS:  this is perhaps also something we want to send to $socket;
-			# there's no point in logging it here unless we do so
-			# print $logfh "<GENERICLOG consolidation='SYSTEM' ApplicationType='SYSTEM' MonitorServerName='localhost' Device='$remote_host' Severity='OK' MonitorStatus='OK' TextMessage='Foundation-Monarch sync process completed. It might take up to 30 sec. for changes to show up in the status pages.' />\n" if $logging;
-			# Ensure that we push out all the data we write, before
-			# we go waiting for Foundation to finish processing it.
-			$socket->autoflush(1);
-			last;
-		    } else {
-			$status = $!;
-			sleep 1;
-		    }
-		}
-	    }
-	}
-    }
 
     if ($logging) {
 	printf $logfh "\n";
@@ -815,268 +772,155 @@ sub sync($$$) {
 
     push @errors, $errorstring if defined $errorstring;
 
-    if ($use_rest_api) {
-	if (not @errors) {
-	    ## push all changes to Foundation, in measured stages
+    if (not @errors) {
+	## push all changes to Foundation, in measured stages
 
-	    # We only call this once, because we expect that time formatting is an expensive operation when done
-	    # repeatedly, and we don't need any finer resolution than the moment at which the entire sync is run.
-	    $change_time = get_current_rest_time($pre_restart_time);
+	# We only call this once, because we expect that time formatting is an expensive operation when done
+	# repeatedly, and we don't need any finer resolution than the moment at which the entire sync is run.
+	$change_time = get_current_rest_time($pre_restart_time);
+	$report_time = get_current_rest_time(time);
+
+	# As a general rule, we need to to wait for deletions to finish before starting the corresponding
+	# additions, bacause we cannot tell if the additions are truly done unless we are truly sure that
+	# all the deletions are also done.  (Otherwise, we might still have some offsetting delete/add
+	# pairs still outstanding, leading to a matching count when the work is not yet done.)
+
+	# FIX MINOR:  Once we have this REST API code basically working, set $verify_rest_calls=0 above.
+
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = delete_services_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_services services" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'services', $deleted_services, $low_service_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_services deleted services" );
+	    }
+	}
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = delete_hosts_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_hosts hosts" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'hosts', $deleted_hosts, $low_host_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_hosts deleted hosts" );
+	    }
+	}
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = add_hosts_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "add of $added_hosts hosts" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'hosts', $added_hosts, $high_host_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_hosts added hosts" );
+	    }
+	}
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = add_services_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "add of $added_services services" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'services', $added_services, $high_service_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_services added services" );
+	    }
+	}
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = delete_hostgroups_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_hostgroups hostgroups" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'hostgroups', $deleted_hostgroups, $low_hostgroup_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_hostgroups deleted hostgroups" );
+	    }
+	    $err_ref = delete_servicegroups_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_servicegroups servicegroups" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'servicegroups', $deleted_servicegroups, $low_servicegroup_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_servicegroups deleted servicegroups" );
+	    }
+	}
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = add_hostgroups_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "add of $added_hostgroups hostgroups" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'hostgroups', $added_hostgroups, $high_hostgroup_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_hostgroups added hostgroups" );
+	    }
+	    $err_ref = add_servicegroups_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "add of $added_servicegroups servicegroups" );
+	    if ($verify_rest_calls) {
+		( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'servicegroups', $added_servicegroups, $high_servicegroup_count );
+		push @warnings, @$warn_ref;
+		push @errors,   @$err_ref;
+		StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_servicegroups added servicegroups" );
+	    }
+	}
+	unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
+	    $err_ref = add_hostgroup_members_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "add host members to hostgroups" );
+	    $err_ref = add_servicegroup_members_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "add service members to servicegroups" );
+	    $err_ref = update_hostgroups_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "update hostgroups" );
+	    $err_ref = update_servicegroups_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "update servicegroups" );
+	    $err_ref = update_hosts_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "update hosts" );
+	    $err_ref = update_services_via_rest( \%delta, $logfh );
+	    push @errors, @$err_ref;
+	    StorProc->capture_timing( \@timing, \$phasetime, "update services" );
+	}
+
+	my $groundwork_host = foundation_host();
+	if (defined $groundwork_host) {
 	    $report_time = get_current_rest_time(time);
+	    my @events = (
+		{
+		    host              => $groundwork_host,
+		    consolidationName => 'SYSTEM',
+		    appType           => 'SYSTEM',
+		    monitorServer     => 'localhost',
+		    device            => $remote_host,
+		    severity          => @errors ? 'CRITICAL' : @warnings ? 'WARNING' : 'OK',
+		    monitorStatus     => @errors ? 'CRITICAL' : @warnings ? 'WARNING' : 'OK',
+		    textMessage =>
+			@errors   ? 'Foundation-Monarch sync failed.'       :
+			@warnings ? 'Foundation-Monarch sync had warnings.' :
+			'Foundation-Monarch sync completed. It might take up to 30 sec. for changes to show up in the status pages.',
+		    reportDate        => $report_time
+		}
+	    );
 
-	    # As a general rule, we need to to wait for deletions to finish before starting the corresponding
-	    # additions, bacause we cannot tell if the additions are truly done unless we are truly sure that
-	    # all the deletions are also done.  (Otherwise, we might still have some offsetting delete/add
-	    # pairs still outstanding, leading to a matching count when the work is not yet done.)
+	    my %outcome;
+	    my @results;
 
-	    # FIX MINOR:  Once we have this REST API code basically working, set $verify_rest_calls=0 above.
-
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = delete_services_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_services services" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'services', $deleted_services, $low_service_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_services deleted services" );
-		}
-	    }
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = delete_hosts_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_hosts hosts" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'hosts', $deleted_hosts, $low_host_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_hosts deleted hosts" );
-		}
-	    }
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = add_hosts_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_hosts hosts" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'hosts', $added_hosts, $high_host_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_hosts added hosts" );
-		}
-	    }
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = add_services_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_services services" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'services', $added_services, $high_service_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_services added services" );
-		}
-	    }
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = delete_hostgroups_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_hostgroups hostgroups" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'hostgroups', $deleted_hostgroups, $low_hostgroup_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_hostgroups deleted hostgroups" );
-		}
-		$err_ref = delete_servicegroups_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_servicegroups servicegroups" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'delete', 'servicegroups', $deleted_servicegroups, $low_servicegroup_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $deleted_servicegroups deleted servicegroups" );
-		}
-	    }
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = add_hostgroups_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_hostgroups hostgroups" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'hostgroups', $added_hostgroups, $high_hostgroup_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_hostgroups added hostgroups" );
-		}
-		$err_ref = add_servicegroups_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_servicegroups servicegroups" );
-		if ($verify_rest_calls) {
-		    ( $warn_ref, $err_ref ) = wait_for_foundation( '', 'add', 'servicegroups', $added_servicegroups, $high_servicegroup_count );
-		    push @warnings, @$warn_ref;
-		    push @errors,   @$err_ref;
-		    StorProc->capture_timing( \@timing, \$phasetime, "wait for $added_servicegroups added servicegroups" );
-		}
-	    }
-	    unless ( $main::shutdown_requested || ( @errors && $abort_on_error ) ) {
-		$err_ref = add_hostgroup_members_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add host members to hostgroups" );
-		$err_ref = add_servicegroup_members_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add service members to servicegroups" );
-		$err_ref = update_hostgroups_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "update hostgroups" );
-		$err_ref = update_servicegroups_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "update servicegroups" );
-		$err_ref = update_hosts_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "update hosts" );
-		$err_ref = update_services_via_rest( \%delta, $logfh );
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "update services" );
-	    }
-
-	    my $groundwork_host = foundation_host();
-	    if (defined $groundwork_host) {
-		$report_time = get_current_rest_time(time);
-		## FIX MINOR:  Should we set lastInsertDate here as well, to the $report_time value?  Test this.
-		my @events = (
-		    {
-			host              => $groundwork_host,
-			consolidationName => 'SYSTEM',
-			appType           => 'SYSTEM',
-			monitorServer     => 'localhost',
-			device            => $remote_host,
-			severity          => @errors ? 'CRITICAL' : @warnings ? 'WARNING' : 'OK',
-			monitorStatus     => @errors ? 'CRITICAL' : @warnings ? 'WARNING' : 'OK',
-			textMessage =>
-			    @errors   ? 'Foundation-Monarch sync failed.'       :
-			    @warnings ? 'Foundation-Monarch sync had warnings.' :
-			    'Foundation-Monarch sync completed. It might take up to 30 sec. for changes to show up in the status pages.',
-			reportDate        => $report_time
-		    }
-		);
-
-		my %outcome;
-		my @results;
-
-		if ( not $rest_api->create_events( \@events, {}, \%outcome, \@results ) ) {
-		    log_outcome $logfh, \%outcome, 'logging Monarch sync execution status';
-		    log_results $logfh, \@results, 'logging Monarch sync execution status';
-		    push @errors, "ERROR:  Failed to log Monarch sync execution status to Foundation.";
-		}
+	    if ( not $rest_api->create_events( \@events, {}, \%outcome, \@results ) ) {
+		log_outcome $logfh, \%outcome, 'logging Monarch sync execution status';
+		log_results $logfh, \@results, 'logging Monarch sync execution status';
+		push @errors, "ERROR:  Failed to log Monarch sync execution status to Foundation.";
 	    }
 	}
-    }
-    elsif ($socket) {
-	if (not @errors) {
-	    my $xml_out = '';
-
-	    ## print $logfh "Begin process ...\n" if $logging;
-
-	    if ($use_sync_start_action) {
-		$xml_out = "<SYNC action='start'/>\n";
-		print $socket $xml_out;
-		print $logfh $xml_out if $logging;
-		$xml_out = '';
-	    }
-
-	    # push all changes to Foundation, in measured stages
-
-	    # We only call this once, because we expect that time formatting is an expensive operation when done
-	    # repeatedly, and we don't need any finer resolution than the moment at which the entire sync is run.
-	    $change_time = get_last_state_change($pre_restart_time);
-	    $report_time = get_last_state_change(time);
-
-	    # As a general rule, we need to to wait for deletions to finish before starting the corresponding
-	    # additions, bacause we cannot tell if the additions are truly done unless we are truly sure that
-	    # all the deletions are also done.  (Otherwise, we might still have some offsetting delete/add
-	    # pairs still outstanding, leading to a matching count when the work is not yet done.)
-
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		delete_services( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'delete', 'services', $deleted_services, $low_service_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_services services" );
-	    }
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		delete_hosts( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'delete', 'hosts', $deleted_hosts, $low_host_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_hosts hosts" );
-	    }
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		add_hosts( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'add', 'hosts', $added_hosts, $high_host_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_hosts hosts" );
-	    }
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		add_services( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'add', 'services', $added_services, $high_service_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_services services" );
-	    }
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		delete_hostgroups   ( \%delta, $socket, $logfh );
-		delete_servicegroups( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'delete', 'hostgroups', $deleted_hostgroups, $low_hostgroup_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_hostgroups hostgroups" );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'delete', 'servicegroups', $deleted_servicegroups, $low_servicegroup_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "delete of $deleted_servicegroups servicegroups" );
-	    }
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		add_hostgroups   ( \%delta, $socket, $logfh );
-		add_servicegroups( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'add', 'hostgroups', $added_hostgroups, $high_hostgroup_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_hostgroups hostgroups" );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'add', 'servicegroups', $added_servicegroups, $high_servicegroup_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "add of $added_servicegroups servicegroups" );
-	    }
-	    unless ($main::shutdown_requested || (@errors && $abort_on_error)) {
-		add_hostgroup_members   ( \%delta, $socket, $logfh );
-		add_servicegroup_members( \%delta, $socket, $logfh );
-		update_hostgroups       ( \%delta, $socket, $logfh );
-		update_servicegroups    ( \%delta, $socket, $logfh );
-		update_hosts            ( \%delta, $socket, $logfh );
-		update_services         ( \%delta, $socket, $logfh );
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'update', 'hostgroup members', $updated_hostgroup_members, $high_hostgroup_member_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		($warn_ref, $err_ref) = wait_for_foundation( '', 'update', 'servicegroup members', $updated_servicegroup_members, $high_servicegroup_member_count );
-		push @warnings, @$warn_ref;
-		push @errors, @$err_ref;
-		StorProc->capture_timing( \@timing, \$phasetime, "sending of final hostgroup, servicegroup, host, and service changes" );
-	    }
-
-	    if ($use_sync_stop_action) {
-		$xml_out = "<SYNC action='stop'/>\n";
-	    }
-	    $xml_out .= "<GENERICLOG consolidation='SYSTEM' ApplicationType='SYSTEM' MonitorServerName='localhost' Device='$remote_host' Severity='OK' MonitorStatus='OK' TextMessage='Foundation-Monarch sync process completed. It might take up to 30 sec. for changes to show up in the status pages.' />\n";
-	    print $socket $xml_out;
-	    print $logfh  $xml_out if $logging;
-	    $xml_out = '<SERVICE-MAINTENANCE command="close" />';
-	    print $socket $xml_out;
-	    print $logfh "$xml_out\n\n" if $logging;
-	}
-
-	if (not close $socket) {
-	    ## FIX LATER:  This is probably an incomplete test.  We should probably test every print to the $socket.
-	    push @errors, "Error:  Writing to Foundation was incomplete ($!).";
-	}
-	$socket = undef;
     }
 
     # FIX MAJOR:  This direct connection to gwcollagedb should be ignored if we are using the REST API
@@ -1087,7 +931,7 @@ sub sync($$$) {
 	push @errors, 'Error:  Processing was interrupted.';
     }
 
-    terminate_rest_api() if $use_rest_api;
+    terminate_rest_api();
 
     StorProc->capture_timing( \@timing, \$phasetime, "closing of all external connections" );
 
@@ -1140,24 +984,6 @@ sub foundation_host {
     return undef;
 }
 
-sub delete_hosts {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    foreach my $host (keys %{ $delta->{'delete'}{'host'} }) {
-	push @xmlstring, "\t<Host Host='".$host."' />\n";
-	if (++$cnt == $max_bulk_host_add) {
-	    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
-    }
-    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) ) if (@xmlstring);
-}
-
 sub delete_hosts_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -1174,7 +1000,11 @@ sub delete_hosts_via_rest {
 	    if ( not $rest_api->delete_hosts( \@hostnames, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'host deletion';
 		log_results $logfh, \@results, 'host deletion';
-		push @errors, "ERROR:  Failed to delete all intended hosts." if not @errors;
+		## FIX MINOR:  In this and similar error messages throughout this file, we might want
+		## to qualify the list of reported object names to only mention those that were not
+		## successfully operated upon, if we get back detailed results that would let us discern
+		## a success/warning/failure status for each individual object we tried to modify.
+		push @errors, "ERROR:  Failed to delete all intended hosts (@hostnames)." if not @errors;
 	    }
 	    @hostnames = ();
 	    $cnt       = 0;
@@ -1183,29 +1013,9 @@ sub delete_hosts_via_rest {
     if ( @hostnames and not $rest_api->delete_hosts( \@hostnames, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'host deletion';
 	log_results $logfh, \@results, 'host deletion';
-	push @errors, "ERROR:  Failed to delete all intended hosts." if not @errors;
+	push @errors, "ERROR:  Failed to delete all intended hosts (@hostnames)." if not @errors;
     }
     return \@errors;
-}
-
-sub delete_services {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    foreach my $host (keys %{ $delta->{'delete'}{'service'} }) {
-	foreach my $service (keys %{ $delta->{'delete'}{'service'}{$host} }) {
-	    push @xmlstring, "\t<Service Host='".$host."' ServiceDescription='".$service."' />\n";
-	    if (++$cnt == $max_bulk_host_add) {
-		write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) );
-		@xmlstring = ();
-		$cnt = 0;
-	    }
-	}
-    }
-    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) ) if (@xmlstring);
 }
 
 sub delete_services_via_rest {
@@ -1243,85 +1053,6 @@ sub delete_services_via_rest {
     return \@errors;
 }
 
-sub add_hosts {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    my $alias;
-    my $notes;
-    foreach my $host (keys %{ $delta->{'add'}{'host'} }) {
-	$alias = $delta->{'add'}{'host'}{$host}{'alias'};
-	$notes = $delta->{'add'}{'host'}{$host}{'notes'};
-
-	# FIX LATER:  Is the existence of an alias guaranteed here?  Yes, supposedly.
-	$alias =~ s/\n/ /g;
-	$alias =~ s/<br>/ /ig;
-	$alias =~ s/&/&amp;/g;
-	$alias =~ s/"/&quot;/g;
-	$alias =~ s/'/&apos;/g;
-	$alias =~ s/</&lt;/g;
-	$alias =~ s/>/&gt;/g;
-
-	if (defined $notes) {
-	    $notes =~ s/&/&amp;/g;
-	    $notes =~ s/"/&quot;/g;
-	    $notes =~ s/'/&apos;/g;
-	    $notes =~ s/</&lt;/g;
-	    $notes =~ s/>/&gt;/g;
-	}
-
-	push @xmlstring,
-	    "\t<Host Host='",      $host,
-	    "' Description='",     $host,
-	    ((defined($notes) && $notes ne '') ? ("' Notes='" . $notes) : ''),
-	    "' Device='",          $delta->{'add'}{'host'}{$host}{'address'},
-	    "' DisplayName='",     $host,
-	    "' LastStateChange='", $change_time,
-	    "' Parent='",          $delta->{'add'}{'host'}{$host}{'parents'},
-	    "' Alias='",           $alias,
-	    "' />\n";
-
-	my @xml_message = ();
-	push @xml_message, "\t<LogMessage ";
-	push @xml_message, "MonitorServerName=\"$thisnagios\" ";
-	push @xml_message, "Host=\"$host\" ";
-	## if have IP address, use it; else set device to host name
-	my $hostipaddress =
-	  ( exists $delta->{'add'}{'host'}{$host}{'address'} )
-	  ? $delta->{'add'}{'host'}{$host}{'address'}
-	  : (     exists $delta->{'alter'}{'host'}
-	      and exists $delta->{'alter'}{'host'}{$host}
-	      and exists $delta->{'alter'}{'host'}{$host}{'address'} )
-	  ? $delta->{'alter'}{'host'}{$host}{'address'}
-	  : '';
-	push @xml_message, $hostipaddress ? "Device=\"$hostipaddress\" " : "Device=\"$host\" ";
-	push @xml_message, 'Severity="LOW" ';
-	push @xml_message, 'MonitorStatus="PENDING" ';
-	push @xml_message, "TextMessage=\"New $host host is awaiting first check result.\" ";
-	push @xml_message, "ReportDate=\"$report_time\" ";
-	push @xml_message, "LastInsertDate=\"$change_time\" ";
-	push @xml_message, "SubComponent=\"$host\" ";
-	push @xml_message, 'ErrorType="HOST ALERT" ';
-	push @xml_message, "/>\n";
-
-	push @xmlstring, join( '', @xml_message );
-
-	if (++$cnt == $max_bulk_host_add) {
-	    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
-    }
-    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) ) if (@xmlstring);
-}
-
-# FIX MAJOR:  The Socket API would, in addition to adding a host, send a log message
-# to Foundation announcing the new birth.  Will the REST API do the same internally?
-# Among other fields, that log message would set Severity, ReportDate, LastInsertDate,
-# and TextMessage.  Possibly, Status Viewer might depend in some way on such stuff.
 sub add_hosts_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -1330,8 +1061,9 @@ sub add_hosts_via_rest {
     my @results = ();
     my @errors  = ();
 
-    my $cnt   = 0;
-    my @hosts = ();
+    my $cnt    = 0;
+    my @hosts  = ();
+    my @events = ();
     my $alias;
     my $notes;
     my $parents;
@@ -1363,94 +1095,64 @@ sub add_hosts_via_rest {
 	$h_object{properties} = \%properties;
 
 	push @hosts, \%h_object;
+
+	## if have IP address, use it; else set device to host name
+	my $hostipaddress =
+	  ( exists $delta->{'add'}{'host'}{$host}{'address'} )
+	  ? $delta->{'add'}{'host'}{$host}{'address'}
+	  : (     exists $delta->{'alter'}{'host'}
+	      and exists $delta->{'alter'}{'host'}{$host}
+	      and exists $delta->{'alter'}{'host'}{$host}{'address'} )
+	  ? $delta->{'alter'}{'host'}{$host}{'address'}
+	  : '';
+
+	push @events,
+	  {
+	    host           => $host,
+	    appType        => 'NAGIOS',
+	    monitorServer  => $thisnagios,
+	    device         => ( $hostipaddress ? $hostipaddress : $host ),
+	    severity       => 'LOW',
+	    monitorStatus  => 'PENDING',
+	    textMessage    => "New $host host is awaiting first check result.",
+	    reportDate     => $report_time,
+	    lastInsertDate => $change_time,
+	    properties     => { SubComponent => $host, ErrorType => "HOST ALERT" }
+	  };
+
 	if ( ++$cnt == $max_rest_objects ) {
 	    if ( not $rest_api->upsert_hosts( \@hosts, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'host addition';
 		log_results $logfh, \@results, 'host addition';
-		push @errors, "ERROR:  Failed to add all intended hosts." if not @errors;
+		my @h_names = map { $_->{hostName} } @hosts;
+		push @errors, "ERROR:  Failed to add all intended hosts (@h_names)." if not @errors;
 	    }
 	    @hosts = ();
 	    $cnt   = 0;
+
+	    if ( not $rest_api->create_events( \@events, {}, \%outcome, \@results ) ) {
+		log_outcome $logfh, \%outcome, 'logging addition of new hosts';
+		log_results $logfh, \@results, 'logging addition of new hosts';
+		push @errors, "ERROR:  Failed to log addition of new hosts to Foundation.";
+	    }
+	    @events = ();
 	}
     }
     if ( @hosts and not $rest_api->upsert_hosts( \@hosts, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'host addition';
 	log_results $logfh, \@results, 'host addition';
-	push @errors, "ERROR:  Failed to add all intended hosts." if not @errors;
+	my @h_names = map { $_->{hostName} } @hosts;
+	push @errors, "ERROR:  Failed to add all intended hosts (@h_names)." if not @errors;
+    }
+    if ( @events and not $rest_api->create_events( \@events, {}, \%outcome, \@results ) ) {
+	log_outcome $logfh, \%outcome, 'logging addition of new hosts';
+	log_results $logfh, \@results, 'logging addition of new hosts';
+	push @errors, "ERROR:  Failed to log addition of new hosts to Foundation.";
     }
     return \@errors;
 }
 
 # Add new services
-sub add_services {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    my $notes;
-    foreach my $host (keys %{ $delta->{'add'}{'service'} }) {
-	foreach my $service (keys %{ $delta->{'add'}{'service'}{$host} }) {
-	    $notes = $delta->{'add'}{'servicenotes'}{$host}{$service};
-
-	    if (defined $notes) {
-		$notes =~ s/&/&amp;/g;
-		$notes =~ s/"/&quot;/g;
-		$notes =~ s/'/&apos;/g;
-		$notes =~ s/</&lt;/g;
-		$notes =~ s/>/&gt;/g;
-	    }
-
-	    push @xmlstring,
-		"\t<Service Host='", $host,
-		"' ServiceDescription='", $service,
-		((defined($notes) && $notes ne '') ? ("' Notes='" . $notes) : ''),
-		"' CheckType='ACTIVE' StateType='SOFT' MonitorStatus='PENDING' LastHardState='PENDING' LastStateChange='",
-		$change_time, "' />\n";
-
-	    my @xml_message = ();
-	    push @xml_message, "\t<LogMessage ";
-	    push @xml_message, "MonitorServerName=\"$thisnagios\" ";
-	    push @xml_message, "Host=\"$host\" ";
-	    ## if have IP address, use it; else set device to host name
-	    my $hostipaddress =
-	      (       exists $delta->{'add'}{'host'}
-		  and exists $delta->{'add'}{'host'}{$host}
-		  and exists $delta->{'add'}{'host'}{$host}{'address'} )
-	      ? $delta->{'add'}{'host'}{$host}{'address'}
-	      : (     exists $delta->{'alter'}{'host'}
-		  and exists $delta->{'alter'}{'host'}{$host}
-		  and exists $delta->{'alter'}{'host'}{$host}{'address'} )
-	      ? $delta->{'alter'}{'host'}{$host}{'address'}
-	      : '';
-	    push @xml_message, $hostipaddress ? "Device=\"$hostipaddress\" " : "Device=\"$host\" ";
-	    push @xml_message, "ServiceDescription=\"$service\" ";
-	    push @xml_message, 'Severity="LOW" ';
-	    push @xml_message, 'MonitorStatus="PENDING" ';
-	    push @xml_message, "TextMessage=\"New $service service is awaiting first check result.\" ";
-	    push @xml_message, "ReportDate=\"$report_time\" ";
-	    push @xml_message, "LastInsertDate=\"$change_time\" ";
-	    push @xml_message, "SubComponent=\"$host:$service\" ";
-	    push @xml_message, 'ErrorType="SERVICE ALERT" ';
-	    push @xml_message, "/>\n";
-
-	    push @xmlstring, join( '', @xml_message );
-
-	    if (++$cnt == $max_bulk_host_add)  {
-		write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) );
-		@xmlstring = ();
-		$cnt = 0;
-	    }
-	}
-    }
-    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) ) if (@xmlstring);
-}
-
-# FIX MAJOR:  The Socket API would, in addition to adding a host service, send a log message
-# to Foundation announcing the new birth.  Will the REST API do the same internally?
-# Among other fields, that log message would set Severity, ReportDate, LastInsertDate,
-# and TextMessage.  Possibly, Status Viewer might depend in some way on such stuff.
 sub add_services_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -1461,11 +1163,13 @@ sub add_services_via_rest {
 
     my $cnt      = 0;
     my @services = ();
+    my @events   = ();
     my $notes;
     foreach my $host ( keys %{ $delta->{'add'}{'service'} } ) {
 	foreach my $service ( keys %{ $delta->{'add'}{'service'}{$host} } ) {
 	    $notes = $delta->{'add'}{'servicenotes'}{$host}{$service};
 
+	    # FIX MINOR:  We've always used an initial ACTIVE CheckType, but should it sometimes be PASSIVE?
 	    my %s_object = (
 		hostName        => $host,
 		description     => $service,
@@ -1482,6 +1186,34 @@ sub add_services_via_rest {
 	    $s_object{properties} = \%properties if %properties;
 
 	    push @services, \%s_object;
+
+	    ## if have IP address, use it; else set device to host name
+	    my $hostipaddress =
+	      (       exists $delta->{'add'}{'host'}
+		  and exists $delta->{'add'}{'host'}{$host}
+		  and exists $delta->{'add'}{'host'}{$host}{'address'} )
+	      ? $delta->{'add'}{'host'}{$host}{'address'}
+	      : (     exists $delta->{'alter'}{'host'}
+		  and exists $delta->{'alter'}{'host'}{$host}
+		  and exists $delta->{'alter'}{'host'}{$host}{'address'} )
+	      ? $delta->{'alter'}{'host'}{$host}{'address'}
+	      : '';
+
+	    push @events,
+	      {
+		host           => $host,
+		service        => $service,
+		appType        => 'NAGIOS',
+		monitorServer  => $thisnagios,
+		device         => ( $hostipaddress ? $hostipaddress : $host ),
+		severity       => 'LOW',
+		monitorStatus  => 'PENDING',
+		textMessage    => "New $service service is awaiting first check result.",
+		reportDate     => $report_time,
+		lastInsertDate => $change_time,
+		properties     => { SubComponent => "$host:$service", ErrorType => "SERVICE ALERT" }
+	      };
+
 	    if ( ++$cnt == $max_rest_objects ) {
 		if ( not $rest_api->upsert_services( \@services, {}, \%outcome, \@results ) ) {
 		    log_outcome $logfh, \%outcome, 'service addition';
@@ -1490,6 +1222,13 @@ sub add_services_via_rest {
 		}
 		@services = ();
 		$cnt      = 0;
+
+		if ( not $rest_api->create_events( \@events, {}, \%outcome, \@results ) ) {
+		    log_outcome $logfh, \%outcome, 'logging addition of new services';
+		    log_results $logfh, \@results, 'logging addition of new services';
+		    push @errors, "ERROR:  Failed to log addition of new services to Foundation.";
+		}
+		@events = ();
 	    }
 	}
     }
@@ -1498,58 +1237,12 @@ sub add_services_via_rest {
 	log_results $logfh, \@results, 'service addition';
 	push @errors, "ERROR:  Failed to add all intended host services." if not @errors;
     }
-    return \@errors;
-}
-
-sub update_hosts {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    my $alias;
-    my $address;
-    my $notes;
-    my $parents;
-    foreach my $host (keys %{ $delta->{'alter'}{'host'} }) {
-	$alias   = $delta->{'alter'}{'host'}{$host}{'alias'};
-	$address = $delta->{'alter'}{'host'}{$host}{'address'};
-	$notes   = $delta->{'alter'}{'host'}{$host}{'notes'};
-	$parents = $delta->{'alter'}{'host'}{$host}{'parents'};
-	push @xmlstring, "\t<Host Host='", $host, "' Description='", $host, "'";
-	if (defined $alias) {
-	    $alias =~ s/\n/ /g;
-	    $alias =~ s/<br>/ /ig;
-	    $alias =~ s/&/&amp;/g;
-	    $alias =~ s/"/&quot;/g;
-	    $alias =~ s/'/&apos;/g;
-	    $alias =~ s/</&lt;/g;
-	    $alias =~ s/>/&gt;/g;
-	    push @xmlstring, " Alias='", $alias, "'";
-	}
-	if (defined $address) {
-	    push @xmlstring, " Device='", $address , "'";
-	}
-	if (defined $notes) {
-	    $notes =~ s/&/&amp;/g;
-	    $notes =~ s/"/&quot;/g;
-	    $notes =~ s/'/&apos;/g;
-	    $notes =~ s/</&lt;/g;
-	    $notes =~ s/>/&gt;/g;
-	    push @xmlstring, " Notes='", $notes, "'";
-	}
-	if (defined $parents) {
-	    push @xmlstring, " Parent='", $parents, "'";
-	}
-	push @xmlstring, " />\n";
-	if (++$cnt == $max_bulk_host_add) {
-	    write_command_xml( $socket, $logfh, "MODIFY", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
+    if ( @events and not $rest_api->create_events( \@events, {}, \%outcome, \@results ) ) {
+	log_outcome $logfh, \%outcome, 'logging addition of new services';
+	log_results $logfh, \@results, 'logging addition of new services';
+	push @errors, "ERROR:  Failed to log addition of new services to Foundation.";
     }
-    write_command_xml( $socket, $logfh, "MODIFY", join( '', @xmlstring ) ) if (@xmlstring);
+    return \@errors;
 }
 
 sub update_hosts_via_rest {
@@ -1593,7 +1286,8 @@ sub update_hosts_via_rest {
 	    if ( not $rest_api->upsert_hosts( \@hosts, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'host updating';
 		log_results $logfh, \@results, 'host updating';
-		push @errors, "ERROR:  Failed to update all intended hosts." if not @errors;
+		my @h_names = map { $_->{hostName} } @hosts;
+		push @errors, "ERROR:  Failed to update all intended hosts (@h_names)." if not @errors;
 	    }
 	    @hosts = ();
 	    $cnt   = 0;
@@ -1602,48 +1296,13 @@ sub update_hosts_via_rest {
     if ( @hosts and not $rest_api->upsert_hosts( \@hosts, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'host updating';
 	log_results $logfh, \@results, 'host updating';
-	push @errors, "ERROR:  Failed to update all intended hosts." if not @errors;
+	my @h_names = map { $_->{hostName} } @hosts;
+	push @errors, "ERROR:  Failed to update all intended hosts (@h_names)." if not @errors;
     }
     return \@errors;
 }
 
 # Change existing service properties
-sub update_services {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    my $notes;
-    foreach my $host (keys %{ $delta->{'alter'}{'service'} }) {
-	foreach my $service (keys %{ $delta->{'alter'}{'service'}{$host} }) {
-	    ## No {'notes'} appended, for now.  See the audit routine for this construction.
-	    $notes = $delta->{'alter'}{'service'}{$host}{$service};
-
-	    if (defined $notes) {
-		$notes =~ s/&/&amp;/g;
-		$notes =~ s/"/&quot;/g;
-		$notes =~ s/'/&apos;/g;
-		$notes =~ s/</&lt;/g;
-		$notes =~ s/>/&gt;/g;
-	    }
-
-	    push @xmlstring,
-		"\t<Service Host='", $host,
-		"' ServiceDescription='", $service,
-		((defined($notes) && $notes ne '') ? ("' Notes='" . $notes) : ''),
-		"' />\n";
-	    if (++$cnt == $max_bulk_host_add)  {
-		write_command_xml( $socket, $logfh, "MODIFY", join( '', @xmlstring ) );
-		@xmlstring = ();
-		$cnt = 0;
-	    }
-	}
-    }
-    write_command_xml( $socket, $logfh, "MODIFY", join( '', @xmlstring ) ) if (@xmlstring);
-}
-
 sub update_services_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -1666,9 +1325,12 @@ sub update_services_via_rest {
 
 	    my %properties = ();
 	    ## FIX MINOR:  This code currently simply mirrors the legacy update_services() routine, but why
-	    ## should we apply the ($notes ne '') condition here?  We're not doing it when we update notes for
-	    ## hosts, and we might want to allow it anyway when we eventually have full lifecycle support for
-	    ## such fields (GWMON-11446), allowing an empty value to delete the existing property entirely.
+	    ## should we apply the (&& $notes ne '') condition here?  We're not doing it when we update notes
+	    ## for hosts, and we might want to allow it anyway when we eventually have full lifecycle support
+	    ## for such fields (GWMON-11446), allowing an empty value to delete the existing property entirely.
+	    ## When existing notes disappear, the audit phase is currently replacing '' with ' ' to step around
+	    ## Foundation's inability to fully erase an existing property. So this extra condition is not being
+	    ## exercised, and it is simply precautionary.
 	    $properties{Notes} = $notes if defined($notes) && $notes ne '';
 	    $s_object{properties} = \%properties if %properties;
 
@@ -1692,24 +1354,6 @@ sub update_services_via_rest {
     return \@errors;
 }
 
-sub delete_hostgroups {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    foreach my $hostgroup (keys %{ $delta->{'delete'}{'hostgroup'} }) {
-	push @xmlstring, "\t<HostGroup HostGroup='$hostgroup' />\n";
-	if (++$cnt == $max_bulk_host_add)  {
-	    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
-    }
-    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) ) if (@xmlstring)
-}
-
 sub delete_hostgroups_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -1726,7 +1370,7 @@ sub delete_hostgroups_via_rest {
 	    if ( not $rest_api->delete_hostgroups( \@hostgroupnames, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'hostgroup deletion';
 		log_results $logfh, \@results, 'hostgroup deletion';
-		push @errors, "ERROR:  Failed to delete all intended hostgroups." if not @errors;
+		push @errors, "ERROR:  Failed to delete all intended hostgroups (@hostgroupnames)." if not @errors;
 	    }
 	    @hostgroupnames = ();
 	    $cnt            = 0;
@@ -1735,27 +1379,9 @@ sub delete_hostgroups_via_rest {
     if ( @hostgroupnames and not $rest_api->delete_hostgroups( \@hostgroupnames, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'hostgroup deletion';
 	log_results $logfh, \@results, 'hostgroup deletion';
-	push @errors, "ERROR:  Failed to delete all intended hostgroups." if not @errors;
+	push @errors, "ERROR:  Failed to delete all intended hostgroups (@hostgroupnames)." if not @errors;
     }
     return \@errors;
-}
-
-sub delete_servicegroups {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    foreach my $servicegroup (keys %{ $delta->{'delete'}{'servicegroup'} }) {
-	push @xmlstring, "\t<ServiceGroup ServiceGroup='$servicegroup' />\n";
-	if (++$cnt == $max_bulk_host_add)  {
-	    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
-    }
-    write_command_xml( $socket, $logfh, "REMOVE", join( '', @xmlstring ) ) if (@xmlstring);
 }
 
 sub delete_servicegroups_via_rest {
@@ -1774,7 +1400,7 @@ sub delete_servicegroups_via_rest {
 	    if ( not $rest_api->delete_servicegroups( \@servicegroupnames, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'servicegroup deletion';
 		log_results $logfh, \@results, 'servicegroup deletion';
-		push @errors, "ERROR:  Failed to delete all intended servicegroups." if not @errors;
+		push @errors, "ERROR:  Failed to delete all intended servicegroups (@servicegroupnames)." if not @errors;
 	    }
 	    @servicegroupnames = ();
 	    $cnt               = 0;
@@ -1783,54 +1409,9 @@ sub delete_servicegroups_via_rest {
     if ( @servicegroupnames and not $rest_api->delete_servicegroups( \@servicegroupnames, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'servicegroup deletion';
 	log_results $logfh, \@results, 'servicegroup deletion';
-	push @errors, "ERROR:  Failed to delete all intended servicegroups." if not @errors;
+	push @errors, "ERROR:  Failed to delete all intended servicegroups (@servicegroupnames)." if not @errors;
     }
     return \@errors;
-}
-
-sub add_hostgroups {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    my $alias;
-    my $notes;
-    foreach my $hostgroup (keys %{ $delta->{'add'}{'hostgroup'} }) {
-	## build hostgroup in chunks
-	$alias = $delta->{'add'}{'hostgroup'}{$hostgroup}{'alias'};
-	$notes = $delta->{'add'}{'hostgroup'}{$hostgroup}{'notes'};
-
-	if (defined $alias) {
-	    $alias =~ s/\n/ /g;
-	    $alias =~ s/<br>/ /ig;
-	    $alias =~ s/&/&amp;/g;
-	    $alias =~ s/"/&quot;/g;
-	    $alias =~ s/'/&apos;/g;
-	    $alias =~ s/</&lt;/g;
-	    $alias =~ s/>/&gt;/g;
-	}
-	if (defined $notes) {
-	    $notes =~ s/&/&amp;/g;
-	    $notes =~ s/"/&quot;/g;
-	    $notes =~ s/'/&apos;/g;
-	    $notes =~ s/</&lt;/g;
-	    $notes =~ s/>/&gt;/g;
-	}
-
-	push @xmlstring,
-	    "\t<HostGroup HostGroup='", $hostgroup,
-	    ((defined($alias) && $alias ne '') ? ("' Alias='" . $alias) : ''),
-	    ((defined($notes) && $notes ne '') ? ("' Description='" . $notes) : ''),
-	    "' />\n";
-	if (++$cnt == $max_bulk_host_add)  {
-	    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
-    }
-    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) ) if (@xmlstring);
 }
 
 sub add_hostgroups_via_rest {
@@ -1865,7 +1446,8 @@ sub add_hostgroups_via_rest {
 	    if ( not $rest_api->upsert_hostgroups( \@hostgroups, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'hostgroup addition';
 		log_results $logfh, \@results, 'hostgroup addition';
-		push @errors, "ERROR:  Failed to add all intended hostgroups." if not @errors;
+		my @hg_names = map { $_->{name} } @hostgroups;
+		push @errors, "ERROR:  Failed to add all intended hostgroups (@hg_names)." if not @errors;
 	    }
 	    @hostgroups = ();
 	    $cnt        = 0;
@@ -1874,42 +1456,10 @@ sub add_hostgroups_via_rest {
     if ( @hostgroups and not $rest_api->upsert_hostgroups( \@hostgroups, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'hostgroup addition';
 	log_results $logfh, \@results, 'hostgroup addition';
-	push @errors, "ERROR:  Failed to add all intended hostgroups." if not @errors;
+	my @hg_names = map { $_->{name} } @hostgroups;
+	push @errors, "ERROR:  Failed to add all intended hostgroups (@hg_names)." if not @errors;
     }
     return \@errors;
-}
-
-sub add_servicegroups {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    my $cnt       = 0;
-    my @xmlstring = ();
-    my $notes;
-    foreach my $servicegroup (keys %{ $delta->{'add'}{'servicegroup'} }) {
-	## build servicegroup in chunks
-	$notes = $delta->{'add'}{'servicegroup'}{$servicegroup}{'notes'};
-
-	if (defined $notes) {
-	    $notes =~ s/&/&amp;/g;
-	    $notes =~ s/"/&quot;/g;
-	    $notes =~ s/'/&apos;/g;
-	    $notes =~ s/</&lt;/g;
-	    $notes =~ s/>/&gt;/g;
-	}
-
-	push @xmlstring,
-	    "\t<ServiceGroup ServiceGroup='", $servicegroup,
-	    ((defined($notes) && $notes ne '') ? ("' Description='" . $notes) : ''),
-	    "' />\n";
-	if (++$cnt == $max_bulk_host_add)  {
-	    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) );
-	    @xmlstring = ();
-	    $cnt = 0;
-	}
-    }
-    write_command_xml( $socket, $logfh, "ADD", join( '', @xmlstring ) ) if (@xmlstring);
 }
 
 sub add_servicegroups_via_rest {
@@ -1931,18 +1481,21 @@ sub add_servicegroups_via_rest {
 	$sg_object{name}        = $servicegroup;
 	$sg_object{appType}     = 'NAGIOS';
 	$sg_object{description} = $notes if defined($notes) && $notes ne '';
-	## FIX MAJOR:  Derive an agent ID from somewhere to populate here.
-	## (Implement a monarch_guid field in the monarch.setup table, of type "config",
-	## and figure out how to treat this for child server deployments.  Perhaps have
-	## similar fields in the monarch.monarch_group_props table, and somehow transfer
-	## the values as needed for each individual child server.)
+	## FIX MINOR:  Theoretically, we should derive an agent ID from somewhere to populate here.
+	## (Implement a monarch_guid field in the monarch.setup table, of type "config", and figure
+	## out how to treat this for child server deployments.  Perhaps have similar fields in the
+	## monarch.monarch_group_props table, and somehow transfer the values as needed for each
+	## individual child server.  Figure out how to manage such agent IDs overall, guaranteeing
+	## that we never have trouble manipulating servicegroups because some agent IDs got lost,
+	## say when the system was migrated to new servers.)
 	# $sg_object{agentId}     = 'FIX MAJOR';
 	push @servicegroups, \%sg_object;
 	if (++$cnt == $max_rest_objects)  {
 	    if ( not $rest_api->upsert_servicegroups( \@servicegroups, {}, \%outcome, \@results ) ) {
 		log_outcome $logfh, \%outcome, 'servicegroup addition';
 		log_results $logfh, \@results, 'servicegroup addition';
-		push @errors, "ERROR:  Failed to add all intended servicegroups." if not @errors;
+		my @sg_names = map { $_->{name} } @servicegroups;
+		push @errors, "ERROR:  Failed to add all intended servicegroups (@sg_names)." if not @errors;
 	    }
 	    @servicegroups = ();
 	    $cnt = 0;
@@ -1951,42 +1504,15 @@ sub add_servicegroups_via_rest {
     if ( @servicegroups and not $rest_api->upsert_servicegroups( \@servicegroups, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'servicegroup addition';
 	log_results $logfh, \@results, 'servicegroup addition';
-	push @errors, "ERROR:  Failed to add all intended servicegroups." if not @errors;
+	my @sg_names = map { $_->{name} } @servicegroups;
+	push @errors, "ERROR:  Failed to add all intended servicegroups (@sg_names)." if not @errors;
     }
     return \@errors;
 }
 
-# FIX LATER:  bundle the socket writes here
-sub add_hostgroup_members {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    foreach my $hostgroup (keys %{ $delta->{'add'}{'hostgroup'} }) {
-	my $total_keys = keys %{ $delta->{'add'}{'hostgroup'}{$hostgroup}{'members'} };
-	my $key_index  = 0;
-	my @members    = ();
-	foreach my $host (keys %{ $delta->{'add'}{'hostgroup'}{$hostgroup}{'members'} }) {
-	    push @members, "\t\t<Host Host='".$host."' />\n";
-	    if (++$key_index == $total_keys || ($key_index % $maxhostsendcount) == 0) {
-		my $xmlstring = join( '', "\t<HostGroup HostGroup='$hostgroup' >\n", @members, "\t</HostGroup>\n" );
-		write_command_xml( $socket, $logfh, "MODIFY", $xmlstring );
-		@members = ();
-	    }
-	}
-    }
-}
-
-# FIX MAJOR:  Perhaps we need a paradigm shift in that we should no longer be clearing out all the hostgroup
-# members and then adding all of them back in, when using the REST API.  And if we do still clear them all out,
-# where is that supposed to be happening now?  (Or is that not corresponding to the use of this routine, which
-# depends on the 'add' branch of the delta (and thereby only new hostgroups, which start out empty?)
-#
-# FIX MAJOR:  Test updating host-membership lists in multiple hostgroups in the same Commit operation.
-#
-# FIX MAJOR:  Ask Roger if there is any issue here comparable to that in the Socket API, where we limited
-# the number of hosts that could be added to a given hostgroup in any one packet.  In contrast, in the
-# REST API, it seems that we can only ever set the hostgroup membership as a whole.
+# This routine is called only to add members to brand new hostgroups.  Hence it takes no trouble to clear
+# out any existing members before adding members.  update_hostgroups_via_rest() is used to edit the members
+# of existing hostgroups, and there we do clear all existing members before adding back the ones we want.
 sub add_hostgroup_members_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -1999,14 +1525,14 @@ sub add_hostgroup_members_via_rest {
     my @hostgroups = ();
     foreach my $hostgroup ( keys %{ $delta->{'add'}{'hostgroup'} } ) {
 	my @members = ();
-	## FIX MAJOR:  Make sure that we include all members of the hostgroup, even those that existed before.
 	foreach my $host ( keys %{ $delta->{'add'}{'hostgroup'}{$hostgroup}{'members'} } ) {
 	    push @members, { hostName => $host };
 	}
 	if (@members) {
 	    my @first_members = splice @members, 0, $max_rest_member_objects;
 	    push @hostgroups, { name => $hostgroup, hosts => \@first_members };
-	    ## FIX MAJOR:  We might want to use 1 instead of $max_rest_objects here.
+	    ## Worst case, we could have a grand total of ($max_rest_objects * $max_rest_member_objects) members in one call.
+	    ## If that might be problematic, we'll need a more refined condition to tell when to flush pending output.
 	    if ( ++$cnt == $max_rest_objects || @members ) {
 		do {
 		    if ( not $rest_api->upsert_hostgroups( \@hostgroups, {}, \%outcome, \@results ) ) {
@@ -2035,43 +1561,32 @@ sub add_hostgroup_members_via_rest {
     return \@errors;
 }
 
-# FIX LATER:  bundle the socket writes here
-sub add_servicegroup_members {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    foreach my $servicegroup (keys %{ $delta->{'add'}{'servicegroup'} }) {
-	## Find the total number of host+services in this group
-	my $total_keys = 0;
-	foreach my $host (keys %{ $delta->{'add'}{'servicegroup'}{$servicegroup}{'members'} }) {
-	    $total_keys += scalar keys %{ $delta->{'add'}{'servicegroup'}{$servicegroup}{'members'}{$host} };
-	}
-	my $key_index = 0;
-	my @members   = ();
-	foreach my $host (keys %{ $delta->{'add'}{'servicegroup'}{$servicegroup}{'members'} }) {
-	    foreach my $service (keys %{ $delta->{'add'}{'servicegroup'}{$servicegroup}{'members'}{$host} }) {
-		push @members, "\t\t<Service Host='".$host."' ServiceDescription='".$service."' />\n";
-		if (++$key_index == $total_keys || ($key_index % $maxhostsendcount) == 0) {
-		    my $xmlstring = join( '', "\t<ServiceGroup ServiceGroup='$servicegroup' >\n", @members, "\t</ServiceGroup>\n" );
-		    write_command_xml( $socket, $logfh, "MODIFY", $xmlstring );
-		    @members = ();
-		}
-	    }
-	}
-    }
-}
-
+# FIX MAJOR:  The following comments apply as well to the update_servicegroups_via_rest() routine.
+#
+# FIX MAJOR:  Ask David if there is any issue here where we limited the number of host services that could
+# be added to a given servicegroup in any one packet.  In contrast, in the REST API, it seems that we can
+# only ever set the servicegroup membership as a whole.  Also, check out the /api/servicegroups/addmembers
+# endpoint (which may be newer than that complaint) and compare to the GW::RAPID::add_customgroups_members()
+# routine, which uses the customgroups/addmembers endpoint instead of the servicegroups/addmembers endpoint;
+# that may provide a model for what we need as an extension to both GW::RAPID and this code here to support
+# incremental changes.  That is as opposed to the /api/servicegroups endpoint (and the
+# GW::RAPID::upsert_servicegroups() routine) that we are currently invoking.  However, we would probably
+# also need or at least want to re-jigger the audit results to provide add-members and delete-members delta
+# data instead of or in addition to what is currently provided as just absolute-list members data, and
+# avoid clearing out all existing servicegroup members.  Test at volume, to see if we must force a change
+# in our implementation.
+#
 # FIX MAJOR:  Perhaps we need a paradigm shift in that we should no longer be clearing out all the servicegroup
 # members and then adding all of them back in, when using the REST API.  And if we do still clear them all out,
 # where is that supposed to be happening now?  (Or is that not corresponding to the use of this routine, which
-# depends on the 'add' branch of the delta (and thereby only new servicegroups, which start out empty?)
+# depends on the 'add' branch of the delta (and thereby only new servicegroups, which start out empty?)  See the
+# /api/servicegroups/deletemembers endpoint and compare to the GW::RAPID::delete_customgroups_members() routine,
+# which uses the customgroups/deletemembers endpoint instead of the servicegroups/deletemembers endpoint; that may
+# provide a model for what we need as an extension to both GW::RAPID and this code here to support incremental
+# changes.  However, we would probably also need or at least want to re-jigger the audit results to provide
+# add-members and delete-members delta data instead of or in addition to what is currently provided as just
+# absolute-list members data, and avoid clearing out all existing servicegroup members.
 #
-# FIX MAJOR:  Test updating service-membership lists in multiple servicegroups in the same Commit operation.
-#
-# FIX MAJOR:  Ask Roger if there is any issue here comparable to that in the Socket API, where we limited
-# the number of host services that could be added to a given servicegroup in any one packet.  In contrast,
-# in the REST API, it seems that we can only ever set the servicegroup membership as a whole.
 sub add_servicegroup_members_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -2084,7 +1599,6 @@ sub add_servicegroup_members_via_rest {
     my @servicegroups = ();
     foreach my $servicegroup ( keys %{ $delta->{'add'}{'servicegroup'} } ) {
 	my @members = ();
-	## FIX MAJOR:  Make sure that we include all members of the servicegroup, even those that existed before.
 	foreach my $host ( keys %{ $delta->{'add'}{'servicegroup'}{$servicegroup}{'members'} } ) {
 	    foreach my $service ( keys %{ $delta->{'add'}{'servicegroup'}{$servicegroup}{'members'}{$host} } ) {
 		push @members, { host => $host, service => $service };
@@ -2092,7 +1606,6 @@ sub add_servicegroup_members_via_rest {
 	}
 	if (@members) {
 	    push @servicegroups, { name => $servicegroup, services => \@members };
-	    ## FIX MAJOR:  We might want to use 1 instead of $max_rest_objects here.
 	    if ( ++$cnt == $max_rest_objects ) {
 		if ( not $rest_api->upsert_servicegroups( \@servicegroups, {}, \%outcome, \@results ) ) {
 		    log_outcome $logfh, \%outcome, 'servicegroup member addition';
@@ -2112,71 +1625,6 @@ sub add_servicegroup_members_via_rest {
     return \@errors;
 }
 
-# FIX LATER:  perhaps bundle the socket writes here
-sub update_hostgroups {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
-
-    ## rebuild host groups in chunks
-    foreach my $hostgroup (keys %{ $delta->{'alter'}{'hostgroup'} }) {
-	my $alias = $delta->{'alter'}{'hostgroup'}{$hostgroup}{'alias'};
-	my $notes = $delta->{'alter'}{'hostgroup'}{$hostgroup}{'notes'};
-	if (defined $alias) {
-	    $alias =~ s/\n/ /g;
-	    $alias =~ s/<br>/ /ig;
-	    $alias =~ s/&/&amp;/g;
-	    $alias =~ s/"/&quot;/g;
-	    $alias =~ s/'/&apos;/g;
-	    $alias =~ s/</&lt;/g;
-	    $alias =~ s/>/&gt;/g;
-	}
-	if (defined $notes) {
-	    $notes =~ s/&/&amp;/g;
-	    $notes =~ s/"/&quot;/g;
-	    $notes =~ s/'/&apos;/g;
-	    $notes =~ s/</&lt;/g;
-	    $notes =~ s/>/&gt;/g;
-	}
-	my @xmlstring = ();
-	if (exists $delta->{'alter'}{'hostgroup'}{$hostgroup}{'members'}) {
-	    # CLEAR must be bundled in the same <Adapter> packet with MODIFY
-	    # of membership for a given hostgroup, to ensure serialization.
-	    my $xmlstring = "\t<HostGroup HostGroup='$hostgroup' />\n";
-	    push @xmlstring, "    <Command Action='CLEAR' ApplicationType='NAGIOS'>\n$xmlstring    </Command>\n";
-	    my $total_keys = keys %{ $delta->{'alter'}{'hostgroup'}{$hostgroup}{'members'} };
-	    my $key_index  = 0;
-	    my @members    = ();
-	    foreach my $host (keys %{ $delta->{'alter'}{'hostgroup'}{$hostgroup}{'members'} }) {
-		push @members,
-		    "\t\t<Host Host='", $host,
-		    "' />\n";
-		if (++$key_index == $total_keys || ($key_index % $maxhostsendcount) == 0) {
-		    my $xmlstring = join( '',
-			"\t<HostGroup HostGroup='", $hostgroup,
-			((defined($alias) && $alias ne '') ? ("' Alias='" . $alias) : ''),
-			((defined($notes) && $notes ne '') ? ("' Description='" . $notes) : ''),
-			"' >\n", @members, "\t</HostGroup>\n" );
-		    push @xmlstring, "    <Command Action='MODIFY' ApplicationType='NAGIOS'>\n$xmlstring    </Command>\n";
-		    $alias = undef;
-		    $notes = undef;
-		    @members = ();
-		}
-	    }
-	}
-	if (defined $alias || defined $notes) {
-	    my $xmlstring = join( '',
-		"\t<HostGroup HostGroup='", $hostgroup,
-		((defined($alias) && $alias ne '') ? ("' Alias='" . $alias) : ''),
-		((defined($notes) && $notes ne '') ? ("' Description='" . $notes) : ''),
-		"' >\n", "\t</HostGroup>\n" );
-	    push @xmlstring, "    <Command Action='MODIFY' ApplicationType='NAGIOS'>\n$xmlstring    </Command>\n";
-	}
-	write_adapter_xml( $socket, $logfh, join( '', @xmlstring ) ) if @xmlstring;
-    }
-}
-
-# FIX MAJOR:  Limit the membership additions to $max_rest_member_objects per hostgroup per call.
 sub update_hostgroups_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -2201,31 +1649,31 @@ sub update_hostgroups_via_rest {
 	my @first_members = ();
 	if ( exists $delta->{'alter'}{'hostgroup'}{$hostgroup}{'members'} ) {
 	    push @hostgroups_to_clear, $hostgroup;
+	    ## Audit results include all members of the hostgroup, even those that existed before.
 	    foreach my $host ( keys %{ $delta->{'alter'}{'hostgroup'}{$hostgroup}{'members'} } ) {
 		push @members, { hostName => $host };
 	    }
-	    ## FIX MINOR:  clean up this old code
-	    ## $hg_object{hosts} = \@members if @members;
 	    if (@members) {
 		@first_members = splice @members, 0, $max_rest_member_objects;
 		$hg_object{hosts} = \@first_members;
 	    }
 	}
+	## The "&& ... ne ''" clauses here (and probably elsewhere in this code) are something of a holdover,
+	## and should not be necessary or even useful.  Current audit results replace '' with ' ' anyway so
+	## this doesn't present a problem.  Tiptoe away, and spend your time on more productive pursuits.
 	$hg_object{alias}       = $alias if defined($alias) && $alias ne '';
 	$hg_object{description} = $notes if defined($notes) && $notes ne '';
 	if (%hg_object) {
 	    $hg_object{name} = $hostgroup;
 	    push @hostgroups, \%hg_object;
-
-	    ## FIX MAJOR:  check elsewhere in the code to see if the socket-api stuff did conditional writes,
-	    ## and make sure we reflect such conditionality into the rest-api branches
-	    ## FIX MAJOR:  We might want to use 1 instead of $max_rest_objects here.
+	    ## Worst case, we could have a grand total of ($max_rest_objects * $max_rest_member_objects) members in one call.
+	    ## If that might be problematic, we'll need a more refined condition to tell when to flush pending output.
 	    if ( ++$cnt == $max_rest_objects || @members ) {
 		if (@hostgroups_to_clear) {
 		    if ( not $rest_api->clear_hostgroups( \@hostgroups_to_clear, {}, \%outcome, \@results ) ) {
 			log_outcome $logfh, \%outcome, 'hostgroup clearing';
 			log_results $logfh, \@results, 'hostgroup clearing';
-			push @errors, "ERROR:  Failed to clear all intended hostgroups." if not @errors;
+			push @errors, "ERROR:  Failed to clear all intended hostgroups (@hostgroups_to_clear)." if not @errors;
 		    }
 		    @hostgroups_to_clear = ();
 		}
@@ -2233,7 +1681,8 @@ sub update_hostgroups_via_rest {
 		    if ( not $rest_api->upsert_hostgroups( \@hostgroups, {}, \%outcome, \@results ) ) {
 			log_outcome $logfh, \%outcome, 'hostgroup updating';
 			log_results $logfh, \@results, 'hostgroup updating';
-			push @errors, "ERROR:  Failed to update all intended hostgroups." if not @errors;
+			my @hg_names = map { $_->{name} } @hostgroups;
+			push @errors, "ERROR:  Failed to update all intended hostgroups (@hg_names)." if not @errors;
 		    }
 		    @first_members = splice @members, 0, $max_rest_member_objects;
 		    @hostgroups = (
@@ -2251,84 +1700,31 @@ sub update_hostgroups_via_rest {
     if ( @hostgroups_to_clear and not $rest_api->clear_hostgroups( \@hostgroups_to_clear, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'hostgroup clearing';
 	log_results $logfh, \@results, 'hostgroup clearing';
-	push @errors, "ERROR:  Failed to clear all intended hostgroups." if not @errors;
+	push @errors, "ERROR:  Failed to clear all intended hostgroups (@hostgroups_to_clear)." if not @errors;
     }
     if ( @hostgroups and not $rest_api->upsert_hostgroups( \@hostgroups, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'hostgroup updating';
 	log_results $logfh, \@results, 'hostgroup updating';
-	push @errors, "ERROR:  Failed to update all intended hostgroups." if not @errors;
+	my @hg_names = map { $_->{name} } @hostgroups;
+	push @errors, "ERROR:  Failed to update all intended hostgroups (@hg_names)." if not @errors;
     }
     return \@errors;
 }
 
-# FIX LATER:  perhaps bundle the socket writes here
-sub update_servicegroups {
-    my $delta  = $_[0];
-    my $socket = $_[1];
-    my $logfh  = $_[2];
+# FIX MAJOR:  GWMON-13492:  If I make a call to the /api/servicegroups endpoint and supply "name" and
+# "services" but no "description", then the "description" gets left as-is (as I would hope and expect).  But
+# if I supply "name" and "description" but no "services", then all the servicegroup members get wiped out
+# (which is neither expected nor hoped-for).  So there is inconsistency in the behavior of this endpoint.
+# GWMON-13492 has been filed to address this.  The current code here and in the audit phase does not account
+# for this failure of the REST call.  I will await the resolution of that JIRA to tell whether I can leave
+# the Monarch code as-is (if the REST API behavior gets fixed) or whether the audit phase must be changed to
+# provide a complete list of $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'} if there are any
+# other elements of $delta->{'alter'}{'servicegroup'}{$servicegroup} provided in the audit results.  Until
+# then, a follow-up Commit will recognize what got wiped out, and restore it.
 
-    # rebuild service groups in chunks
-    foreach my $servicegroup (keys %{ $delta->{'alter'}{'servicegroup'} }) {
-	my $notes = $delta->{'alter'}{'servicegroup'}{$servicegroup}{'notes'};
-	if (defined $notes) {
-	    $notes =~ s/&/&amp;/g;
-	    $notes =~ s/"/&quot;/g;
-	    $notes =~ s/'/&apos;/g;
-	    $notes =~ s/</&lt;/g;
-	    $notes =~ s/>/&gt;/g;
-	}
-	my @xmlstring = ();
-	if (exists $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'}) {
-	    # CLEAR must be bundled in the same <Adapter> packet with MODIFY
-	    # of membership for a given servicegroup, to ensure serialization.
-	    my $xmlstring = "\t<ServiceGroup ServiceGroup='$servicegroup' />\n";
-	    push @xmlstring, "    <Command Action='CLEAR' ApplicationType='NAGIOS'>\n$xmlstring    </Command>\n";
-	    ## Find the total number of host+services
-	    my $total_keys = 0;
-	    foreach my $host (keys %{ $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'} }) {
-		$total_keys += scalar keys %{ $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'}{$host} };
-	    }
-	    my $key_index = 0;
-	    my @members   = ();
-	    foreach my $host (keys %{ $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'} }) {
-		foreach my $service (keys %{ $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'}{$host} }) {
-		    push @members,
-			"\t\t<Service Host='", $host,
-			"' ServiceDescription='", $service,
-			"' />\n";
-		    if (++$key_index == $total_keys || ($key_index % $maxhostsendcount) == 0) {
-			my $xmlstring = join( '',
-			    "\t<ServiceGroup ServiceGroup='", $servicegroup,
-			    ((defined($notes) && $notes ne '') ? ("' Description='" . $notes) : ''),
-			    "' >\n", @members, "\t</ServiceGroup>\n" );
-			push @xmlstring, "    <Command Action='MODIFY' ApplicationType='NAGIOS'>\n$xmlstring    </Command>\n";
-			$notes = undef;
-			@members = ();
-		    }
-		}
-	    }
-	}
-	if (defined $notes) {
-	    my $xmlstring = join( '',
-		"\t<ServiceGroup ServiceGroup='", $servicegroup,
-		"' Description='", $notes,
-		"' >\n", "\t</ServiceGroup>\n" );
-	    push @xmlstring, "    <Command Action='MODIFY' ApplicationType='NAGIOS'>\n$xmlstring    </Command>\n";
-	}
-	write_adapter_xml( $socket, $logfh, join( '', @xmlstring ) ) if @xmlstring;
-    }
-}
-
-# FIX MAJOR:  Compare the action of "clearing" a hostgroup with whatever we do or don't do
-# in that regard for servicegroups.  How did that question get resolved?
-#
-# FIX MAJOR:  Test what happens with empty notes -- should those be used to delete an existing
-# description, and therefore be allowed through?
-#
-# FIX MAJOR:  Test what happens if you completely empty out all members of a servicegroup.
-#
-# FIX MAJOR:  Convert this code to use GW::RAPID.  Follow the model in update_hostgroups_via_rest()
-# as much as is sensible, but following the data structures from update_servicegroups().
+# FIX MINOR:  If and when we convert this code to perform incremental changes to the set of services
+# in a servicegroup, follow the model in update_hostgroups_via_rest() as regards @first_members and
+# $max_rest_member_objects, but following the data structures from update_servicegroups().
 sub update_servicegroups_via_rest {
     my $delta = $_[0];
     my $logfh = $_[1];
@@ -2343,8 +1739,17 @@ sub update_servicegroups_via_rest {
 	my $notes = $delta->{'alter'}{'servicegroup'}{$servicegroup}{'notes'};
 
 	my %sg_object = ();
+	## FIX MAJOR:  GWMON-13492:  Currently, the REST API endpoint we are ultimately using (/api/servicegroups) will
+	## wipe out all servicegroup members if we make any changes to other elements of the servicegroup (such as just
+	## the descriptive notes) and do not also supply a complete list of servicegroup members.  (This is different
+	## from the behavior of the XML Sockeet API.)  So even if the list of servicegroup members has not changed in
+	## Monarch, if we are here because the $notes changed, we must re-supply all of the servicegroup members, from
+	## scratch.  It is therefore incumbent on the audit phase to supply that list of servicegroup members, at least
+	## when the REST API is being used.
 	if ( exists $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'} ) {
 	    my @members = ();
+	    ## Currently, we include all members of the servicegroup, even those that existed before.  See GWMON-13492,
+	    ## as well as comments above this routine and above add_servicegroup_members_via_rest().
 	    foreach my $host ( keys %{ $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'} } ) {
 		foreach my $service ( keys %{ $delta->{'alter'}{'servicegroup'}{$servicegroup}{'members'}{$host} } ) {
 		    push @members, { host => $host, service => $service };
@@ -2355,17 +1760,14 @@ sub update_servicegroups_via_rest {
 	$sg_object{description} = $notes if defined($notes) && $notes ne '';
 	if (%sg_object) {
 	    $sg_object{name} = $servicegroup;
-	    ## FIX MINOR:  force the servicegroup AppType here, as well?
 	    push @servicegroups, \%sg_object;
 
-	    ## FIX MAJOR:  check elsewhere in the code to see if the socket-api stuff did conditional writes,
-	    ## and make sure we reflect such conditionality into the rest-api branches
-	    ## FIX MAJOR:  We might want to use 1 instead of $max_rest_objects here.
 	    if ( ++$cnt == $max_rest_objects ) {
 		if ( not $rest_api->upsert_servicegroups( \@servicegroups, {}, \%outcome, \@results ) ) {
 		    log_outcome $logfh, \%outcome, 'servicegroup updating';
 		    log_results $logfh, \@results, 'servicegroup updating';
-		    push @errors, "ERROR:  Failed to update all intended servicegroups." if not @errors;
+		    my @sg_names = map { $_->{name} } @servicegroups;
+		    push @errors, "ERROR:  Failed to update all intended servicegroups (@sg_names)." if not @errors;
 		}
 		@servicegroups = ();
 		$cnt           = 0;
@@ -2375,53 +1777,10 @@ sub update_servicegroups_via_rest {
     if ( @servicegroups and not $rest_api->upsert_servicegroups( \@servicegroups, {}, \%outcome, \@results ) ) {
 	log_outcome $logfh, \%outcome, 'servicegroup updating';
 	log_results $logfh, \@results, 'servicegroup updating';
-	push @errors, "ERROR:  Failed to update all intended servicegroups." if not @errors;
+	my @sg_names = map { $_->{name} } @servicegroups;
+	push @errors, "ERROR:  Failed to update all intended servicegroups (@sg_names)." if not @errors;
     }
     return \@errors;
-}
-
-sub write_adapter_xml {
-    my $socket     = $_[0];
-    my $log_fh     = $_[1];
-    my $xml_string = $_[2];
-
-    $foundation_msg_count++;
-    my $xml_out = "<Adapter Session=\"$foundation_msg_count\" AdapterType=\"SystemAdmin\">\n$xml_string</Adapter>\n";
-    print $log_fh $xml_out if $logging && !$log_as_utf8;
-    utf8::encode($xml_out);
-    my $status = print $socket $xml_out;
-    my $error = "$!";
-    print $log_fh $xml_out if $logging && $log_as_utf8;
-    print $log_fh "<!-- ERROR:  Printing that Adapter block to the socket failed ($error). -->\n" if $logging && !$status;
-}
-
-sub write_command_xml {
-    my $socket     = $_[0];
-    my $log_fh     = $_[1];
-    my $action     = $_[2];
-    my $xml_string = $_[3];
-
-    $foundation_msg_count++;
-    my $xml_out = "<Adapter Session=\"$foundation_msg_count\" AdapterType=\"SystemAdmin\">\n    <Command Action='$action' ApplicationType='NAGIOS'>\n$xml_string    </Command>\n</Adapter>\n";
-    print $log_fh $xml_out if $logging && !$log_as_utf8;
-    utf8::encode($xml_out);
-    my $status = print $socket $xml_out;
-    my $error = "$!";
-    print $log_fh $xml_out if $logging && $log_as_utf8;
-    print $log_fh "<!-- ERROR:  Printing that Adapter block to the socket failed ($error). -->\n" if $logging && !$status;
-}
-
-sub unindent {
-    $_[0] =~ s/^[\n\r]*//;
-    my ($indent) = ($_[0] =~ /^([ \t]+)/);
-    $_[0] =~ s/^$indent//gm;
-}
-
-# Subroutine for getting the current time in SQL Date format
-sub get_last_state_change {
-    my $timestamp = shift;
-    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime($timestamp);
-    return sprintf("%04d-%02d-%02d %02d:%02d:%02d", $year+1900, $mon+1, $mday, $hour, $min, $sec);
 }
 
 # FIX MAJOR:  Test to see the downstream effect of using Zulu time here, as it

@@ -76,19 +76,19 @@ install : all
 	${MKDIR} ${MONARCH_BASE}/distribution
 	${MKDIR} ${MONARCH_BASE}/workspace
 	${MKDIR} ${MONARCH_BASE}/backup
-	${MKDIR} ${MONARCH_BASE}/logs
+	${MKDIR} ${MONARCH_BASE}/var
 	${CP} -pr automation bin cgi-bin htdocs lib etc profiles ${MONARCH_BASE}
 	${MKDIR} ${MONARCH_BASE}/htdocs/gdma
 	${CP} -p ${TARGETDIR}/nagios_reload ${MONARCH_BASE}/bin
 	${CP} -p ${TARGETDIR}/nmap_scan_one ${MONARCH_BASE}/bin
 	${CP} -p ${TARGETDIR}/monarch_as_nagios ${MONARCH_BASE}/bin
+	${CHOWN} nagios:nagios -R ${MONARCH_BASE}
 	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nagios_reload
 	${CHMOD} 750 ${MONARCH_BASE}/bin/nagios_reload
 	${CHMOD} u+s ${MONARCH_BASE}/bin/nagios_reload
 	${CHOWN} root:nagios ${MONARCH_BASE}/bin/nmap_scan_one
 	${CHMOD} 750 ${MONARCH_BASE}/bin/nmap_scan_one
 	${CHMOD} u+s ${MONARCH_BASE}/bin/nmap_scan_one
-	${CHOWN} nagios:nagios -R ${MONARCH_BASE}
 	${MKDIR} -p ${CONFIG_BASE}
 	${CP} -pn config/*.properties ${CONFIG_BASE}
 	${CHOWN} nagios:nagios -R ${CONFIG_BASE}

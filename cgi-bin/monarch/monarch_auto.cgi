@@ -2677,7 +2677,6 @@ sub discovery_load_default {
 	    ($errs, %$discover_groups) = StorProc->get_discovery_groups();
 	    push @$errors, @$errs if @$errs;
 	    $hidden->{'obj_view'} = '';
-	    use IO::Socket;
 	    use Sys::Hostname;
 	    my $hostname = hostname();
 	    my $filter_value = inet_ntoa( ( gethostbyname($hostname) )[4] );

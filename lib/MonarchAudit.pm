@@ -67,11 +67,13 @@
 #
 # Sep 2018 Glenn Herteg
 #	Convert the form of REST call used to fetch host data from Foundation.
+#
+# Dec 2018 RW
+#	GW8 port: only support REST API.
 
 use strict;
 
 use MonarchStorProc;
-use CollageQuery;
 
 # For debugging ...
 use Data::Dumper;
@@ -85,8 +87,6 @@ my $debug = 0;
 my $debug_summary = $debug >= 1;
 my $debug_changes = $debug >= 2;
 my $debug_dumps   = $debug >= 3;
-
-my $use_rest_api = 1;    # set to 1 to use the REST API instead of the $remote_port socket API, 0 otherwise
 
 # TODO:  Add a field in the monarch database flagging whether the database in
 # its current state has passed a preflight (meaning that the files generated
@@ -165,7 +165,6 @@ sub foundation_sync {
     my %last         = ();
     my %current      = ();
     my %delta        = ();
-    my $foundation   = CollageQuery->new();
     my $apptype      = 'NAGIOS';              # Application type used to query Foundation for hosts owned by Monarch.
 
     my $cascade_deleted_services             = 0;
@@ -361,13 +360,8 @@ sub foundation_sync {
     my $err_ref;
     my $time_ref;
     my $f_hosts;
-    if ( $use_rest_api && $rest_api ) {
-	( $err_ref, $time_ref, $f_hosts ) = getSyncHosts($rest_api);
-	push @timings, @$time_ref;
-    }
-    else {
-	( $err_ref, $f_hosts ) = $foundation->getSyncHosts();
-    }
+    ( $err_ref, $time_ref, $f_hosts ) = getSyncHosts($rest_api);
+    push @timings, @$time_ref;
     if (@$err_ref) {
 	push @errors, @$err_ref;
     }
@@ -414,15 +408,10 @@ sub foundation_sync {
     unless (@errors) {
 	## get the hostgroups known to Foundation and managed by Monarch
 	my $f_hostgroups;
-	if ( $use_rest_api && $rest_api ) {
-	    ## FIX MAJOR:  Should this call perform a deeper retrieval that grabs all the associated hostnames
-	    ## as well, so we don't need separate getHostsForHostGroup() calls in the following loop?
-	    ( $err_ref, $f_hostgroups ) = getHostGroupsByType( $rest_api, $apptype );
-	    push @errors, @$err_ref if @$err_ref;
-	}
-	else {
-	    $f_hostgroups = $foundation->getHostGroupsByType($apptype);
-	}
+	## FIX MAJOR:  Should this call perform a deeper retrieval that grabs all the associated hostnames
+	## as well, so we don't need separate getHostsForHostGroup() calls in the following loop?
+	( $err_ref, $f_hostgroups ) = getHostGroupsByType( $rest_api, $apptype );
+	push @errors, @$err_ref if @$err_ref;
 	if ( ref($f_hostgroups) eq 'HASH' ) {
 	    my $old_alias;
 	    my $old_notes;
@@ -436,15 +425,10 @@ sub foundation_sync {
 		$old_notes = $f_hostgroups->{$hostgroup}{'Description'};
 		$last{'hostgroup'}{$hostgroup}{'notes'} = (defined($old_notes) && $old_notes ne ' ') ? $old_notes : '';
 		my $f_hosts;
-		if ( $use_rest_api && $rest_api ) {
-		    ( $err_ref, $f_hosts ) = getHostsForHostGroup( $rest_api, $hostgroup );
-		    if (@$err_ref) {
-			push @errors, @$err_ref;
-			last;
-		    }
-		}
-		else {
-		    $f_hosts = $foundation->getHostsForHostGroup($hostgroup);
+		( $err_ref, $f_hosts ) = getHostsForHostGroup( $rest_api, $hostgroup );
+		if (@$err_ref) {
+		    push @errors, @$err_ref;
+		    last;
 		}
 		%{ $last{'hostgroup'}{$hostgroup}{'members'} } = ();
 		if ( ref($f_hosts) eq 'HASH' ) {
@@ -461,19 +445,10 @@ sub foundation_sync {
 	# get the servicegroups known to Foundation; we don't filter because service groups are (currently) solely a Monarch construct
 	# DN GWMON-12290 10/30/15 - that is no longer correct and sg's can be SYSTEM type for example. So filter on NAGIOS app type.
 	my $f_servicegroups;
-	if ( $use_rest_api && $rest_api ) {
-	    ## FIX MAJOR:  Should this call perform a deeper retrieval that grabs all the associated hostnames/servicenames
-	    ## as well, so we don't need separate getHostServicesForServiceGroup() calls in the following loop?
-	    ( $err_ref, $f_servicegroups ) = getServiceGroups($rest_api);
-	    push @errors, @$err_ref if @$err_ref;
-	}
-	else {
-   	    # DN 10/30/15 This is the problem behind GWMON-12290. The CollageQuery->getServiceGroups() method returns groups of all types.
-   	    # However, in this context, we only want NAGIOS types, else sg's created by other things, like Admin->custom groups,
-   	    # will end up getting deleted. The change was to modify CollageQuery->getServiceGroups() query to return the ApplicationType 
-   	    # ie the name eg NAGIOS, SYSTEM, etc. Then that info can be used for filtering against.
-	    $f_servicegroups = $foundation->getServiceGroups(); 
-	}
+	## FIX MAJOR:  Should this call perform a deeper retrieval that grabs all the associated hostnames/servicenames
+	## as well, so we don't need separate getHostServicesForServiceGroup() calls in the following loop?
+	( $err_ref, $f_servicegroups ) = getServiceGroups($rest_api);
+	push @errors, @$err_ref if @$err_ref;
 	if ( ref($f_servicegroups) eq 'HASH' ) {
 	    my $old_notes;
 	    foreach my $servicegroup ( keys %{$f_servicegroups} ) {
@@ -493,58 +468,30 @@ sub foundation_sync {
 
 		$old_notes = $f_servicegroups->{$servicegroup}{'Description'};
 		$last{'servicegroup'}{$servicegroup}{'notes'} = ( defined($old_notes) && $old_notes ne ' ' ) ? $old_notes : '';
-		if ( $use_rest_api && $rest_api ) {
-		    my $f_host_services;
-		    ( $err_ref, $f_host_services ) = getHostServicesForServiceGroup($rest_api, $servicegroup);
-		    if (@$err_ref) {
-			push @errors, @$err_ref;
-			last;
-		    }
-
-		    ## FIX MINOR:  Do we ever really need to make this initialization, in case we find
-		    ## a servicegroup in Foundation with no associated host/service combinations?
-		    ## Or is this simply a way around a failure of the getHostServicesForServiceGroup()
-		    ## call to execute correctly?
-		    %{ $last{'servicegroup'}{$servicegroup}{'host'} } = ();
-
-		    foreach my $host ( keys %{$f_host_services} ) {
-			my $f_services = $f_host_services->{ $host };
-			if ( ref($f_services) eq 'HASH' ) {
-			    foreach my $service ( keys %{$f_services} ) {
-				$last{'servicegroup'}{$servicegroup}{'host'}{$host}{'service'}{$service} = 1;
-			    }
-			}
-			else {
-			    ## FIX MINOR:  does this case even make sense, having a host in the
-			    ## servicegroup in Foundation, but with no associated services?
-			    %{ $last{'servicegroup'}{$servicegroup}{'host'}{$host}{'service'} } = ();
-			}
-		    }
+		my $f_host_services;
+		( $err_ref, $f_host_services ) = getHostServicesForServiceGroup($rest_api, $servicegroup);
+		if (@$err_ref) {
+		    push @errors, @$err_ref;
+		    last;
 		}
-		else {
-		    ## FIX LATER:  getHostsForServiceGroup() and getHostServicesForServiceGroup() work, but such nested
-		    ## queries are a horribly inefficient mechanism.  Replace with something that retrieves in bulk.
-		    my $f_hosts = $foundation->getHostsForServiceGroup($servicegroup);
 
-		    ## FIX LATER:  Do we ever really need to make this initialization, in case we find
-		    ## a servicegroup in Foundation with no associated host/service combinations?
-		    %{ $last{'servicegroup'}{$servicegroup}{'host'} } = ();
+		## FIX MINOR:  Do we ever really need to make this initialization, in case we find
+		## a servicegroup in Foundation with no associated host/service combinations?
+		## Or is this simply a way around a failure of the getHostServicesForServiceGroup()
+		## call to execute correctly?
+		%{ $last{'servicegroup'}{$servicegroup}{'host'} } = ();
 
-		    if ( ref($f_hosts) eq 'HASH' ) {
-			foreach my $host ( keys %{$f_hosts} ) {
-			    ## Should have been called getServicesForServiceGroupHost().
-			    my $f_services = $foundation->getHostServicesForServiceGroup( $servicegroup, $host );
-			    if ( ref($f_services) eq 'HASH' ) {
-				foreach my $service ( keys %{$f_services} ) {
-				    $last{'servicegroup'}{$servicegroup}{'host'}{$host}{'service'}{$service} = 1;
-				}
-			    }
-			    else {
-				## FIX THIS:  does this case even make sense, having a host in the
-				## servicegroup in Foundation, but with no associated services?
-				%{ $last{'servicegroup'}{$servicegroup}{'host'}{$host}{'service'} } = ();
-			    }
+		foreach my $host ( keys %{$f_host_services} ) {
+		    my $f_services = $f_host_services->{ $host };
+		    if ( ref($f_services) eq 'HASH' ) {
+			foreach my $service ( keys %{$f_services} ) {
+			    $last{'servicegroup'}{$servicegroup}{'host'}{$host}{'service'}{$service} = 1;
 			}
+		    }
+		    else {
+			## FIX MINOR:  does this case even make sense, having a host in the
+			## servicegroup in Foundation, but with no associated services?
+			%{ $last{'servicegroup'}{$servicegroup}{'host'}{$host}{'service'} } = ();
 		    }
 		}
 	    }
