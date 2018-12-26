@@ -1,5 +1,8 @@
 # monarch
-Monarch
+
+Monarch: [http://localhost:8091/monarch/cgi-bin/monarch.cgi](http://localhost:8091/monarch/cgi-bin/monarch.cgi)
+
+Status log: [http://localhost:8091/nagios/var/status.log](http://localhost:8091/nagios/var/status.log)
 
 Ubuntu Build Instructions, (currently assumes Postgres and Groundwork running on Docker host):
 
