@@ -123,7 +123,7 @@ COPY commands (command_id, name, type, data, comment) FROM stdin;
 40	check_local_procs_string	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_procs -w "$ARG1$" -c "$ARG2$" -a "$ARG3$"]]>\n  </prop>\n</data>	\N
 41	check_local_mem	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_mem.pl -U -w "$ARG1$" -c "$ARG2$"]]>\n  </prop>\n</data>	\N
 42	check_tcp_nsca	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_tcp -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -p 5667]]>\n  </prop>\n</data>	\N
-43	check_nagios	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_nagios -F /usr/local/nagios/var/status.log -e 5 -C bin/.nagios.bin]]>\n  </prop>\n</data>	\N
+43	check_nagios	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_nagios -F /usr/local/nagios/var/status.dat -e 5 -C bin/.nagios.bin]]>\n  </prop>\n</data>	\N
 44	check_nagios_latency	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_nagios_latency.pl]]>\n  </prop>\n</data>	\N
 45	check_local_procs_arg	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_procs -w "$ARG1$" -c "$ARG2$" -a "$ARG3$"]]>\n  </prop>\n</data>	\N
 46	check_local_swap	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_swap -w "$ARG1$" -c "$ARG2$"]]>\n  </prop>\n</data>	\N
@@ -253,7 +253,6 @@ COPY commands (command_id, name, type, data, comment) FROM stdin;
 258	check_by_ssh_process_named	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_by_ssh -H $HOSTADDRESS$ -t 60 -l "$USER17$" -C "$USER22$/check_procs -c 1:1 -C named -a /etc/named.conf"]]>\n  </prop>\n</data>	\N
 259	check_syslog	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_syslog_gw.pl -l $ARG1$ -s /tmp/$HOSTNAME$.tmp -x $ARG2$ -a $HOSTADDRESS$]]>\n  </prop>\n</data>	\N
 260	check_imap	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_imap -t 60 -H $HOSTADDRESS$ -w "$ARG1$" -c "$ARG2$" -p 143]]>\n  </prop>\n</data>	\N
-262	process_service_perfdata_db	other	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER2$/process_service_perf_db.pl "$LASTSERVICECHECK$" "$HOSTNAME$" "$SERVICEDESC$" "$SERVICEOUTPUT$" "$SERVICEPERFDATA$"]]>\n  </prop>\n</data>	\N
 263	check_snmp_alive	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_snmp -H $HOSTADDRESS$ -o .1.3.6.1.2.1.1.3.0 -l "Uptime is " -C '$USER7$']]>\n  </prop>\n</data>	\N
 264	check_nt	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_nt -p $USER19$ -s $USER4$ -H $HOSTADDRESS$ -v CLIENTVERSION]]>\n  </prop>\n</data>	\N
 265	check_nrpe_service	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_nrpe -H $HOSTADDRESS$ -t 60 -c get_service -a "$HOSTADDRESS$" "$ARG1$"]]>\n  </prop>\n</data>	\N
@@ -261,7 +260,7 @@ COPY commands (command_id, name, type, data, comment) FROM stdin;
 268	check_local_proc_mem	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_procl.sh --mem -w "$ARG1$" -c "$ARG2$" -p "$ARG3$"]]>\n  </prop>\n</data>	\N
 269	check_dir_size	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_dir_size.sh $ARG1$ $ARG2$ $ARG3$]]>\n  </prop>\n</data>	\N
 270	check_tcp_gw_listener	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_tcp -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -p 4913]]>\n  </prop>\n</data>	\N
-271	launch_perfdata_process	other	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER2$/launch_perf_data_processing]]>\n  </prop>\n</data>	\N
+271	launch_perfdata_process	other	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[/usr/local/groundwork/nagiosfeeders/bin/launch_perf_data_processing]]>\n  </prop>\n</data>	\N
 272	check_by_ssh_cpu_proc	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_by_ssh -H $HOSTADDRESS$ -t 60 -l "$USER17$" -C "$USER22$/check_procl.sh --cpu -w $ARG1$ -c $ARG2$ -p $ARG3$"]]>\n  </prop>\n</data>	\N
 273	check_by_ssh_mem_proc	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_by_ssh -H $HOSTADDRESS$ -t 60 -l "$USER17$" -C "$USER22$/check_procl.sh --mem -w $ARG1$ -c $ARG2$ -p $ARG3$"]]>\n  </prop>\n</data>	\N
 274	check_by_ssh_nagios_latency	check	<?xml version="1.0" ?>\n<data>\n  <prop name="command_line"><![CDATA[$USER1$/check_by_ssh -H $HOSTADDRESS$ -t 60 -l "$USER17$" -C "$USER1$/check_nagios_latency.pl"]]>\n  </prop>\n</data>	\N
@@ -1746,7 +1745,7 @@ illegal_object_name_chars	nagios	`~!$%^&*|'"<>?,()'=
 interval_length	nagios	60
 is_portal	config	1
 lock_author_names	nagios_cgi	\N
-lock_file	nagios	/usr/local/nagios/var/nagios.lock
+lock_file	nagios	/var/run/nagios.lock
 log_archive_path	nagios	/usr/local/nagios/var/archives
 log_event_handlers	nagios	1
 log_external_commands	nagios	1
@@ -1862,7 +1861,7 @@ show_context_help	nagios_cgi	1
 sleep_time	nagios	1
 soft_state_dependencies	nagios	\N
 state_retention_file	nagios	/usr/local/nagios/var/nagiosstatus.sav
-status_file	nagios	/usr/local/nagios/var/status.log
+status_file	nagios	/usr/local/nagios/var/status.dat
 status_update_interval	nagios	15
 statusmap_background_image	nagios_cgi	states.png
 statuswrl_include	nagios_cgi	myworld.wrl
@@ -1870,7 +1869,7 @@ super_user_password
 tac_cgi_hard_only	nagios_cgi	0
 task	nagios	view_edit
 temp_file	nagios	/usr/local/nagios/var/nagios.tmp
-temp_path	nagios	/usr/local/nagios/tmp
+temp_path	nagios	/tmp
 time_periods	file	28
 translate_passive_host_checks	nagios	\N
 upload_dir	config	/tmp
@@ -1896,7 +1895,7 @@ user16	resource
 user17	resource	nagios
 user18	resource	
 user19	resource	1248
-user2	resource	/usr/local/nagios/eventhandlers
+user2	resource	
 user20	resource	
 user21	resource	127.0.0.1
 user22	resource	libexec
