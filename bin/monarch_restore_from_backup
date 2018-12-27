@@ -77,7 +77,7 @@ if (!defined($user_name) || $user_name ne 'nagios') {
 my $backup_dir      = '/usr/local/groundwork/monarch/backup';
 my $pg_restore      = '/usr/bin/pg_restore';
 my $psql            = '/usr/bin/psql';
-my $create_fresh_db = '/usr/local/groundwork/monarch/etc/create-fresh-monarch.sql';
+my $create_fresh_db = '/usr/local/groundwork/monarch/etc/01-create-fresh-monarch.sql';
 
 if ( not $opt_b ) {
     print STDERR "$program:  backup directory is not set.\n";

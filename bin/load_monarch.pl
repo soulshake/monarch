@@ -62,10 +62,11 @@ my $dbname;
 my $dbuser;
 my $dbpass;
 
-my $monarch_file    = '/usr/local/groundwork/monarch/etc/monarch.sql';
-my $properties_file = '/usr/local/groundwork/config/db.properties';
-my $psql            = '/usr/bin/psql';
-# my $env             = '/usr/bin/env';
+my $monarch_schema_file = '/usr/local/groundwork/monarch/etc/02-monarch-db.sql';
+my $monarch_data_file   = '/usr/local/groundwork/monarch/etc/03-monarch-seed.sql';
+my $properties_file     = '/usr/local/groundwork/config/db.properties';
+my $psql                = '/usr/bin/psql';
+# my $env                 = '/usr/bin/env';
 
 # This parameter might need local tuning under adverse circumstances.
 my $max_commit_lock_attempts = 20;
@@ -232,8 +233,13 @@ sub load_monarch {
     use Sys::Hostname;
     my $hostname = hostname();
 
-    if ( !-f $monarch_file || !-r $monarch_file ) {
-	push @errors, "Error:  Cannot access $monarch_file on $hostname" . ( $! ? " ($!)." : '' );
+    if ( !-f $monarch_schema_file || !-r $monarch_schema_file ) {
+	push @errors, "Error:  Cannot access $monarch_schema_file on $hostname" . ( $! ? " ($!)." : '' );
+	return \@errors, \@results, $exit_status;
+    }
+
+    if ( !-f $monarch_data_file || !-r $monarch_data_file ) {
+	push @errors, "Error:  Cannot access $monarch_data_file on $hostname" . ( $! ? " ($!)." : '' );
 	return \@errors, \@results, $exit_status;
     }
 
@@ -372,7 +378,7 @@ sub load_monarch {
 	my $in  = $debug >= 1 ? '-f -' : '';
 	my $out = $debug >= 2 ? '' : '-o /dev/null';
 
-	(my $escaped_path = $monarch_file) =~ s{/}{\\/}g;
+	(my $escaped_paths = $monarch_schema_file . ' ' . $monarch_data_file) =~ s{/}{\\/}g;
 
 	# We need lots of very careful escaping here, for multiple levels of protection.  In
 	# order as the string is interpreted and executed, we protect against Perl string
@@ -391,12 +397,15 @@ sub load_monarch {
 	# dollar-sign characters escaped, which then finally becomes "'^\\\\\\\\\\\\.\\\$'"
 	# to protect against Perl string unescaping and interpretation of backslash and
 	# dollar-sign characters.
+	$ENV{PGPASSWORD} = $dbpass;
 	push @results, qx(bash -c "
 	    set -o pipefail;
-	    sed -e '/^COPY /,/^\\\\\\\\\\\\.\\\$/{p;d}' -e '/plpgsql/s/.*//' -e '/dblink/s/.*//' -e '/SCHEMA/s/.*//' $monarch_file | \
+	    cat $monarch_schema_file $monarch_data_file | \
+	    sed -e '/^COPY /,/^\\\\\\\\\\\\.\\\$/{p;d}' -e '/plpgsql/s/.*//' -e '/dblink/s/.*//' -e '/SCHEMA/s/.*//' | \
 	    $psql --host='$dbhost' --username='$dbuser' --no-password --dbname='$dbname' $in $out 2>&1 | \
-	    sed -e 's/^psql.bin:-:/$escaped_path:/'
+	    sed -e 's/^psql.bin:-:/$escaped_paths:/'
 	");
+	delete $ENV{PGPASSWORD};
 
 	# Report the exit status of the pipeline:  the status of the rightmost command
 	# to die or exit with a non-zero status, or zero.  Report the signal with which

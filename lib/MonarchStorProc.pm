@@ -7757,12 +7757,12 @@ sub restore(@) {
 		  ? "$postgres_restore --host=$dbhost $credentials --single-transaction --exit-on-error $clean --dbname=$database '$sqlfile' 2>&1"
 		  : "$postgres_restore --host=$dbhost $credentials --single-transaction $psql_quiet --no-psqlrc --variable=ON_ERROR_STOP= --dbname=$database --file='$sqlfile' $psql_out 2>&1";
 		if ( $interactive ) {
-		$ENV{PGPASSWORD} = $passwd;
-        }
+		    $ENV{PGPASSWORD} = $passwd;
+		}
 		my @results     = qx($restore_command);
 		if ( $interactive ) {
-		delete $ENV{PGPASSWORD};
-        }
+		    delete $ENV{PGPASSWORD};
+		}
 		my $wait_status = $?;
 		push @errors, 'Error:  Got ' . wait_status_message($wait_status) . ' from restore command.' if $wait_status;
 		push @errors, @results;
