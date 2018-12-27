@@ -2136,11 +2136,11 @@ sub timed_commit(@) {
 
     $nagios_results = qx($monarch_home/bin/nagios_reload 2>&1);
     push @results, "Error executing $monarch_home/bin/nagios_reload (" . wait_status_message($?) . ")."
-      if $? || $nagios_results !~ m{.*/nagios/scripts/ctl\.sh\s*:\s+nagios\s+started.*\s*$}si;
+      if $? || $nagios_results !~ m{.*Starting nagios: done\.$}si;
     push @results, split( /\n/, $nagios_results );
     capture_timing( '', \@timings, \$phasetime, 'nagios reload' );
 
-    if ( $nagios_results =~ m{.*/nagios/scripts/ctl\.sh\s*:\s+nagios\s+started.*\s*$}si ) {
+    if ( $nagios_results =~ m{.*Starting nagios: done\.$}si ) {
 	push @results, "Good. Changes accepted by Nagios.";
 	my $time_ref;
 	my $sync_results = '';
@@ -7579,7 +7579,9 @@ sub backup(@) {
 		  ## to suppress commands dealing with the plpgsql extension.
 		  ##   . " --schema=public --blobs"
 		  . " --file='$sqlfile' --format=$backup_format --clean --encoding=LATIN1 $database 2>&1";
+		$ENV{PGPASSWORD} = $passwd;
 		my @results     = qx($dump_command);
+		delete $ENV{PGPASSWORD};
 		my $wait_status = $?;
 		push @errors, 'Error:  Got ' . wait_status_message($wait_status) . ' from backup command.' if $wait_status;
 		push @errors, @results;
@@ -7754,7 +7756,13 @@ sub restore(@) {
 		  $pgrestore eq 'pg_restore'
 		  ? "$postgres_restore --host=$dbhost $credentials --single-transaction --exit-on-error $clean --dbname=$database '$sqlfile' 2>&1"
 		  : "$postgres_restore --host=$dbhost $credentials --single-transaction $psql_quiet --no-psqlrc --variable=ON_ERROR_STOP= --dbname=$database --file='$sqlfile' $psql_out 2>&1";
+		if ( $interactive ) {
+		$ENV{PGPASSWORD} = $passwd;
+        }
 		my @results     = qx($restore_command);
+		if ( $interactive ) {
+		delete $ENV{PGPASSWORD};
+        }
 		my $wait_status = $?;
 		push @errors, 'Error:  Got ' . wait_status_message($wait_status) . ' from restore command.' if $wait_status;
 		push @errors, @results;
