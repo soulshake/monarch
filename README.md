@@ -2,6 +2,17 @@
 
 Monarch: [http://localhost:8091/monarch/cgi-bin/monarch.cgi](http://localhost:8091/monarch/cgi-bin/monarch.cgi)
 
+* Hosts: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=hosts](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=hosts)
+* Services: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=services](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=services)
+* Profiles: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=profiles](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=profiles)
+* Commands: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=commands](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=commands)
+* Time Periods: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?time_periods=hosts](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=time_periods)
+* Contacts: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=contacts](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=contacts)
+* Escalations: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=escalations](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=escalations)
+* Groups: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=groups](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=groups)
+* Control: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=control](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=control)
+* Tools: [http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=tools](http://localhost:8091/monarch/cgi-bin/monarch.cgi?top_menu=tools)
+
 Status log: [http://localhost:8091/nagios/var/status.log](http://localhost:8091/nagios/var/status.log)
 
 Ubuntu Build Instructions, (currently assumes Postgres and Groundwork running on Docker host):
