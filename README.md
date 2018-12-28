@@ -101,13 +101,14 @@ cd /tmp
 wget https://github.com/rwatler/monarch/archive/GROUNDWORK.zip
 unzip GROUNDWORK.zip
 cd monarch-GROUNDWORK
+make all
+make install
 PGPASSWORD=postgres psql -h host.docker.internal -U postgres -d postgres -f etc/01-create-fresh-monarch.sql
 PGPASSWORD=gwrk psql -h host.docker.internal -U monarch -d monarch -f etc/02-monarch-db.sql
 PGPASSWORD=gwrk psql -h host.docker.internal -U monarch -d monarch -f etc/03-monarch-seed.sql
-make all
-make install
 sed -i 's/localhost/host.docker.internal/g' /usr/local/groundwork/config/db.properties
 sed -i 's/localhost/host.docker.internal/g' /usr/local/groundwork/config/ws_client.properties
+make install-nagios
 cd /tmp
 rm -rf debian-perl-packages-master
 rm -rf master.zip

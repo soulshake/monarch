@@ -49,10 +49,11 @@ help :
 	@echo "    make all"
 	@echo "    make clean"
 	@echo ""
-	@echo "Primary install target:"
+	@echo "Primary install targets:"
 	@echo "(must be run as root or nagios)"
 	@echo ""
 	@echo "    make install"
+	@echo "    make install-nagios"
 	@echo ""
 
 all	: ${TARGETDIR}/nagios_reload ${TARGETDIR}/nmap_scan_one ${TARGETDIR}/monarch_as_nagios
@@ -95,16 +96,22 @@ install : all
 	${MKDIR} -p ${CONFIG_BASE}
 	${CP} -pn config/*.properties ${CONFIG_BASE}
 	${CHOWN} nagios:nagios -R ${CONFIG_BASE}
+	${SED} -i '/^Listen 80$$/s/80/8091/' ${APACHE2_PORTSCONF}
+	${SED} -i '/^<VirtualHost \\*:80>$$/s/80/8091/' ${APACHE2_DEFAULTSITECONF}
+	${CP} -p etc/monarch.conf ${APACHE2_SITES}
+	${CP} -p etc/suexec-www-data ${APACHE2_SUEXEC}
+
+install-nagios : all
+	@if [ "`id -u`" -ne 0 -a "`id -un`" != nagios ]; then \
+	    echo "ERROR:  You must be either root or nagios to install Monarch."; \
+	    exit 1; \
+	fi
 	${MONARCH_BASE}/bin/install_nagios_files ${NAGIOS_BASE}/etc
 	${RM} -rf ${NAGIOS_BASE}/etc/objects
 	${RM} -f ${MONARCH_BASE}/bin/install_nagios_files
 	${CP} -pn etc/send_nsca.cfg ${NAGIOS_BASE}/etc
 	${CHOWN} nagios:nagios -R ${NAGIOS_BASE}/etc
-	${SED} -i '/^Listen 80$$/s/80/8091/' ${APACHE2_PORTSCONF}
-	${SED} -i '/^<VirtualHost \\*:80>$$/s/80/8091/' ${APACHE2_DEFAULTSITECONF}
-	${CP} -p etc/monarch.conf ${APACHE2_SITES}
 	${CP} -p etc/nagios.conf ${APACHE2_SITES}
-	${CP} -p etc/suexec-www-data ${APACHE2_SUEXEC}
 
 clean :
 	${RM} -r ${TARGETDIR}
