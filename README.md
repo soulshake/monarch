@@ -67,7 +67,19 @@ make install
 cd /tmp
 rm -rf nagios-plugins-release-2.2.1
 rm -rf nagios-plugins.tar.gz
-service nagios start
+
+# feeders
+apt-get install -y supervisor
+apt-get install -y libdatetime-perl libdatetime-format-strptime-perl libdatetime-format-builder-perl
+cd /tmp
+wget https://github.com/rwatler/nagios-feeders/archive/GROUNDWORK.zip
+unzip GROUNDWORK.zip
+cd nagios-feeders-GROUNDWORK
+make all
+make install
+cd /tmp
+rm -rf nagios-feeders-GROUNDWORK
+rm -rf GROUNDWORK.zip
 
 # monarch
 apt-get install -y postgresql-client snmp sendemail nsca-client apache2-suexec-custom
@@ -89,11 +101,13 @@ cd /tmp
 wget https://github.com/rwatler/monarch/archive/GROUNDWORK.zip
 unzip GROUNDWORK.zip
 cd monarch-GROUNDWORK
-make all
-make install
 PGPASSWORD=postgres psql -h host.docker.internal -U postgres -d postgres -f etc/01-create-fresh-monarch.sql
 PGPASSWORD=gwrk psql -h host.docker.internal -U monarch -d monarch -f etc/02-monarch-db.sql
 PGPASSWORD=gwrk psql -h host.docker.internal -U monarch -d monarch -f etc/03-monarch-seed.sql
+make all
+make install
+sed -i 's/localhost/host.docker.internal/g' /usr/local/groundwork/config/db.properties
+sed -i 's/localhost/host.docker.internal/g' /usr/local/groundwork/config/ws_client.properties
 cd /tmp
 rm -rf debian-perl-packages-master
 rm -rf master.zip
@@ -101,22 +115,32 @@ rm -rf monarch-GROUNDWORK
 rm -rf GROUNDWORK.zip
 a2enmod cgi
 a2enmod suexec
-service apache2 start
 
-# feeders
-apt-get install -y supervisor
-apt-get install -y libdatetime-perl libdatetime-format-strptime-perl libdatetime-format-builder-perl
-cd /tmp
-wget https://github.com/rwatler/nagios-feeders/archive/GROUNDWORK.zip
-unzip GROUNDWORK.zip
-cd nagios-feeders-GROUNDWORK
-make all
-make install
-cd /tmp
-rm -rf nagios-feeders-GROUNDWORK
-rm -rf GROUNDWORK.zip
+# start
+service apache2 start
+service nagios start
 service supervisor start
 sleep 5
 supervisorctl status all
-service nagios restart
+````
+
+Postgres access from container:
+
+- pg_hba.conf:
+
+  ````
+  # IPv4 connections:
+  host    all             all             0.0.0.0/0               md5
+
+  ````
+
+- postgresql.conf:
+  ````
+  listen_addresses = '*'
+  ````
+
+Groundwork access from container:
+
+````
+SERVER_ADDRESS=0.0.0.0 java -DGROUNDWORK_CONFIG=src/main/config -DGROUNDWORK_OUTPUT=/tmp -Djava.net.preferIPv4Stack=true -jar target/gw-server-8.0.0-SNAPSHOT.jar
 ````

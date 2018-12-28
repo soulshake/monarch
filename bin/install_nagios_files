@@ -1,0 +1,35 @@
+#!/usr/bin/perl --
+# MonArch - Groundwork Monitor Architect
+# install_nagios_files
+#
+############################################################################
+# Release 4.6
+# December 2018
+############################################################################
+#
+# Author: RW
+#
+# Copyright 2011 GroundWork Open Source, Inc. (GroundWork)
+# All rights reserved. Use is subject to GroundWork commercial license terms.
+#
+# Script used only during initial installation to write Nagios config files
+# that are derived strictly from seed data. As this script is not generally
+# safe post install, it is to be removed from the deployed Monarch scripts
+# as part of the installation process.
+
+use strict;
+use lib qq(/usr/local/groundwork/monarch/lib);
+
+use MonarchFile;
+use MonarchStorProc;
+
+my $user_acct = 'super_user';
+my $nagios_ver = '3.x';
+my $nagios_etc = $#ARGV == 0 ? $ARGV[0] : '/usr/local/nagios/etc';
+
+StorProc->dbconnect();
+( my $files, my $errors ) = Files->build_files( $user_acct, '', 'install', '', $nagios_ver, $nagios_etc, $nagios_etc, '' );
+if ( @$errors ) {
+	die("ERROR: build_files errors: @$errors");
+}
+StorProc->dbdisconnect();

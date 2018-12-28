@@ -17,11 +17,14 @@ CP = cp
 CC = gcc
 CHOWN = chown
 CHMOD = chmod
+SED = sed
 
 # Nagois install
 NAGIOS_BASE = /usr/local/nagios
 
-# Apache2 sites/suexec configuration
+# Apache2 conf/sites/suexec configuration
+APACHE2_PORTSCONF = /etc/apache2/ports.conf
+APACHE2_DEFAULTSITECONF = /etc/apache2/sites-enabled/000-default.conf
 APACHE2_SITES = /etc/apache2/sites-enabled
 APACHE2_SUEXEC = /etc/apache2/suexec/www-data
 
@@ -92,8 +95,13 @@ install : all
 	${MKDIR} -p ${CONFIG_BASE}
 	${CP} -pn config/*.properties ${CONFIG_BASE}
 	${CHOWN} nagios:nagios -R ${CONFIG_BASE}
+	${MONARCH_BASE}/bin/install_nagios_files ${NAGIOS_BASE}/etc
+	${RM} -rf ${NAGIOS_BASE}/etc/objects
+	${RM} -f ${MONARCH_BASE}/bin/install_nagios_files
 	${CP} -pn etc/send_nsca.cfg ${NAGIOS_BASE}/etc
-	${CHOWN} nagios:nagios ${NAGIOS_BASE}/etc/send_nsca.cfg
+	${CHOWN} nagios:nagios -R ${NAGIOS_BASE}/etc
+	${SED} -i '/^Listen 80$$/s/80/8091/' ${APACHE2_PORTSCONF}
+	${SED} -i '/^<VirtualHost \\*:80>$$/s/80/8091/' ${APACHE2_DEFAULTSITECONF}
 	${CP} -p etc/monarch.conf ${APACHE2_SITES}
 	${CP} -p etc/nagios.conf ${APACHE2_SITES}
 	${CP} -p etc/suexec-www-data ${APACHE2_SUEXEC}

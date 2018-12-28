@@ -13,12 +13,15 @@
 --    along with this program; if not, write to the Free Software
 --    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 --
--- 
+
+-- (re)create monarch database and user
 \c postgres
 DROP DATABASE IF EXISTS monarch;
 DROP USER IF EXISTS monarch;
 CREATE USER monarch WITH PASSWORD 'gwrk';
 CREATE DATABASE monarch TEMPLATE template0 ENCODING='LATIN1' LC_COLLATE='C' LC_CTYPE='C' OWNER=monarch;
-
--- Set permissions.
 GRANT ALL PRIVILEGES ON DATABASE monarch to monarch;
+
+-- enable PL/pgSQL
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
