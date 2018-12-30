@@ -55,7 +55,7 @@ rm -rf bronx-GROUNDWORK
 rm -rf GROUNDWORK.zip
 
 # nagios plugins
-apt-get install -y autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk dc build-essential snmp libnet-snmp-perl gettext
+apt-get install -y autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk dc build-essential snmp libnet-snmp-perl gettext dnsutils openssh-client libmysqlclient-dev
 cd /tmp
 wget -O nagios-plugins.tar.gz https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
 tar zxf nagios-plugins.tar.gz
@@ -68,7 +68,40 @@ cd /tmp
 rm -rf nagios-plugins-release-2.2.1
 rm -rf nagios-plugins.tar.gz
 
-# feeders
+# nagios nrpe plugin
+cd /tmp
+wget https://github.com/NagiosEnterprises/nrpe/archive/nrpe-2-15.zip
+unzip nrpe-2-15.zip
+cd nrpe-nrpe-2-15
+./configure --with-ssl-lib=/usr/lib/x86_64-linux-gnu
+make all
+cp -p src/check_nrpe /usr/local/nagios/libexec
+cp -p src/nrpe /usr/local/bin
+cd /tmp
+rm -rf nrpe-2-15.zip
+rm -rf nrpe-nrpe-2-15
+
+# custom/extended nagios plugins
+apt-get install -y autoconf gcc libdatetime-perl make build-essential g++ python-dev
+apt-get install -y libconfig-inifiles-perl libnumber-format-perl
+cd /tmp
+wget https://github.com/rwatler/nagios-plugins/archive/GROUNDWORK.zip
+unzip GROUNDWORK.zip
+cd nagios-plugins-GROUNDWORK
+cp -pr libexec/* /usr/local/nagios/libexec
+cd src
+unzip wmic-1.3.14.zip
+cd wmic-master
+export ZENHOME=/tmp/nagios-plugins-GROUNDWORK
+mkdir -p Samba/source/bin/static
+make "CPP=gcc -E -ffreestanding"
+cp -p /tmp/nagios-plugins-GROUNDWORK/bin/winexe /usr/local/bin
+cp -p /tmp/nagios-plugins-GROUNDWORK/bin/wmic /usr/local/bin
+cd /tmp
+rm -rf GROUNDWORK.zip
+rm -rf nagios-plugins-GROUNDWORK
+
+# nagios feeders
 apt-get install -y supervisor
 apt-get install -y libdatetime-perl libdatetime-format-strptime-perl libdatetime-format-builder-perl
 cd /tmp
