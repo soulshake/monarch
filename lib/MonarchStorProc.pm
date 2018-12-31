@@ -6535,6 +6535,7 @@ sub nagios_defaults(@) {
     $nagios{'status_file'}            = $nagios_dir . '/var/status.log';
     $nagios{'status_update_interval'} = '15';
     if ($is_portal) {
+	$nagios{'event_broker_options'} = '-1';
 	$nagios{'broker_module'} = $nagios_dir . '/lib/libbronx.so';
     }
 
