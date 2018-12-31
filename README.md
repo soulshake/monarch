@@ -25,7 +25,7 @@ docker run -it -p 8091:80 -p 5667:5667 -p 5677:5677 --add-host host.docker.inter
 # headless nagios
 apt-get update
 apt-get install -y autoconf gcc libc6 make wget unzip apache2 php libapache2-mod-php7.2 libgd-dev
-    note: tzdata: 12 - US, 10 - Pacific
+    # note: tzdata: 12 - US, 10 - Pacific
 cd /tmp
 wget https://github.com/rwatler/nagioscore/archive/GROUNDWORK.zip
 unzip GROUNDWORK.zip
@@ -55,7 +55,7 @@ rm -rf bronx-GROUNDWORK
 rm -rf GROUNDWORK.zip
 
 # nagios plugins
-apt-get install -y autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk dc build-essential snmp libnet-snmp-perl gettext dnsutils openssh-client libmysqlclient-dev
+apt-get install -y autoconf gcc libc6 libmcrypt-dev make libssl-dev wget bc gawk dc build-essential snmp libnet-snmp-perl gettext dnsutils openssh-client libmysqlclient-dev libpq-dev
 cd /tmp
 wget -O nagios-plugins.tar.gz https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
 tar zxf nagios-plugins.tar.gz
